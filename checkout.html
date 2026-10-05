@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NovaShop – Kasse</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f6f6f6;
+  color:#111;
+}
+
+header{
+  background:white;
+  border-bottom:1px solid #ddd;
+}
+
+.nav{
+  max-width:1200px;
+  margin:auto;
+  padding:18px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-size:26px;
+  font-weight:900;
+}
+
+.back{
+  background:#111;
+  color:white;
+  text-decoration:none;
+  padding:10px 15px;
+  border-radius:8px;
+  font-weight:bold;
+}
+
+.container{
+  max-width:1100px;
+  margin:40px auto;
+  padding:0 20px 60px;
+}
+
+h1{
+  font-size:36px;
+}
+
+.layout{
+  display:grid;
+  grid-template-columns:1fr 380px;
+  gap:25px;
+}
+
+.box{
+  background:white;
+  padding:25px;
+  border-radius:16px;
+  box-shadow:0 6px 25px rgba(0,0,0,.06);
+  margin-bottom:20px;
+}
+
+.box h2{
+  margin-top:0;
+}
+
+label{
+  display:block;
+  font-weight:bold;
+  margin-top:15px;
+  margin-bottom:6px;
+}
+
+input{
+  width:100%;
+  padding:13px;
+  border:1px solid #ccc;
+  border-radius:8px;
+  font-size:15px;
+}
+
+.row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.payment{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  border:1px solid #ddd;
+  padding:14px;
+  border-radius:9px;
+  margin-top:10px;
+  cursor:pointer;
+}
+
+.payment input{
+  width:auto;
+}
+
+.summary-item{
+  display:flex;
+  gap:12px;
+  padding:12px 0;
+  border-bottom:1px solid #eee;
+}
+
+.summary-item img{
+  width:65px;
+  height:70px;
+  object-fit:cover;
+  border-radius:8px;
+}
+
+.summary-name{
+  font-weight:bold;
+}
+
+.summary-small{
+  color:#666;
+  font-size:13px;
+  margin-top:5px;
+}
+
+.price-row{
+  display:flex;
+  justify-content:space-between;
+  margin:15px 0;
+}
+
+.total{
+  border-top:1px solid #ddd;
+  padding-top:18px;
+  font-size:21px;
+  font-weight:bold;
+}
+
+.order-button{
+  width:100%;
+  border:0;
+  background:#111;
+  color:white;
+  padding:16px;
+  border-radius:9px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:20px;
+}
+
+.order-button:hover{
+  background:#292929;
+}
+
+.success{
+  display:none;
+  text-align:center;
+  background:white;
+  padding:50px 25px;
+  border-radius:16px;
+  box-shadow:0 6px 25px rgba(0,0,0,.06);
+}
+
+.success-icon{
+  font-size:55px;
+}
+
+.success h2{
+  font-size:28px;
+}
+
+.success p{
+  color:#666;
+}
+
+.shop{
+  display:inline-block;
+  background:#111;
+  color:white;
+  text-decoration:none;
+  padding:13px 20px;
+  border-radius:8px;
+  font-weight:bold;
+  margin-top:15px;
+}
+
+@media(max-width:800px){
+
+  .layout{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:550px){
+
+  .row{
+    grid-template-columns:1fr;
+  }
+
+  h1{
+    font-size:30px;
+  }
+
+  .logo{
+    font-size:22px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="nav">
+
+<div class="logo">
+NovaShop
+</div>
+
+<a href="cart.html" class="back">
+← Warenkorb
+</a>
+
+</div>
+
+</header>
+
+
+<div class="container">
+
+<h1>
+Kasse
+</h1>
+
+
+<div id="checkout">
+
+<div class="layout">
+
+
+<!-- ADRESSE -->
+
+<div>
+
+<div class="box">
+
+<h2>
+Lieferadresse
+</h2>
+
+<label>
+Vorname
+</label>
+
+<input
+type="text"
+id="firstname"
+placeholder="Max"
+required
+>
+
+
+<label>
+Nachname
+</label>
+
+<input
+type="text"
+id="lastname"
+placeholder="Mustermann"
+required
+>
+
+
+<label>
+E-Mail
+</label>
+
+<input
+type="email"
+id="email"
+placeholder="max@example.de"
+required
+>
+
+
+<div class="row">
+
+<div>
+
+<label>
+Straße
+</label>
+
+<input
+type="text"
+id="street"
+placeholder="Musterstraße"
+required
+>
+
+</div>
+
+<div>
+
+<label>
+Hausnummer
+</label>
+
+<input
+type="text"
+id="house"
+placeholder="12"
+required
+>
+
+</div>
+
+</div>
+
+
+<div class="row">
+
+<div>
+
+<label>
+PLZ
+</label>
+
+<input
+type="text"
+id="zip"
+placeholder="12345"
+required
+>
+
+</div>
+
+<div>
+
+<label>
+Ort
+</label>
+
+<input
+type="text"
+id="city"
+placeholder="Berlin"
+required
+>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ZAHLUNG -->
+
+<div class="box">
+
+<h2>
+Zahlungsart
+</h2>
+
+
+<label class="payment">
+
+<input
+type="radio"
+name="payment"
+value="Kreditkarte"
+checked
+>
+
+Kreditkarte
+
+</label>
+
+
+<label class="payment">
+
+<input
+type="radio"
+name="payment"
+value="PayPal"
+>
+
+PayPal
+
+</label>
+
+
+<label class="payment">
+
+<input
+type="radio"
+name="payment"
+value="Klarna"
+>
+
+Klarna
+
+</label>
+
+</div>
+
+</div>
+
+
+<!-- BESTELLUNG -->
+
+<div>
+
+<div class="box">
+
+<h2>
+Deine Bestellung
+</h2>
+
+<div id="items"></div>
+
+
+<div class="price-row">
+
+<span>
+Zwischensumme
+</span>
+
+<strong id="subtotal">
+0,00 €
+</strong>
+
+</div>
+
+
+<div class="price-row">
+
+<span>
+Versand
+</span>
+
+<strong id="shipping">
+0,00 €
+</strong>
+
+</div>
+
+
+<div class="price-row total">
+
+<span>
+Gesamt
+</span>
+
+<strong id="total">
+0,00 €
+</strong>
+
+</div>
+
+
+<button
+class="order-button"
+onclick="placeOrder()">
+
+Bestellung abschließen
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ERFOLG -->
+
+<div id="success" class="success">
+
+<div class="success-icon">
+✅
+</div>
+
+<h2>
+Bestellung erfolgreich!
+</h2>
+
+<p>
+Vielen Dank für deine Bestellung bei NovaShop.
+</p>
+
+<p>
+Deine Bestellung wurde aufgenommen.
+</p>
+
+<a
+href="index.html"
+class="shop">
+
+Zurück zum Shop
+
+</a>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* WARENKORB */
+
+let cart =
+JSON.parse(
+localStorage.getItem("cart") || "[]"
+);
+
+
+/* GELD */
+
+function money(value){
+
+return value
+.toFixed(2)
+.replace(".",",") + " €";
+
+}
+
+
+/* BESTELLUNG ANZEIGEN */
+
+function renderCheckout(){
+
+const items =
+document.getElementById("items");
+
+
+if(cart.length === 0){
+
+items.innerHTML =
+"<p>Dein Warenkorb ist leer.</p>";
+
+return;
+
+}
+
+
+items.innerHTML =
+cart.map(item => {
+
+const quantity =
+item.quantity || 1;
+
+const total =
+Number(item.price) * quantity;
+
+return `
+
+<div class="summary-item">
+
+<img
+src="${item.image}"
+alt="${item.name}"
+>
+
+<div>
+
+<div class="summary-name">
+${item.name}
+</div>
+
+<div class="summary-small">
+${
+item.size
+? "Größe: " + item.size
+: ""
+}
+</div>
+
+<div class="summary-small">
+Menge: ${quantity}
+</div>
+
+</div>
+
+<div style="margin-left:auto;font-weight:bold;">
+${money(total)}
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+
+/* ZWISCHENSUMME */
+
+const subtotal =
+cart.reduce(
+(sum,item) =>
+sum +
+Number(item.price) *
+(item.quantity || 1),
+0
+);
+
+
+/* VERSAND */
+
+const shipping =
+subtotal >= 50
+? 0
+: 4.99;
+
+
+/* GESAMT */
+
+const total =
+subtotal + shipping;
+
+
+/* AUSGEBEN */
+
+document.getElementById("subtotal")
+.textContent =
+money(subtotal);
+
+document.getElementById("shipping")
+.textContent =
+shipping === 0
+? "Kostenlos"
+: money(shipping);
+
+document.getElementById("total")
+.textContent =
+money(total);
+
+}
+
+
+/* BESTELLUNG ABSCHLIESSEN */
+
+function placeOrder(){
+
+/* FELDER PRÜFEN */
+
+const required = [
+
+"firstname",
+"lastname",
+"email",
+"street",
+"house",
+"zip",
+"city"
+
+];
+
+
+for(const id of required){
+
+const field =
+document.getElementById(id);
+
+if(!field.value.trim()){
+
+alert(
+"Bitte fülle alle Pflichtfelder aus."
+);
+
+field.focus();
+
+return;
+
+}
+
+}
+
+
+/* WARENKORB PRÜFEN */
+
+if(cart.length === 0){
+
+alert(
+"Dein Warenkorb ist leer."
+);
+
+return;
+
+}
+
+
+/*
+WICHTIG:
+
+Diese Version ist nur eine
+Shop-Demo.
+
+Es wird noch keine echte
+Zahlung durchgeführt.
+*/
+
+
+/* BESTELLUNG ABSCHLIESSEN */
+
+localStorage.removeItem("cart");
+
+
+document.getElementById("checkout")
+.style.display =
+"none";
+
+
+document.getElementById("success")
+.style.display =
+"block";
+
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+/* START */
+
+renderCheckout();
+
+</script>
+
+</body>
+</html>
