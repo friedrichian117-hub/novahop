@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -13,7 +14,7 @@
 }
 
 body{
-  font-family:Arial, sans-serif;
+  font-family:Arial,sans-serif;
   background:#f5f5f5;
   color:#111;
 }
@@ -87,6 +88,7 @@ h1{
   display:flex;
   align-items:center;
   gap:10px;
+  margin-top:12px;
 }
 
 .quantity button{
@@ -105,6 +107,10 @@ h1{
   padding:9px 12px;
   border-radius:8px;
   cursor:pointer;
+}
+
+.remove:hover{
+  background:#ddd;
 }
 
 .price{
@@ -162,9 +168,20 @@ h1{
   font-weight:bold;
 }
 
+.shipping{
+  margin-top:15px;
+  padding:12px;
+  background:#f5f5f5;
+  border-radius:8px;
+  font-size:14px;
+  color:#555;
+}
+
 @media(max-width:700px){
+
   .item{
     align-items:flex-start;
+    flex-wrap:wrap;
   }
 
   .item img{
@@ -174,6 +191,7 @@ h1{
 
   .price{
     min-width:auto;
+    margin-left:auto;
   }
 
   .summary{
@@ -184,6 +202,7 @@ h1{
   .checkout{
     width:100%;
   }
+
 }
 </style>
 </head>
@@ -191,9 +210,17 @@ h1{
 <body>
 
 <header>
-  <div class="logo">NovaShop</div>
-  <a href="index.html">← Zum Shop</a>
+
+  <div class="logo">
+    NovaShop
+  </div>
+
+  <a href="index.html">
+    ← Zum Shop
+  </a>
+
 </header>
+
 
 <div class="container">
 
@@ -203,101 +230,221 @@ h1{
 
 </div>
 
+
 <script>
 
 function getCart(){
-  return JSON.parse(localStorage.getItem("cart") || "[]");
+
+  return JSON.parse(
+    localStorage.getItem("cart") || "[]"
+  );
+
 }
 
+
 function saveCart(cart){
-  localStorage.setItem("cart", JSON.stringify(cart));
+
+  localStorage.setItem(
+    "cart",
+    JSON.stringify(cart)
+  );
+
 }
+
 
 function renderCart(){
 
   const cart = getCart();
-  const container = document.getElementById("cart");
+
+  const container =
+    document.getElementById("cart");
+
 
   if(cart.length === 0){
 
     container.innerHTML = `
+
       <div class="empty">
-        <h2>Dein Warenkorb ist leer</h2>
-        <p>Füge Produkte hinzu, um sie hier zu sehen.</p>
-        <a class="shop" href="index.html">Jetzt shoppen</a>
+
+        <h2>
+          Dein Warenkorb ist leer
+        </h2>
+
+        <p>
+          Füge Produkte hinzu, um sie hier zu sehen.
+        </p>
+
+        <a
+          class="shop"
+          href="index.html"
+        >
+          Jetzt shoppen
+        </a>
+
       </div>
+
     `;
 
     return;
+
   }
+
 
   let total = 0;
 
+
   container.innerHTML = cart.map((item,index)=>{
 
-    const quantity = item.quantity || 1;
-    const price = Number(item.price) || 0;
-    const itemTotal = price * quantity;
+    const quantity =
+      item.quantity || 1;
+
+    const price =
+      Number(item.price) || 0;
+
+    const itemTotal =
+      price * quantity;
 
     total += itemTotal;
 
+
     return `
+
       <div class="item">
 
-        <img src="${item.image}" alt="${item.name}">
+        <img
+          src="${item.image}"
+          alt="${item.name}"
+        >
+
 
         <div class="info">
-          <h2>${item.name}</h2>
-          ${item.size ? `<p>Größe: ${item.size}</p>` : ""}
-          <p>${price.toFixed(2)} €</p>
+
+          <h2>
+            ${item.name}
+          </h2>
+
+
+          ${
+            item.size
+            ? `<p>Größe: ${item.size}</p>`
+            : ""
+          }
+
+
+          <p>
+            Einzelpreis: ${price.toFixed(2)} €
+          </p>
+
 
           <div class="quantity">
-            <button onclick="changeQuantity(${index}, -1)">−</button>
-            <strong>${quantity}</strong>
-            <button onclick="changeQuantity(${index}, 1)">+</button>
+
+            <button
+              onclick="changeQuantity(${index}, -1)"
+            >
+              −
+            </button>
+
+
+            <strong>
+              ${quantity}
+            </strong>
+
+
+            <button
+              onclick="changeQuantity(${index}, 1)"
+            >
+              +
+            </button>
+
           </div>
+
         </div>
+
 
         <div class="price">
+
           ${itemTotal.toFixed(2)} €
+
         </div>
 
-        <button class="remove" onclick="removeItem(${index})">
+
+        <button
+          class="remove"
+          onclick="removeItem(${index})"
+        >
           Entfernen
         </button>
 
       </div>
+
     `;
 
   }).join("") + `
 
+
+    <div class="shipping">
+
+      ${
+        total >= 50
+        ? "✓ Kostenloser Versand"
+        : "Versandkosten: 4,99 € · Kostenloser Versand ab 50 €"
+      }
+
+    </div>
+
+
     <div class="summary">
 
-      <div class="total">
-        Gesamt: ${total.toFixed(2)} €
+      <div>
+
+        <div class="total">
+
+          Gesamt:
+          ${(
+            total + (total >= 50 ? 0 : 4.99)
+          ).toFixed(2)} €
+
+        </div>
+
       </div>
 
-      <button class="checkout" onclick="checkout()">
+
+      <button
+        class="checkout"
+        onclick="checkout()"
+      >
         Zur Kasse →
       </button>
 
     </div>
+
   `;
+
 }
 
-function changeQuantity(index, amount){
+
+function changeQuantity(index,amount){
 
   const cart = getCart();
 
-  cart[index].quantity = (cart[index].quantity || 1) + amount;
+
+  cart[index].quantity =
+    (cart[index].quantity || 1) + amount;
+
 
   if(cart[index].quantity <= 0){
+
     cart.splice(index,1);
+
   }
 
+
   saveCart(cart);
+
   renderCart();
+
 }
+
 
 function removeItem(index){
 
@@ -306,14 +453,35 @@ function removeItem(index){
   cart.splice(index,1);
 
   saveCart(cart);
+
   renderCart();
+
 }
+
+
+/* ZUR CHECKOUT-SEITE */
 
 function checkout(){
 
-  alert("Checkout kommt als Nächstes! 🛒");
+  const cart = getCart();
+
+
+  if(cart.length === 0){
+
+    alert(
+      "Dein Warenkorb ist leer."
+    );
+
+    return;
+
+  }
+
+
+  window.location.href =
+    "checkout.html";
 
 }
+
 
 renderCart();
 
