@@ -3,20 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>NovaShop | Streetwear & Electronics</title>
 
 <style>
+*{box-sizing:border-box;margin:0;padding:0}
 
-*{
-box-sizing:border-box;
-margin:0;
-padding:0;
-}
-
-html{
-scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
 font-family:Arial,Helvetica,sans-serif;
@@ -24,12 +16,10 @@ background:#f7f7f7;
 color:#111;
 }
 
-/* HEADER */
-
 header{
 height:72px;
 background:#fff;
-border-bottom:1px solid #eee;
+border-bottom:1px solid #e8e8e8;
 display:flex;
 align-items:center;
 justify-content:space-between;
@@ -40,37 +30,33 @@ z-index:100;
 }
 
 .logo{
-font-size:26px;
+font-size:27px;
 font-weight:900;
-letter-spacing:-1px;
+letter-spacing:-1.5px;
 }
 
-.logo span{
-color:#777;
-}
+.logo span{color:#777}
 
 nav{
 display:flex;
-gap:28px;
+gap:30px;
 }
 
 nav a{
+color:#111;
 text-decoration:none;
-color:#222;
 font-size:14px;
-font-weight:600;
+font-weight:700;
 cursor:pointer;
 }
 
-nav a:hover{
-color:#777;
-}
+nav a:hover{color:#777}
 
 .cart{
 border:0;
 background:#111;
 color:#fff;
-padding:11px 18px;
+padding:12px 19px;
 border-radius:30px;
 font-weight:bold;
 cursor:pointer;
@@ -79,12 +65,13 @@ transition:.2s;
 
 .cart:hover{
 transform:translateY(-2px);
+background:#333;
 }
 
 /* HERO */
 
 .hero{
-min-height:560px;
+min-height:570px;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -97,22 +84,19 @@ center/cover;
 color:white;
 }
 
-.hero-content{
-max-width:750px;
-}
+.hero-content{max-width:800px}
 
 .hero small{
 font-size:13px;
-letter-spacing:3px;
-text-transform:uppercase;
+letter-spacing:4px;
 color:#ddd;
 }
 
 .hero h1{
-font-size:clamp(48px,8vw,90px);
-line-height:.95;
+font-size:clamp(50px,8vw,92px);
+line-height:.94;
 margin:20px 0;
-letter-spacing:-5px;
+letter-spacing:-6px;
 }
 
 .hero p{
@@ -125,7 +109,7 @@ margin-bottom:30px;
 display:inline-block;
 background:white;
 color:#111;
-padding:15px 28px;
+padding:15px 29px;
 border-radius:30px;
 text-decoration:none;
 font-weight:bold;
@@ -142,7 +126,7 @@ transform:scale(1.04);
 display:grid;
 grid-template-columns:repeat(3,1fr);
 background:#111;
-color:white;
+color:#fff;
 text-align:center;
 }
 
@@ -161,24 +145,21 @@ font-size:13px;
 color:#aaa;
 }
 
-/* SECTION */
+/* SHOP */
 
 .section{
-max-width:1350px;
+max-width:1450px;
 margin:auto;
-padding:70px 6%;
+padding:75px 5%;
 }
 
 .section-head{
-display:flex;
-justify-content:space-between;
-align-items:end;
 margin-bottom:30px;
 }
 
 .section-head h2{
-font-size:34px;
-letter-spacing:-1px;
+font-size:38px;
+letter-spacing:-1.5px;
 }
 
 .section-head p{
@@ -191,7 +172,7 @@ margin-top:7px;
 .filters{
 display:flex;
 gap:10px;
-margin-bottom:30px;
+margin-bottom:35px;
 flex-wrap:wrap;
 }
 
@@ -199,41 +180,42 @@ flex-wrap:wrap;
 border:1px solid #ddd;
 background:white;
 color:#111;
-padding:10px 18px;
+padding:11px 20px;
 border-radius:30px;
 cursor:pointer;
-font-weight:600;
+font-weight:700;
 }
 
 .filter.active,
 .filter:hover{
 background:#111;
-color:white;
+color:#fff;
 }
 
 /* PRODUCTS */
 
 .products{
 display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:20px;
+grid-template-columns:repeat(3,1fr);
+gap:28px;
 }
 
 .card{
-background:white;
-border-radius:16px;
+background:#fff;
+border-radius:18px;
 overflow:hidden;
 position:relative;
 transition:.25s;
+border:1px solid #eee;
 }
 
 .card:hover{
-transform:translateY(-6px);
-box-shadow:0 15px 40px #00000012;
+transform:translateY(-7px);
+box-shadow:0 20px 45px #00000018;
 }
 
 .pic{
-height:320px;
+height:430px;
 background:#eee;
 position:relative;
 overflow:hidden;
@@ -243,67 +225,70 @@ overflow:hidden;
 width:100%;
 height:100%;
 object-fit:cover;
+display:block;
 transition:.5s;
 }
 
 .card:hover .pic img{
-transform:scale(1.05);
+transform:scale(1.045);
 }
 
 .badge{
 position:absolute;
-top:14px;
-left:14px;
+top:16px;
+left:16px;
 background:#111;
-color:white;
-padding:7px 11px;
+color:#fff;
+padding:8px 12px;
 border-radius:20px;
-font-size:11px;
-font-weight:bold;
+font-size:10px;
+font-weight:800;
+letter-spacing:.5px;
 z-index:2;
 }
 
 .info{
-padding:18px;
+padding:22px;
 }
 
 .category{
-font-size:12px;
+font-size:11px;
 color:#888;
 text-transform:uppercase;
-letter-spacing:1px;
+letter-spacing:1.5px;
 }
 
 .info h3{
-font-size:17px;
-margin:7px 0;
+font-size:20px;
+margin:8px 0;
 }
 
 .stars{
 font-size:13px;
-margin:7px 0;
+margin:8px 0;
+letter-spacing:1px;
 }
 
 .price{
-font-size:20px;
-font-weight:800;
-margin:12px 0;
+font-size:23px;
+font-weight:900;
+margin:13px 0;
 }
 
 .details{
-font-size:12px;
+font-size:13px;
 color:#777;
-line-height:1.6;
+line-height:1.7;
 }
 
 .add{
 width:100%;
-margin-top:15px;
-padding:13px;
+margin-top:17px;
+padding:14px;
 border:0;
-border-radius:10px;
+border-radius:11px;
 background:#111;
-color:white;
+color:#fff;
 font-weight:bold;
 cursor:pointer;
 transition:.2s;
@@ -316,39 +301,39 @@ background:#333;
 /* PROMO */
 
 .promo{
-margin:20px 6% 70px;
-min-height:300px;
-border-radius:22px;
+margin:10px 5% 75px;
+min-height:340px;
+border-radius:24px;
 background:
-linear-gradient(90deg,#000c,#0003),
+linear-gradient(90deg,#000d,#0003),
 url("https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1600&q=85")
 center/cover;
-color:white;
+color:#fff;
 display:flex;
 align-items:center;
-padding:50px;
+padding:60px;
 }
 
-.promo-content{
-max-width:500px;
-}
+.promo-content{max-width:550px}
 
 .promo h2{
-font-size:42px;
-margin-bottom:12px;
+font-size:48px;
+line-height:1;
+margin-bottom:15px;
 }
 
 .promo p{
 color:#ddd;
-margin-bottom:25px;
+font-size:17px;
+margin-bottom:27px;
 }
 
 /* FOOTER */
 
 footer{
 background:#111;
-color:white;
-padding:60px 6% 30px;
+color:#fff;
+padding:65px 6% 30px;
 }
 
 .footer-grid{
@@ -356,12 +341,10 @@ max-width:1200px;
 margin:auto;
 display:grid;
 grid-template-columns:2fr 1fr 1fr;
-gap:40px;
+gap:50px;
 }
 
-footer h3{
-margin-bottom:15px;
-}
+footer h3{margin-bottom:15px}
 
 footer p,
 footer a{
@@ -370,6 +353,8 @@ font-size:14px;
 line-height:2;
 text-decoration:none;
 }
+
+footer a:hover{color:#fff}
 
 .copyright{
 border-top:1px solid #333;
@@ -388,7 +373,7 @@ right:0;
 top:0;
 width:min(430px,100%);
 height:100%;
-background:white;
+background:#fff;
 z-index:200;
 padding:28px;
 box-shadow:-10px 0 40px #0003;
@@ -405,8 +390,8 @@ margin-bottom:25px;
 .close{
 border:0;
 background:#eee;
-width:35px;
-height:35px;
+width:36px;
+height:36px;
 border-radius:50%;
 cursor:pointer;
 }
@@ -420,31 +405,31 @@ border-bottom:1px solid #eee;
 float:right;
 border:0;
 background:#eee;
-padding:6px 10px;
-border-radius:6px;
+padding:7px 10px;
+border-radius:7px;
 cursor:pointer;
 }
 
 .total{
 font-size:24px;
-font-weight:800;
+font-weight:900;
 margin:25px 0;
 }
 
 .checkout{
 width:100%;
-padding:15px;
+padding:16px;
 border:0;
-border-radius:10px;
+border-radius:11px;
 background:#111;
-color:white;
+color:#fff;
 font-weight:bold;
 cursor:pointer;
 }
 
-/* MOBILE */
+/* RESPONSIVE */
 
-@media(max-width:1000px){
+@media(max-width:1050px){
 
 .products{
 grid-template-columns:repeat(2,1fr);
@@ -466,6 +451,10 @@ display:none;
 min-height:500px;
 }
 
+.hero h1{
+letter-spacing:-3px;
+}
+
 .usp{
 grid-template-columns:1fr;
 }
@@ -476,38 +465,37 @@ border-bottom:1px solid #333;
 }
 
 .section{
-padding:50px 18px;
+padding:55px 18px;
 }
 
 .products{
 grid-template-columns:1fr;
+gap:20px;
 }
 
 .pic{
-height:360px;
+height:390px;
 }
 
 .promo{
 margin:10px 18px 50px;
-padding:35px 25px;
+padding:40px 25px;
 }
 
 .promo h2{
-font-size:32px;
+font-size:36px;
 }
 
 .footer-grid{
 grid-template-columns:1fr;
+gap:25px;
 }
 
 }
-
 </style>
 </head>
 
-
 <body>
-
 
 <header>
 
@@ -516,9 +504,9 @@ Nova<span>Shop</span>
 </div>
 
 <nav>
-<a onclick="filterProducts('all')">Alle</a>
-<a onclick="filterProducts('clothing')">Kleidung</a>
-<a onclick="filterProducts('electronics')">Elektronik</a>
+<a onclick="setFilter(null,'all')">Alle</a>
+<a onclick="setFilter(null,'clothing')">Kleidung</a>
+<a onclick="setFilter(null,'electronics')">Elektronik</a>
 </nav>
 
 <button class="cart" onclick="openCart()">
@@ -532,7 +520,7 @@ Nova<span>Shop</span>
 
 <div class="hero-content">
 
-<small>NovaShop Collection 2026</small>
+<small>NOVASHOP COLLECTION 2026</small>
 
 <h1>WEAR<br>YOUR NOVA.</h1>
 
@@ -574,10 +562,8 @@ Kollektion entdecken →
 
 <div class="section-head">
 
-<div>
 <h2>Unsere Produkte</h2>
-<p>Streetwear & Electronics</p>
-</div>
+<p>Ausgewählte Streetwear & Electronics</p>
 
 </div>
 
@@ -611,7 +597,7 @@ Alle
 <h2>Dein Style.<br>Deine Nova.</h2>
 
 <p>
-Entdecke unsere beliebtesten Hoodies und Streetwear-Pieces.
+Entdecke unsere beliebtesten Pieces und finde deinen neuen Lieblingslook.
 </p>
 
 <a href="#shop" class="hero-btn">
@@ -683,7 +669,6 @@ Zur Kasse
 
 <script>
 
-
 const products=[
 
 {
@@ -692,7 +677,7 @@ name:"Nova Black Hoodie",
 cat:"clothing",
 price:39.99,
 badge:"BESTSELLER",
-img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=85",
+img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=85",
 sizes:"XS · S · M · L · XL · XXL",
 colors:"Schwarz"
 },
@@ -703,7 +688,7 @@ name:"Nova Grey Hoodie",
 cat:"clothing",
 price:44.99,
 badge:"NEU",
-img:"https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=900&q=85",
+img:"https://images.unsplash.com/photo-1565693413579-8a2e90f6f2e5?auto=format&fit=crop&w=1000&q=85",
 sizes:"XS · S · M · L · XL · XXL",
 colors:"Grau"
 },
@@ -714,7 +699,7 @@ name:"Nova Streetwear Hoodie",
 cat:"clothing",
 price:49.99,
 badge:"BELIEBT",
-img:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85",
+img:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=85",
 sizes:"S · M · L · XL · XXL",
 colors:"Schwarz · Grau"
 },
@@ -725,7 +710,7 @@ name:"Nova Cream Hoodie",
 cat:"clothing",
 price:39.99,
 badge:"NEU",
-img:"https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=900&q=85",
+img:"https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=1000&q=85",
 sizes:"XS · S · M · L · XL",
 colors:"Creme"
 },
@@ -735,8 +720,8 @@ id:5,
 name:"Nova Green Hoodie",
 cat:"clothing",
 price:44.99,
-badge:"",
-img:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85",
+badge:"LIMITED",
+img:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=85",
 sizes:"S · M · L · XL · XXL",
 colors:"Dunkelgrün"
 },
@@ -747,7 +732,7 @@ name:"Nova Zip Hoodie",
 cat:"clothing",
 price:54.99,
 badge:"PREMIUM",
-img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=85",
+img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=85",
 sizes:"S · M · L · XL · XXL",
 colors:"Schwarz · Grau"
 },
@@ -758,7 +743,7 @@ name:"Nova Wireless Headphones",
 cat:"electronics",
 price:59.99,
 badge:"TOP",
-img:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85",
+img:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1000&q=85",
 sizes:"One Size",
 colors:"Schwarz"
 },
@@ -769,16 +754,14 @@ name:"Nova Smartwatch",
 cat:"electronics",
 price:79.99,
 badge:"NEU",
-img:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85",
+img:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1000&q=85",
 sizes:"One Size",
 colors:"Schwarz"
 }
 
 ];
 
-
 let cart=[];
-
 
 function render(list=products){
 
@@ -815,10 +798,8 @@ ${p.price.toFixed(2).replace(".",",")} €
 </div>
 
 <div class="details">
-
 <b>Größen:</b> ${p.sizes}<br>
 <b>Farben:</b> ${p.colors}
-
 </div>
 
 <button class="add" onclick="add(${p.id})">
@@ -833,7 +814,6 @@ In den Warenkorb
 
 }
 
-
 function filterProducts(cat){
 
 render(
@@ -844,18 +824,18 @@ cat==="all"
 
 }
 
-
 function setFilter(button,cat){
 
 document.querySelectorAll(".filter")
 .forEach(x=>x.classList.remove("active"));
 
+if(button){
 button.classList.add("active");
+}
 
 filterProducts(cat);
 
 }
-
 
 function add(id){
 
@@ -868,7 +848,6 @@ updateCart();
 openCart();
 
 }
-
 
 function updateCart(){
 
@@ -904,14 +883,12 @@ Entfernen
 
 "<p style='color:#777'>Dein Warenkorb ist leer.</p>";
 
-
 let total=cart.reduce((s,p)=>s+p.price,0);
 
 document.getElementById("total").textContent=
 total.toFixed(2).replace(".",",")+" €";
 
 }
-
 
 function removeItem(i){
 
@@ -921,13 +898,11 @@ updateCart();
 
 }
 
-
 function openCart(){
 
 document.getElementById("cartPanel").style.display="block";
 
 }
-
 
 function closeCart(){
 
@@ -935,9 +910,7 @@ document.getElementById("cartPanel").style.display="none";
 
 }
 
-
 render();
-
 updateCart();
 
 </script>
