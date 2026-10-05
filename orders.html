@@ -7,6 +7,7 @@
 <title>NovaShop – Meine Bestellungen</title>
 
 <style>
+
 *{
   box-sizing:border-box;
 }
@@ -18,6 +19,8 @@ body{
   color:#111;
 }
 
+/* HEADER */
+
 header{
   background:#fff;
   border-bottom:1px solid #ddd;
@@ -27,6 +30,7 @@ header{
   max-width:1100px;
   margin:auto;
   padding:18px 20px;
+
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -41,10 +45,14 @@ header{
   background:#111;
   color:#fff;
   text-decoration:none;
+
   padding:10px 16px;
   border-radius:8px;
+
   font-weight:bold;
 }
+
+/* CONTAINER */
 
 .container{
   max-width:1000px;
@@ -57,11 +65,16 @@ h1{
   margin-bottom:25px;
 }
 
+/* BESTELLUNG */
+
 .order{
   background:#fff;
+
   border-radius:16px;
+
   padding:25px;
   margin-bottom:20px;
+
   box-shadow:0 5px 20px rgba(0,0,0,.06);
 }
 
@@ -69,7 +82,9 @@ h1{
   display:flex;
   justify-content:space-between;
   align-items:center;
+
   border-bottom:1px solid #eee;
+
   padding-bottom:18px;
   margin-bottom:15px;
 }
@@ -84,11 +99,16 @@ h1{
   font-size:14px;
 }
 
+/* PRODUKT */
+
 .product{
   display:flex;
   align-items:center;
+
   gap:15px;
+
   padding:12px 0;
+
   border-bottom:1px solid #eee;
 }
 
@@ -99,7 +119,9 @@ h1{
 .product img{
   width:70px;
   height:75px;
+
   object-fit:cover;
+
   border-radius:9px;
 }
 
@@ -114,6 +136,7 @@ h1{
 .product-small{
   color:#666;
   font-size:13px;
+
   margin-top:5px;
 }
 
@@ -121,29 +144,41 @@ h1{
   font-weight:bold;
 }
 
+/* BESTELLUNGS-INFOS */
+
 .order-bottom{
   margin-top:20px;
+
   padding-top:18px;
+
   border-top:1px solid #eee;
 }
 
 .row{
   display:flex;
   justify-content:space-between;
+
   margin:8px 0;
 }
 
 .total{
   font-size:20px;
   font-weight:bold;
+
   margin-top:15px;
 }
 
+/* LEER */
+
 .empty{
   background:#fff;
+
   padding:50px;
+
   text-align:center;
+
   border-radius:16px;
+
   box-shadow:0 5px 20px rgba(0,0,0,.06);
 }
 
@@ -153,14 +188,22 @@ h1{
 
 .shop{
   display:inline-block;
+
   margin-top:20px;
+
   background:#111;
   color:#fff;
+
   text-decoration:none;
+
   padding:13px 20px;
+
   border-radius:8px;
+
   font-weight:bold;
 }
+
+/* MOBILE */
 
 @media(max-width:600px){
 
@@ -170,7 +213,9 @@ h1{
 
   .order-top{
     flex-direction:column;
+
     align-items:flex-start;
+
     gap:8px;
   }
 
@@ -179,10 +224,16 @@ h1{
   }
 
 }
+
 </style>
+
 </head>
 
+
 <body>
+
+
+<!-- HEADER -->
 
 <header>
 
@@ -192,14 +243,20 @@ h1{
 NovaShop
 </div>
 
-<a href="index.html" class="back">
+<a
+href="index.html"
+class="back">
+
 ← Zum Shop
+
 </a>
 
 </div>
 
 </header>
 
+
+<!-- INHALT -->
 
 <div class="container">
 
@@ -215,7 +272,9 @@ Meine Bestellungen
 <script>
 
 /*
-  BESTELLUNGEN LADEN
+========================================
+BESTELLUNGEN AUS LOCALSTORAGE LADEN
+========================================
 */
 
 let orders =
@@ -225,7 +284,9 @@ localStorage.getItem("orders") || "[]"
 
 
 /*
-  GELD FORMATIEREN
+========================================
+GELD FORMATIEREN
+========================================
 */
 
 function money(value){
@@ -238,7 +299,9 @@ return Number(value)
 
 
 /*
-  BESTELLUNGEN ANZEIGEN
+========================================
+BESTELLUNGEN ANZEIGEN
+========================================
 */
 
 function renderOrders(){
@@ -246,6 +309,10 @@ function renderOrders(){
 const container =
 document.getElementById("orders");
 
+
+/*
+KEINE BESTELLUNGEN
+*/
 
 if(orders.length === 0){
 
@@ -261,8 +328,12 @@ Noch keine Bestellungen
 Du hast bisher noch keine Bestellung aufgegeben.
 </p>
 
-<a href="index.html" class="shop">
+<a
+href="index.html"
+class="shop">
+
 Zum Shop
+
 </a>
 
 </div>
@@ -275,24 +346,38 @@ return;
 
 
 /*
-  NEUESTE BESTELLUNG ZUERST
+========================================
+NEUESTE BESTELLUNG ZUERST
+========================================
 */
 
-orders =
-orders.reverse();
+const sortedOrders =
+[...orders].reverse();
 
 
-container.innerHTML = orders.map(order => {
+/*
+========================================
+BESTELLUNGEN ERSTELLEN
+========================================
+*/
+
+container.innerHTML =
+
+sortedOrders.map(order => {
 
 return `
 
 <div class="order">
 
+
+<!-- BESTELLUNGS-KOPF -->
+
 <div class="order-top">
 
 <div class="order-number">
 
-Bestellung ${order.orderNumber}
+Bestellung
+${order.orderNumber}
 
 </div>
 
@@ -305,10 +390,12 @@ ${order.date}
 </div>
 
 
+<!-- PRODUKTE -->
+
 <div>
 
 ${
-order.items.map(item => {
+(order.items || []).map(item => {
 
 const quantity =
 item.quantity || 1;
@@ -320,16 +407,22 @@ return `
 
 <div class="product">
 
+
 <img
 src="${item.image}"
 alt="${item.name}"
+onerror="this.style.display='none'"
 >
+
 
 <div class="product-info">
 
 <div class="product-name">
+
 ${item.name}
+
 </div>
+
 
 <div class="product-small">
 
@@ -345,23 +438,29 @@ Menge: ${quantity}
 
 </div>
 
+
 <div class="product-price">
 
 ${money(price)}
 
 </div>
 
+
 </div>
 
 `;
 
 }).join("")
+
 }
 
 </div>
 
 
+<!-- BESTELLUNGS-SUMME -->
+
 <div class="order-bottom">
+
 
 <div class="row">
 
@@ -370,7 +469,9 @@ Zwischensumme
 </span>
 
 <span>
+
 ${money(order.subtotal)}
+
 </span>
 
 </div>
@@ -402,7 +503,9 @@ Zahlungsart
 </span>
 
 <span>
-${order.payment}
+
+${order.payment || "Nicht angegeben"}
+
 </span>
 
 </div>
@@ -415,12 +518,16 @@ Gesamt
 </span>
 
 <span>
+
 ${money(order.total)}
+
 </span>
 
 </div>
 
+
 </div>
+
 
 </div>
 
@@ -432,7 +539,9 @@ ${money(order.total)}
 
 
 /*
-  START
+========================================
+START
+========================================
 */
 
 renderOrders();
@@ -440,4 +549,5 @@ renderOrders();
 </script>
 
 </body>
+
 </html>
