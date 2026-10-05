@@ -3,200 +3,517 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NovaShop – Kleidung & Elektronik</title>
+
+<title>NovaShop | Streetwear & Electronics</title>
 
 <style>
+
 *{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+html{
+scroll-behavior:smooth;
 }
 
 body{
-  font-family:Arial,sans-serif;
-  background:#f5f5f7;
-  color:#111;
+font-family:Arial,Helvetica,sans-serif;
+background:#f7f7f7;
+color:#111;
 }
 
+/* HEADER */
+
 header{
-  background:#111;
-  color:white;
-  padding:18px 6%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  position:sticky;
-  top:0;
-  z-index:10;
+height:72px;
+background:#fff;
+border-bottom:1px solid #eee;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 6%;
+position:sticky;
+top:0;
+z-index:100;
 }
 
 .logo{
-  font-size:25px;
-  font-weight:800;
+font-size:26px;
+font-weight:900;
+letter-spacing:-1px;
+}
+
+.logo span{
+color:#777;
+}
+
+nav{
+display:flex;
+gap:28px;
 }
 
 nav a{
-  color:white;
-  text-decoration:none;
-  margin:0 12px;
-  cursor:pointer;
+text-decoration:none;
+color:#222;
+font-size:14px;
+font-weight:600;
+cursor:pointer;
+}
+
+nav a:hover{
+color:#777;
 }
 
 .cart{
-  background:white;
-  color:#111;
-  border:0;
-  border-radius:20px;
-  padding:10px 16px;
-  font-weight:bold;
-  cursor:pointer;
+border:0;
+background:#111;
+color:#fff;
+padding:11px 18px;
+border-radius:30px;
+font-weight:bold;
+cursor:pointer;
+transition:.2s;
 }
 
+.cart:hover{
+transform:translateY(-2px);
+}
+
+/* HERO */
+
 .hero{
-  padding:70px 6%;
-  background:linear-gradient(135deg,#171717,#444);
-  color:white;
-  text-align:center;
+min-height:560px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:70px 20px;
+background:
+linear-gradient(#0009,#0009),
+url("https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1800&q=85")
+center/cover;
+color:white;
+}
+
+.hero-content{
+max-width:750px;
+}
+
+.hero small{
+font-size:13px;
+letter-spacing:3px;
+text-transform:uppercase;
+color:#ddd;
 }
 
 .hero h1{
-  font-size:48px;
-  margin-bottom:12px;
+font-size:clamp(48px,8vw,90px);
+line-height:.95;
+margin:20px 0;
+letter-spacing:-5px;
 }
 
 .hero p{
-  font-size:19px;
-  color:#ddd;
+font-size:18px;
+color:#ddd;
+margin-bottom:30px;
 }
 
-.controls{
-  padding:28px 6%;
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  justify-content:center;
+.hero-btn{
+display:inline-block;
+background:white;
+color:#111;
+padding:15px 28px;
+border-radius:30px;
+text-decoration:none;
+font-weight:bold;
+transition:.2s;
 }
 
-button,.filter{
-  border:0;
-  border-radius:10px;
-  padding:12px 18px;
-  cursor:pointer;
-  background:#111;
-  color:white;
+.hero-btn:hover{
+transform:scale(1.04);
 }
 
-.filter.active{
-  background:#555;
+/* USP */
+
+.usp{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+background:#111;
+color:white;
+text-align:center;
 }
+
+.usp div{
+padding:25px 15px;
+border-right:1px solid #333;
+}
+
+.usp strong{
+display:block;
+margin-bottom:5px;
+}
+
+.usp span{
+font-size:13px;
+color:#aaa;
+}
+
+/* SECTION */
+
+.section{
+max-width:1350px;
+margin:auto;
+padding:70px 6%;
+}
+
+.section-head{
+display:flex;
+justify-content:space-between;
+align-items:end;
+margin-bottom:30px;
+}
+
+.section-head h2{
+font-size:34px;
+letter-spacing:-1px;
+}
+
+.section-head p{
+color:#777;
+margin-top:7px;
+}
+
+/* FILTER */
+
+.filters{
+display:flex;
+gap:10px;
+margin-bottom:30px;
+flex-wrap:wrap;
+}
+
+.filter{
+border:1px solid #ddd;
+background:white;
+color:#111;
+padding:10px 18px;
+border-radius:30px;
+cursor:pointer;
+font-weight:600;
+}
+
+.filter.active,
+.filter:hover{
+background:#111;
+color:white;
+}
+
+/* PRODUCTS */
 
 .products{
-  padding:10px 6% 60px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:22px;
-  max-width:1300px;
-  margin:auto;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
 }
 
 .card{
-  background:white;
-  border-radius:16px;
-  overflow:hidden;
-  box-shadow:0 4px 18px #00000012;
-  transition:transform .2s;
+background:white;
+border-radius:16px;
+overflow:hidden;
+position:relative;
+transition:.25s;
 }
 
 .card:hover{
-  transform:translateY(-4px);
+transform:translateY(-6px);
+box-shadow:0 15px 40px #00000012;
 }
 
 .pic{
-  height:280px;
-  background:#eee;
-  overflow:hidden;
+height:320px;
+background:#eee;
+position:relative;
+overflow:hidden;
 }
 
 .pic img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
+width:100%;
+height:100%;
+object-fit:cover;
+transition:.5s;
+}
+
+.card:hover .pic img{
+transform:scale(1.05);
+}
+
+.badge{
+position:absolute;
+top:14px;
+left:14px;
+background:#111;
+color:white;
+padding:7px 11px;
+border-radius:20px;
+font-size:11px;
+font-weight:bold;
+z-index:2;
 }
 
 .info{
-  padding:18px;
+padding:18px;
+}
+
+.category{
+font-size:12px;
+color:#888;
+text-transform:uppercase;
+letter-spacing:1px;
 }
 
 .info h3{
-  margin-bottom:8px;
+font-size:17px;
+margin:7px 0;
+}
+
+.stars{
+font-size:13px;
+margin:7px 0;
 }
 
 .price{
-  font-size:20px;
-  font-weight:bold;
-  margin:10px 0 15px;
+font-size:20px;
+font-weight:800;
+margin:12px 0;
+}
+
+.details{
+font-size:12px;
+color:#777;
+line-height:1.6;
 }
 
 .add{
-  width:100%;
+width:100%;
+margin-top:15px;
+padding:13px;
+border:0;
+border-radius:10px;
+background:#111;
+color:white;
+font-weight:bold;
+cursor:pointer;
+transition:.2s;
 }
+
+.add:hover{
+background:#333;
+}
+
+/* PROMO */
+
+.promo{
+margin:20px 6% 70px;
+min-height:300px;
+border-radius:22px;
+background:
+linear-gradient(90deg,#000c,#0003),
+url("https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1600&q=85")
+center/cover;
+color:white;
+display:flex;
+align-items:center;
+padding:50px;
+}
+
+.promo-content{
+max-width:500px;
+}
+
+.promo h2{
+font-size:42px;
+margin-bottom:12px;
+}
+
+.promo p{
+color:#ddd;
+margin-bottom:25px;
+}
+
+/* FOOTER */
 
 footer{
-  text-align:center;
-  padding:30px;
-  background:#111;
-  color:#aaa;
+background:#111;
+color:white;
+padding:60px 6% 30px;
 }
 
+.footer-grid{
+max-width:1200px;
+margin:auto;
+display:grid;
+grid-template-columns:2fr 1fr 1fr;
+gap:40px;
+}
+
+footer h3{
+margin-bottom:15px;
+}
+
+footer p,
+footer a{
+color:#999;
+font-size:14px;
+line-height:2;
+text-decoration:none;
+}
+
+.copyright{
+border-top:1px solid #333;
+margin-top:40px;
+padding-top:25px;
+color:#666;
+font-size:13px;
+}
+
+/* CART */
+
 #cartPanel{
-  display:none;
-  position:fixed;
-  right:0;
-  top:0;
-  width:min(400px,100%);
-  height:100%;
-  background:white;
-  z-index:20;
-  padding:25px;
-  box-shadow:-5px 0 20px #0003;
-  overflow:auto;
+display:none;
+position:fixed;
+right:0;
+top:0;
+width:min(430px,100%);
+height:100%;
+background:white;
+z-index:200;
+padding:28px;
+box-shadow:-10px 0 40px #0003;
+overflow:auto;
+}
+
+.cart-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
 }
 
 .close{
-  float:right;
-  background:#eee;
-  color:#111;
+border:0;
+background:#eee;
+width:35px;
+height:35px;
+border-radius:50%;
+cursor:pointer;
 }
 
 .cartItem{
-  padding:14px 0;
-  border-bottom:1px solid #ddd;
+padding:18px 0;
+border-bottom:1px solid #eee;
+}
+
+.cartItem button{
+float:right;
+border:0;
+background:#eee;
+padding:6px 10px;
+border-radius:6px;
+cursor:pointer;
 }
 
 .total{
-  font-size:22px;
-  font-weight:bold;
-  margin:20px 0;
+font-size:24px;
+font-weight:800;
+margin:25px 0;
 }
 
-@media(max-width:600px){
-  .hero h1{
-    font-size:36px;
-  }
-
-  nav{
-    display:none;
-  }
+.checkout{
+width:100%;
+padding:15px;
+border:0;
+border-radius:10px;
+background:#111;
+color:white;
+font-weight:bold;
+cursor:pointer;
 }
+
+/* MOBILE */
+
+@media(max-width:1000px){
+
+.products{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media(max-width:650px){
+
+header{
+padding:0 18px;
+}
+
+nav{
+display:none;
+}
+
+.hero{
+min-height:500px;
+}
+
+.usp{
+grid-template-columns:1fr;
+}
+
+.usp div{
+border-right:0;
+border-bottom:1px solid #333;
+}
+
+.section{
+padding:50px 18px;
+}
+
+.products{
+grid-template-columns:1fr;
+}
+
+.pic{
+height:360px;
+}
+
+.promo{
+margin:10px 18px 50px;
+padding:35px 25px;
+}
+
+.promo h2{
+font-size:32px;
+}
+
+.footer-grid{
+grid-template-columns:1fr;
+}
+
+}
+
 </style>
 </head>
 
+
 <body>
+
 
 <header>
 
-<div class="logo">NovaShop</div>
+<div class="logo">
+Nova<span>Shop</span>
+</div>
 
 <nav>
 <a onclick="filterProducts('all')">Alle</a>
@@ -213,28 +530,69 @@ footer{
 
 <section class="hero">
 
-<h1>NovaShop</h1>
+<div class="hero-content">
 
-<p>Moderne Hoodies, Streetwear & Elektronik.</p>
+<small>NovaShop Collection 2026</small>
 
-<p style="margin-top:16px;font-size:15px">
-Kostenloser Versand ab 50 € · Neue Styles im Shop
+<h1>WEAR<br>YOUR NOVA.</h1>
+
+<p>
+Moderne Streetwear und ausgewählte Electronics.
+Entdecke deinen neuen Style.
 </p>
+
+<a href="#shop" class="hero-btn">
+Kollektion entdecken →
+</a>
+
+</div>
 
 </section>
 
 
-<div class="controls">
+<section class="usp">
 
-<button class="filter active" onclick="filterProducts('all')">
-Alle Produkte
+<div>
+<strong>🚚 Kostenloser Versand</strong>
+<span>Ab 50 € Bestellwert</span>
+</div>
+
+<div>
+<strong>✨ Neue Styles</strong>
+<span>Regelmäßig neue Produkte</span>
+</div>
+
+<div>
+<strong>🔒 Sicher einkaufen</strong>
+<span>Deine Bestellung im Blick</span>
+</div>
+
+</section>
+
+
+<section class="section" id="shop">
+
+<div class="section-head">
+
+<div>
+<h2>Unsere Produkte</h2>
+<p>Streetwear & Electronics</p>
+</div>
+
+</div>
+
+
+<div class="filters">
+
+<button class="filter active" onclick="setFilter(this,'all')">
+Alle
 </button>
 
-<button class="filter" onclick="filterProducts('clothing')">
+<button class="filter" onclick="setFilter(this,'clothing')">
 👕 Kleidung
 </button>
 
-<button class="filter" onclick="filterProducts('electronics')">
+<button class="filter" onclick="setFilter(this,'electronics')">
 🎧 Elektronik
 </button>
 
@@ -243,17 +601,72 @@ Alle Produkte
 
 <main class="products" id="products"></main>
 
+</section>
+
+
+<section class="promo">
+
+<div class="promo-content">
+
+<h2>Dein Style.<br>Deine Nova.</h2>
+
+<p>
+Entdecke unsere beliebtesten Hoodies und Streetwear-Pieces.
+</p>
+
+<a href="#shop" class="hero-btn">
+Jetzt shoppen
+</a>
+
+</div>
+
+</section>
+
 
 <footer>
-© 2026 NovaShop · Deine Marke, dein Shop
+
+<div class="footer-grid">
+
+<div>
+<h3>NovaShop</h3>
+<p>
+Moderne Streetwear und ausgewählte Electronics
+für deinen Alltag.
+</p>
+</div>
+
+<div>
+<h3>Shop</h3>
+<p><a href="#shop">Alle Produkte</a></p>
+<p><a href="#shop">Kleidung</a></p>
+<p><a href="#shop">Elektronik</a></p>
+</div>
+
+<div>
+<h3>Service</h3>
+<p>Versand & Lieferung</p>
+<p>Kontakt</p>
+<p>FAQ</p>
+</div>
+
+</div>
+
+<div class="copyright">
+© 2026 NovaShop · Alle Rechte vorbehalten
+</div>
+
 </footer>
 
 
 <aside id="cartPanel">
 
+<div class="cart-top">
+
+<h2>Warenkorb</h2>
+
 <button class="close" onclick="closeCart()">✕</button>
 
-<h2>Dein Warenkorb</h2>
+</div>
 
 <div id="cartItems"></div>
 
@@ -261,7 +674,7 @@ Alle Produkte
 Gesamt: <span id="total">0,00 €</span>
 </div>
 
-<button style="width:100%" onclick="alert('Checkout kommt als nächster Schritt!')">
+<button class="checkout" onclick="alert('Checkout kommt als nächster Schritt!')">
 Zur Kasse
 </button>
 
@@ -270,6 +683,7 @@ Zur Kasse
 
 <script>
 
+
 const products=[
 
 {
@@ -277,7 +691,8 @@ id:1,
 name:"Nova Black Hoodie",
 cat:"clothing",
 price:39.99,
-img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=80",
+badge:"BESTSELLER",
+img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=85",
 sizes:"XS · S · M · L · XL · XXL",
 colors:"Schwarz"
 },
@@ -287,7 +702,8 @@ id:2,
 name:"Nova Grey Hoodie",
 cat:"clothing",
 price:44.99,
-img:"https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=900&q=80",
+badge:"NEU",
+img:"https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=900&q=85",
 sizes:"XS · S · M · L · XL · XXL",
 colors:"Grau"
 },
@@ -297,7 +713,8 @@ id:3,
 name:"Nova Streetwear Hoodie",
 cat:"clothing",
 price:49.99,
-img:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=80",
+badge:"BELIEBT",
+img:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85",
 sizes:"S · M · L · XL · XXL",
 colors:"Schwarz · Grau"
 },
@@ -307,7 +724,8 @@ id:4,
 name:"Nova Cream Hoodie",
 cat:"clothing",
 price:39.99,
-img:"https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=900&q=80",
+badge:"NEU",
+img:"https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=900&q=85",
 sizes:"XS · S · M · L · XL",
 colors:"Creme"
 },
@@ -317,7 +735,8 @@ id:5,
 name:"Nova Green Hoodie",
 cat:"clothing",
 price:44.99,
-img:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=80",
+badge:"",
+img:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85",
 sizes:"S · M · L · XL · XXL",
 colors:"Dunkelgrün"
 },
@@ -327,7 +746,8 @@ id:6,
 name:"Nova Zip Hoodie",
 cat:"clothing",
 price:54.99,
-img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=80",
+badge:"PREMIUM",
+img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=85",
 sizes:"S · M · L · XL · XXL",
 colors:"Schwarz · Grau"
 },
@@ -337,7 +757,8 @@ id:7,
 name:"Nova Wireless Headphones",
 cat:"electronics",
 price:59.99,
-img:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80",
+badge:"TOP",
+img:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85",
 sizes:"One Size",
 colors:"Schwarz"
 },
@@ -347,7 +768,8 @@ id:8,
 name:"Nova Smartwatch",
 cat:"electronics",
 price:79.99,
-img:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80",
+badge:"NEU",
+img:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85",
 sizes:"One Size",
 colors:"Schwarz"
 }
@@ -365,34 +787,46 @@ document.getElementById("products").innerHTML=list.map(p=>`
 <div class="card">
 
 <div class="pic">
-<img src="${p.img}" alt="${p.name}" loading="lazy">
+
+${p.badge ? `<div class="badge">${p.badge}</div>` : ""}
+
+<img
+src="${p.img}"
+alt="${p.name}"
+loading="lazy"
+>
+
 </div>
 
 <div class="info">
 
+<div class="category">
+${p.cat==="clothing" ? "Streetwear" : "Electronics"}
+</div>
+
 <h3>${p.name}</h3>
 
-<p>
-${p.cat==="clothing" ? "Kleidung" : "Elektronik"}
-</p>
+<div class="stars">
+★★★★★ <span style="color:#888">(4.9)</span>
+</div>
 
 <div class="price">
 ${p.price.toFixed(2).replace(".",",")} €
 </div>
 
-<p style="font-size:13px;color:#666;margin-bottom:5px">
-<b>Größen:</b> ${p.sizes}
-</p>
+<div class="details">
 
-<p style="font-size:13px;color:#666;margin-bottom:14px">
+<b>Größen:</b> ${p.sizes}<br>
 <b>Farben:</b> ${p.colors}
-</p>
+
+</div>
 
 <button class="add" onclick="add(${p.id})">
 In den Warenkorb
 </button>
 
 </div>
+
 </div>
 
 `).join("");
@@ -411,6 +845,18 @@ cat==="all"
 }
 
 
+function setFilter(button,cat){
+
+document.querySelectorAll(".filter")
+.forEach(x=>x.classList.remove("active"));
+
+button.classList.add("active");
+
+filterProducts(cat);
+
+}
+
+
 function add(id){
 
 const p=products.find(x=>x.id===id);
@@ -418,6 +864,8 @@ const p=products.find(x=>x.id===id);
 cart.push(p);
 
 updateCart();
+
+openCart();
 
 }
 
@@ -436,20 +884,16 @@ cart.map((p,i)=>`
 
 <div class="cartItem">
 
-${p.name}
+<strong>${p.name}</strong>
 
 <br>
 
-<b>
+<span>
 ${p.price.toFixed(2).replace(".",",")} €
-</b>
+</span>
 
-<button
-onclick="removeItem(${i})"
-style="float:right;padding:6px">
-
+<button onclick="removeItem(${i})">
 Entfernen
-
 </button>
 
 </div>
@@ -458,12 +902,12 @@ Entfernen
 
 :
 
-"<p style='margin-top:20px'>Dein Warenkorb ist leer.</p>";
+"<p style='color:#777'>Dein Warenkorb ist leer.</p>";
+
 
 let total=cart.reduce((s,p)=>s+p.price,0);
 
 document.getElementById("total").textContent=
-
 total.toFixed(2).replace(".",",")+" €";
 
 }
