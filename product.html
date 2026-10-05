@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Warenkorb – NovaShop</title>
+
+<title>Produkt – NovaShop</title>
 
 <style>
 *{
@@ -13,7 +14,7 @@
 }
 
 body{
-  font-family:Arial, sans-serif;
+  font-family:Arial,sans-serif;
   background:#f5f5f5;
   color:#111;
 }
@@ -21,15 +22,15 @@ body{
 header{
   background:#000;
   color:white;
-  padding:20px;
+  padding:20px 5%;
   display:flex;
   justify-content:space-between;
   align-items:center;
 }
 
 .logo{
-  font-size:24px;
-  font-weight:800;
+  font-size:25px;
+  font-weight:900;
 }
 
 header a{
@@ -41,149 +42,192 @@ header a{
 .container{
   max-width:1100px;
   margin:40px auto;
-  padding:0 20px;
+  padding:20px;
+}
+
+.product{
+  background:white;
+  border-radius:20px;
+  padding:30px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  box-shadow:0 8px 30px rgba(0,0,0,.08);
+}
+
+/* BILDER */
+
+.gallery{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.main-image{
+  width:100%;
+  height:500px;
+  object-fit:cover;
+  border-radius:16px;
+  background:#eee;
+}
+
+.thumbnails{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+}
+
+.thumbnails img{
+  width:80px;
+  height:90px;
+  object-fit:cover;
+  border-radius:10px;
+  cursor:pointer;
+  border:2px solid transparent;
+}
+
+.thumbnails img:hover{
+  border-color:#000;
+}
+
+/* INFO */
+
+.info{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.badge{
+  display:inline-block;
+  background:#000;
+  color:white;
+  padding:7px 12px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:bold;
+  width:max-content;
+  margin-bottom:15px;
 }
 
 h1{
+  font-size:38px;
+  margin-bottom:12px;
+}
+
+.price{
+  font-size:28px;
+  font-weight:900;
+  margin:15px 0;
+}
+
+.description{
+  color:#666;
+  line-height:1.6;
   margin-bottom:25px;
 }
 
-.cart{
-  background:white;
-  border-radius:16px;
-  padding:25px;
-  box-shadow:0 5px 25px rgba(0,0,0,.08);
+/* GRÖSSE */
+
+.label{
+  font-weight:bold;
+  margin-bottom:10px;
 }
 
-.item{
+.sizes{
   display:flex;
-  gap:20px;
-  align-items:center;
-  padding:20px 0;
-  border-bottom:1px solid #eee;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:25px;
 }
 
-.item img{
-  width:110px;
-  height:130px;
-  object-fit:cover;
-  border-radius:12px;
+.size{
+  border:1px solid #ccc;
+  background:white;
+  padding:12px 18px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
 }
 
-.info{
-  flex:1;
+.size:hover{
+  border-color:#000;
 }
 
-.info h2{
-  margin-bottom:8px;
+.size.selected{
+  background:#000;
+  color:white;
+  border-color:#000;
 }
 
-.info p{
-  color:#666;
-  margin:4px 0;
-}
+/* MENGE */
 
 .quantity{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:15px;
+  margin-bottom:25px;
 }
 
 .quantity button{
-  width:32px;
-  height:32px;
-  border:1px solid #ddd;
+  width:38px;
+  height:38px;
+  border:1px solid #ccc;
   background:white;
   border-radius:8px;
+  font-size:20px;
   cursor:pointer;
+}
+
+.quantity span{
+  font-weight:bold;
   font-size:18px;
 }
 
-.remove{
-  border:none;
-  background:#eee;
-  padding:9px 12px;
-  border-radius:8px;
-  cursor:pointer;
-}
+/* BUTTON */
 
-.price{
-  font-weight:bold;
-  min-width:90px;
-  text-align:right;
-}
-
-.summary{
-  margin-top:25px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:20px;
-}
-
-.total{
-  font-size:24px;
-  font-weight:800;
-}
-
-.checkout{
+.add{
+  width:100%;
+  padding:17px;
   background:#000;
   color:white;
   border:none;
-  padding:16px 28px;
   border-radius:10px;
-  font-size:16px;
+  font-size:17px;
   font-weight:bold;
   cursor:pointer;
 }
 
-.checkout:hover{
+.add:hover{
   background:#222;
 }
 
-.empty{
+.cart-link{
+  display:block;
   text-align:center;
-  padding:50px 20px;
-}
-
-.empty p{
-  color:#666;
-  margin:15px 0 25px;
-}
-
-.shop{
-  display:inline-block;
-  background:#000;
-  color:white;
-  padding:13px 22px;
-  border-radius:9px;
-  text-decoration:none;
+  margin-top:15px;
+  color:#111;
   font-weight:bold;
+  text-decoration:none;
 }
 
-@media(max-width:700px){
-  .item{
-    align-items:flex-start;
+/* MOBILE */
+
+@media(max-width:750px){
+
+  .product{
+    grid-template-columns:1fr;
+    padding:20px;
   }
 
-  .item img{
-    width:80px;
-    height:100px;
+  .main-image{
+    height:400px;
   }
 
-  .price{
-    min-width:auto;
+  h1{
+    font-size:30px;
   }
 
-  .summary{
-    flex-direction:column;
-    align-items:stretch;
-  }
-
-  .checkout{
-    width:100%;
-  }
 }
 </style>
 </head>
@@ -191,133 +235,358 @@ h1{
 <body>
 
 <header>
-  <div class="logo">NovaShop</div>
-  <a href="index.html">← Zum Shop</a>
+
+  <div class="logo">
+    NovaShop
+  </div>
+
+  <a href="index.html">
+    ← Zum Shop
+  </a>
+
 </header>
+
 
 <div class="container">
 
-  <h1>🛒 Dein Warenkorb</h1>
+  <div class="product">
 
-  <div class="cart" id="cart"></div>
+    <!-- GALERIE -->
 
-</div>
+    <div class="gallery">
 
-<script>
+      <img
+        id="mainImage"
+        class="main-image"
+        src=""
+        alt="Produkt">
 
-function getCart(){
-  return JSON.parse(localStorage.getItem("cart") || "[]");
-}
-
-function saveCart(cart){
-  localStorage.setItem("cart", JSON.stringify(cart));
-}
-
-function renderCart(){
-
-  const cart = getCart();
-  const container = document.getElementById("cart");
-
-  if(cart.length === 0){
-
-    container.innerHTML = `
-      <div class="empty">
-        <h2>Dein Warenkorb ist leer</h2>
-        <p>Füge Produkte hinzu, um sie hier zu sehen.</p>
-        <a class="shop" href="index.html">Jetzt shoppen</a>
+      <div
+        id="thumbnails"
+        class="thumbnails">
       </div>
-    `;
 
-    return;
-  }
+    </div>
 
-  let total = 0;
 
-  container.innerHTML = cart.map((item,index)=>{
+    <!-- PRODUKTINFO -->
 
-    const quantity = item.quantity || 1;
-    const price = Number(item.price) || 0;
-    const itemTotal = price * quantity;
+    <div class="info">
 
-    total += itemTotal;
+      <span class="badge">
+        NOVASHOP
+      </span>
 
-    return `
-      <div class="item">
+      <h1 id="productName">
+        Produkt
+      </h1>
 
-        <img src="${item.image}" alt="${item.name}">
+      <div
+        id="productPrice"
+        class="price">
+      </div>
 
-        <div class="info">
-          <h2>${item.name}</h2>
-          ${item.size ? `<p>Größe: ${item.size}</p>` : ""}
-          <p>${price.toFixed(2)} €</p>
+      <p
+        id="description"
+        class="description">
+      </p>
 
-          <div class="quantity">
-            <button onclick="changeQuantity(${index}, -1)">−</button>
-            <strong>${quantity}</strong>
-            <button onclick="changeQuantity(${index}, 1)">+</button>
-          </div>
-        </div>
 
-        <div class="price">
-          ${itemTotal.toFixed(2)} €
-        </div>
+      <div class="label">
+        Größe:
+      </div>
 
-        <button class="remove" onclick="removeItem(${index})">
-          Entfernen
+      <div
+        id="sizes"
+        class="sizes">
+      </div>
+
+
+      <div class="label">
+        Menge:
+      </div>
+
+      <div class="quantity">
+
+        <button onclick="changeQuantity(-1)">
+          −
+        </button>
+
+        <span id="quantity">
+          1
+        </span>
+
+        <button onclick="changeQuantity(1)">
+          +
         </button>
 
       </div>
-    `;
 
-  }).join("") + `
 
-    <div class="summary">
+      <button
+        class="add"
+        onclick="addToCart()">
 
-      <div class="total">
-        Gesamt: ${total.toFixed(2)} €
-      </div>
+        🛒 In den Warenkorb
 
-      <button class="checkout" onclick="checkout()">
-        Zur Kasse →
       </button>
 
+
+      <a
+        class="cart-link"
+        href="cart.html">
+
+        Warenkorb ansehen →
+
+      </a>
+
     </div>
-  `;
-}
 
-function changeQuantity(index, amount){
+  </div>
 
-  const cart = getCart();
+</div>
 
-  cart[index].quantity = (cart[index].quantity || 1) + amount;
 
-  if(cart[index].quantity <= 0){
-    cart.splice(index,1);
+<script>
+
+/* =========================
+   PRODUKTE
+========================= */
+
+const products = [
+
+  {
+    id:1,
+    name:"Nova Black Hoodie",
+    price:39.99,
+    sizes:["XS","S","M","L","XL","XXL"],
+    images:[
+      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=1000&q=80"
+    ]
+  },
+
+  {
+    id:2,
+    name:"Nova Grey Hoodie",
+    price:44.99,
+    sizes:["XS","S","M","L","XL","XXL"],
+    images:[
+      "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=1000&q=80"
+    ]
+  },
+
+  {
+    id:3,
+    name:"Nova Streetwear Hoodie",
+    price:49.99,
+    sizes:["S","M","L","XL","XXL"],
+    images:[
+      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1509942774463-acf339cf87d5?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1000&q=80"
+    ]
+  },
+
+  {
+    id:4,
+    name:"Nova Cream Hoodie",
+    price:39.99,
+    sizes:["XS","S","M","L","XL"],
+    images:[
+      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=1000&q=80"
+    ]
+  },
+
+  {
+    id:5,
+    name:"Nova Green Hoodie",
+    price:44.99,
+    sizes:["S","M","L","XL","XXL"],
+    images:[
+      "https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1509942774463-acf339cf87d5?auto=format&fit=crop&w=1000&q=80"
+    ]
+  },
+
+  {
+    id:6,
+    name:"Nova Zip Hoodie",
+    price:54.99,
+    sizes:["S","M","L","XL","XXL"],
+    images:[
+      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1000&q=80"
+    ]
+  },
+
+  {
+    id:7,
+    name:"Nova Wireless Headphones",
+    price:59.99,
+    sizes:[],
+    images:[
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1484704849700-f032a568e944?auto=format&fit=crop&w=1000&q=80"
+    ]
+  },
+
+  {
+    id:8,
+    name:"Nova Smartwatch",
+    price:79.99,
+    sizes:[],
+    images:[
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=1000&q=80"
+    ]
   }
 
-  saveCart(cart);
-  renderCart();
+];
+
+
+/* =========================
+   PRODUKT AUS URL HOLEN
+========================= */
+
+const params = new URLSearchParams(window.location.search);
+
+const productId = Number(params.get("id"));
+
+const product = products.find(
+  p => p.id === productId
+);
+
+
+/* =========================
+   VARIABLEN
+========================= */
+
+let selectedSize = "";
+
+let quantity = 1;
+
+
+/* =========================
+   PRODUKT ANZEIGEN
+========================= */
+
+if(!product){
+
+  document.querySelector(".container").innerHTML = `
+    <div style="
+      background:white;
+      padding:50px;
+      border-radius:20px;
+      text-align:center;
+    ">
+      <h1>Produkt nicht gefunden</h1>
+      <br>
+      <a href="index.html">
+        Zurück zum Shop
+      </a>
+    </div>
+  `;
+
+}else{
+
+  document.getElementById("productName").textContent =
+    product.name;
+
+  document.getElementById("productPrice").textContent =
+    product.price.toFixed(2) + " €";
+
+  document.getElementById("description").textContent =
+    "Hochwertiges Produkt von NovaShop. Modernes Design und angenehmer Tragekomfort.";
+
+  document.getElementById("mainImage").src =
+    product.images[0];
+
+
+  /* BILDER */
+
+  const thumbnails =
+    document.getElementById("thumbnails");
+
+  product.images.forEach((image,index)=>{
+
+    const img = document.createElement("img");
+
+    img.src = image;
+
+    img.onclick = function(){
+
+      document.getElementById("mainImage").src =
+        image;
+
+    };
+
+    thumbnails.appendChild(img);
+
+  });
+
+
+  /* GRÖSSEN */
+
+  const sizes =
+    document.getElementById("sizes");
+
+  if(product.sizes.length === 0){
+
+    sizes.innerHTML =
+      "<p style='color:#666'>Keine Größenauswahl nötig</p>";
+
+  }else{
+
+    product.sizes.forEach(size=>{
+
+      const button =
+        document.createElement("button");
+
+      button.className = "size";
+
+      button.textContent = size;
+
+      button.onclick = function(){
+
+        document
+          .querySelectorAll(".size")
+          .forEach(b =>
+            b.classList.remove("selected")
+          );
+
+        button.classList.add("selected");
+
+        selectedSize = size;
+
+      };
+
+      sizes.appendChild(button);
+
+    });
+
+  }
+
 }
 
-function removeItem(index){
 
-  const cart = getCart();
+/* =========================
+   MENGE
+========================= */
 
-  cart.splice(index,1);
+function changeQuantity(amount){
 
-  saveCart(cart);
-  renderCart();
-}
+  quantity += amount;
 
-function checkout(){
+  if(quantity < 1){
+    quantity = 1;
+  }
 
-  alert("Checkout kommt als Nächstes! 🛒");
-
-}
-
-renderCart();
-
-</script>
-
-</body>
-</html>
+  if(quantity >
