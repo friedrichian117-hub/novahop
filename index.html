@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>NovaShop</title>
 
 <style>
+
 *{
   box-sizing:border-box;
 }
@@ -17,6 +19,8 @@ body{
   color:#111;
 }
 
+/* TOP BAR */
+
 .top{
   background:#111;
   color:white;
@@ -24,6 +28,8 @@ body{
   padding:10px;
   font-size:13px;
 }
+
+/* HEADER */
 
 header{
   background:white;
@@ -57,6 +63,12 @@ header{
   font-weight:bold;
 }
 
+.cartBtn:hover{
+  background:#292929;
+}
+
+/* HERO */
+
 .hero{
   max-width:1200px;
   margin:25px auto;
@@ -74,6 +86,7 @@ header{
 .hero p{
   color:#ccc;
   font-size:17px;
+  margin-bottom:25px;
 }
 
 .hero button{
@@ -82,7 +95,14 @@ header{
   border-radius:8px;
   cursor:pointer;
   font-weight:bold;
+  font-size:15px;
 }
+
+.hero button:hover{
+  background:#ddd;
+}
+
+/* CONTAINER */
 
 .container{
   max-width:1200px;
@@ -90,10 +110,13 @@ header{
   padding:0 20px 50px;
 }
 
+/* FILTER */
+
 .filters{
   display:flex;
   gap:10px;
   margin-bottom:20px;
+  flex-wrap:wrap;
 }
 
 .filter{
@@ -102,12 +125,20 @@ header{
   padding:10px 16px;
   border-radius:8px;
   cursor:pointer;
+  font-weight:bold;
+}
+
+.filter:hover{
+  border-color:#111;
 }
 
 .filter.active{
   background:#111;
   color:white;
+  border-color:#111;
 }
+
+/* PRODUCTS */
 
 .products{
   display:grid;
@@ -129,6 +160,8 @@ header{
   box-shadow:0 10px 25px rgba(0,0,0,.08);
 }
 
+/* PRODUCT IMAGE */
+
 .image{
   height:300px;
   position:relative;
@@ -139,7 +172,10 @@ header{
   width:100%;
   height:100%;
   object-fit:cover;
+  display:block;
 }
+
+/* BADGE */
 
 .badge{
   position:absolute;
@@ -153,12 +189,15 @@ header{
   font-weight:bold;
 }
 
+/* PRODUCT INFO */
+
 .info{
   padding:15px;
 }
 
 .info h3{
   margin:0 0 8px;
+  font-size:18px;
 }
 
 .stars{
@@ -170,6 +209,8 @@ header{
   font-size:18px;
   font-weight:bold;
 }
+
+/* ADD BUTTON */
 
 .add{
   width:100%;
@@ -183,68 +224,21 @@ header{
   font-weight:bold;
 }
 
+.add:hover{
+  background:#292929;
+}
+
+/* FOOTER */
+
 footer{
   background:#111;
   color:#aaa;
   text-align:center;
   padding:30px;
+  margin-top:20px;
 }
 
-/* WARENKORB */
-
-.drawer{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.55);
-  display:none;
-  z-index:50;
-}
-
-.drawer.open{
-  display:block;
-}
-
-.cartPanel{
-  position:absolute;
-  right:0;
-  top:0;
-  height:100%;
-  width:420px;
-  max-width:95%;
-  background:white;
-  padding:25px;
-  overflow:auto;
-}
-
-.close{
-  float:right;
-  border:0;
-  background:none;
-  font-size:25px;
-  cursor:pointer;
-}
-
-.cartItem{
-  display:flex;
-  gap:12px;
-  padding:15px 0;
-  border-bottom:1px solid #ddd;
-}
-
-.cartItem img{
-  width:70px;
-  height:80px;
-  object-fit:cover;
-  border-radius:8px;
-}
-
-.remove{
-  margin-top:8px;
-  border:0;
-  padding:6px 9px;
-  border-radius:6px;
-  cursor:pointer;
-}
+/* MOBILE */
 
 @media(max-width:900px){
 
@@ -260,19 +254,45 @@ footer{
     grid-template-columns:1fr;
   }
 
+  .hero{
+    margin:15px;
+    padding:40px 25px;
+  }
+
   .hero h1{
     font-size:34px;
   }
 
+  .nav{
+    padding:15px;
+  }
+
+  .logo{
+    font-size:22px;
+  }
+
+  .cartBtn{
+    padding:9px 12px;
+    font-size:13px;
+  }
+
 }
+
 </style>
 </head>
 
+
 <body>
+
+
+<!-- TOP BAR -->
 
 <div class="top">
 Kostenloser Versand ab 50 € · Neue Styles im Shop
 </div>
+
+
+<!-- HEADER -->
 
 <header>
 
@@ -282,14 +302,23 @@ Kostenloser Versand ab 50 € · Neue Styles im Shop
 NovaShop
 </div>
 
-<button class="cartBtn" onclick="openCart()">
+
+<!-- WARENKORB -->
+
+<button
+class="cartBtn"
+onclick="window.location.href='cart.html'">
+
 🛒 Warenkorb (<span id="count">0</span>)
+
 </button>
 
 </div>
 
 </header>
 
+
+<!-- HERO -->
 
 <section class="hero">
 
@@ -301,62 +330,78 @@ Dein Style. Deine Auswahl.
 Moderne Hoodies und ausgewählte Technik – einfach online bestellen.
 </p>
 
-<button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+<button
+onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+
 Shop entdecken
+
 </button>
 
 </section>
 
 
+<!-- SHOP -->
+
 <div class="container">
+
+
+<!-- FILTER -->
 
 <div class="filters">
 
-<button class="filter active" onclick="filterProducts('Alle',this)">
+<button
+class="filter active"
+onclick="filterProducts('Alle',this)">
+
 Alle
+
 </button>
 
-<button class="filter" onclick="filterProducts('Hoodies',this)">
+
+<button
+class="filter"
+onclick="filterProducts('Hoodies',this)">
+
 Hoodies
+
 </button>
 
-<button class="filter" onclick="filterProducts('Elektronik',this)">
+
+<button
+class="filter"
+onclick="filterProducts('Elektronik',this)">
+
 Elektronik
+
 </button>
 
 </div>
 
 
-<div id="products" class="products"></div>
+<!-- PRODUCTS -->
+
+<div
+id="products"
+class="products">
 
 </div>
 
+
+</div>
+
+
+<!-- FOOTER -->
 
 <footer>
+
 © 2026 NovaShop · Alle Rechte vorbehalten
+
 </footer>
 
 
-<!-- WARENKORB -->
-
-<div id="drawer" class="drawer" onclick="closeCart()">
-
-<div class="cartPanel" onclick="event.stopPropagation()">
-
-<button class="close" onclick="closeCart()">×</button>
-
-<h2>Dein Warenkorb</h2>
-
-<div id="cartItems"></div>
-
-<h3 id="total"></h3>
-
-</div>
-
-</div>
-
-
 <script>
+
+/* PRODUKTE */
 
 const products = [
 
@@ -467,9 +512,10 @@ images:[
 ];
 
 
-/* WICHTIG: EINHEITLICHER WARENKORB */
+/* WARENKORB */
 
-let cart = JSON.parse(
+let cart =
+JSON.parse(
 localStorage.getItem("cart") || "[]"
 );
 
@@ -494,11 +540,16 @@ alt="${p.name}"
 onerror="this.style.display='none';"
 >
 
-${p.badge ?
+${
+p.badge
+?
 `<span class="badge">${p.badge}</span>`
-: ""}
+:
+""
+}
 
 </div>
+
 
 <div class="info">
 
@@ -506,13 +557,21 @@ ${p.badge ?
 ${p.name}
 </h3>
 
+
 <div class="stars">
 ★★★★★
 </div>
 
+
 <div class="price">
-${p.price.toFixed(2).replace(".",",")} €
+
+${p.price
+.toFixed(2)
+.replace(".",",")
+} €
+
 </div>
+
 
 <button
 class="add"
@@ -547,8 +606,8 @@ function filterProducts(category,button){
 
 document
 .querySelectorAll(".filter")
-.forEach(x =>
-x.classList.remove("active")
+.forEach(
+x => x.classList.remove("active")
 );
 
 button.classList.add("active");
@@ -571,13 +630,52 @@ p => p.category === category
 }
 
 
-/* DIREKT IN DEN WARENKORB */
+/* IN DEN WARENKORB */
 
 function addToCart(id){
 
 const product =
-products.find(p => p.id === id);
+products.find(
+p => p.id === id
+);
 
+if(!product){
+return;
+}
+
+
+/*
+Elektronik hat keine Größe.
+Bei Hoodies wird die Größe erst
+auf der Produktseite ausgewählt.
+*/
+
+if(product.sizes.length > 0){
+
+window.location.href =
+"product.html?id=" + id;
+
+return;
+
+}
+
+
+/* Elektronik direkt hinzufügen */
+
+const existing =
+cart.find(
+item =>
+item.id === product.id &&
+item.size === ""
+);
+
+
+if(existing){
+
+existing.quantity =
+(existing.quantity || 1) + 1;
+
+}else{
 
 cart.push({
 
@@ -589,16 +687,22 @@ price:product.price,
 
 image:product.images[0],
 
-quantity:1,
+size:"",
 
-size:""
+quantity:1
 
 });
+
+}
 
 
 saveCart();
 
-openCart();
+
+alert(
+product.name +
+" wurde in den Warenkorb gelegt."
+);
 
 }
 
@@ -612,120 +716,25 @@ localStorage.setItem(
 JSON.stringify(cart)
 );
 
-updateCart();
+updateCartCount();
 
 }
 
 
-/* WARENKORB AKTUALISIEREN */
+/* WARENKORB ANZAHL */
 
-function updateCart(){
+function updateCartCount(){
 
-document.getElementById("count")
-.textContent = cart.length;
-
-
-document.getElementById("cartItems")
-.innerHTML =
-
-cart.length ?
-
-cart.map((item,index) => `
-
-<div class="cartItem">
-
-<img
-src="${item.image}"
-alt="${item.name}"
->
-
-<div>
-
-<strong>
-${item.name}
-</strong>
-
-<br>
-
-${item.price.toFixed(2).replace(".",",")} €
-
-<br>
-
-${
-item.size
-?
-`Größe: ${item.size}<br>`
-:
-""
-}
-
-<button
-class="remove"
-onclick="removeItem(${index})">
-
-Entfernen
-
-</button>
-
-</div>
-
-</div>
-
-`).join("")
-
-:
-
-"<p>Dein Warenkorb ist leer.</p>";
-
-
-const sum =
+const count =
 cart.reduce(
 (total,item) =>
-total + Number(item.price) * (item.quantity || 1),
+total + (item.quantity || 1),
 0
 );
 
-
-document.getElementById("total")
+document.getElementById("count")
 .textContent =
-"Gesamt: " +
-sum.toFixed(2).replace(".",",") +
-" €";
-
-}
-
-
-/* ENTFERNEN */
-
-function removeItem(index){
-
-cart.splice(index,1);
-
-saveCart();
-
-}
-
-
-/* WARENKORB ÖFFNEN */
-
-function openCart(){
-
-document
-.getElementById("drawer")
-.classList.add("open");
-
-updateCart();
-
-}
-
-
-/* WARENKORB SCHLIESSEN */
-
-function closeCart(){
-
-document
-.getElementById("drawer")
-.classList.remove("open");
+count;
 
 }
 
@@ -734,7 +743,7 @@ document
 
 render();
 
-updateCart();
+updateCartCount();
 
 </script>
 
