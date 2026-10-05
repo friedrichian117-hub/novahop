@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Produkt | NovaShop</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f6f6f6;
+  color:#111;
+}
+
+header{
+  background:white;
+  border-bottom:1px solid #ddd;
+}
+
+.nav{
+  max-width:1200px;
+  margin:auto;
+  padding:18px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-size:26px;
+  font-weight:900;
+}
+
+.nav button{
+  background:#111;
+  color:white;
+  border:0;
+  padding:11px 16px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.container{
+  max-width:1200px;
+  margin:35px auto;
+  padding:0 20px;
+}
+
+.back{
+  border:0;
+  background:none;
+  cursor:pointer;
+  font-size:15px;
+  margin-bottom:20px;
+}
+
+.product{
+  background:white;
+  border-radius:18px;
+  padding:25px;
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:45px;
+}
+
+.gallery{
+  display:grid;
+  grid-template-columns:90px 1fr;
+  gap:15px;
+}
+
+.thumbnails{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.thumbnail{
+  width:90px;
+  height:105px;
+  object-fit:cover;
+  border-radius:8px;
+  cursor:pointer;
+  border:2px solid transparent;
+}
+
+.thumbnail.active{
+  border-color:#111;
+}
+
+.mainImage{
+  width:100%;
+  height:650px;
+  object-fit:cover;
+  border-radius:12px;
+}
+
+.badge{
+  display:inline-block;
+  background:#111;
+  color:white;
+  padding:7px 10px;
+  border-radius:6px;
+  font-size:11px;
+  font-weight:bold;
+}
+
+.details h1{
+  font-size:38px;
+  margin:15px 0 10px;
+}
+
+.stars{
+  margin:10px 0;
+}
+
+.price{
+  font-size:27px;
+  font-weight:800;
+  margin:18px 0;
+}
+
+.description{
+  color:#555;
+  line-height:1.6;
+}
+
+.label{
+  font-weight:bold;
+  margin:25px 0 10px;
+}
+
+.sizes{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+}
+
+.size{
+  background:white;
+  border:1px solid #bbb;
+  padding:11px 17px;
+  border-radius:7px;
+  cursor:pointer;
+}
+
+.size.active{
+  background:#111;
+  color:white;
+  border-color:#111;
+}
+
+.quantity{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.quantity button{
+  width:38px;
+  height:38px;
+  border:1px solid #ccc;
+  background:white;
+  border-radius:7px;
+  cursor:pointer;
+  font-size:18px;
+}
+
+.add{
+  width:100%;
+  margin-top:25px;
+  padding:16px;
+  border:0;
+  border-radius:9px;
+  background:#111;
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.infoBox{
+  margin-top:15px;
+  padding:13px;
+  background:#f1f1f1;
+  border-radius:8px;
+  font-size:13px;
+}
+
+@media(max-width:800px){
+
+  .product{
+    grid-template-columns:1fr;
+  }
+
+  .mainImage{
+    height:500px;
+  }
+
+}
+
+@media(max-width:500px){
+
+  .gallery{
+    grid-template-columns:70px 1fr;
+  }
+
+  .thumbnail{
+    width:70px;
+    height:85px;
+  }
+
+  .details h1{
+    font-size:30px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="nav">
+
+<div class="logo">
+NovaShop
+</div>
+
+<button onclick="location.href='index.html'">
+← Zurück zum Shop
+</button>
+
+</div>
+
+</header>
+
+
+<div class="container">
+
+<button class="back" onclick="history.back()">
+← Zurück
+</button>
+
+<div id="product"></div>
+
+</div>
+
+
+<script>
+
+const products = [
+
+{
+id:1,
+name:"Nova Black Hoodie",
+price:39.99,
+badge:"BESTSELLER",
+sizes:["XS","S","M","L","XL","XXL"],
+description:"Moderner Nova Hoodie mit cleanem Streetwear-Look.",
+images:[
+"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1200&q=90",
+"https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=1200&q=90"
+]
+},
+
+{
+id:2,
+name:"Nova Grey Hoodie",
+price:44.99,
+badge:"NEU",
+sizes:["XS","S","M","L","XL","XXL"],
+description:"Cleanes graues Design mit modernem Nova-Look.",
+images:[
+"https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=1200&q=90",
+"https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=1200&q=90"
+]
+},
+
+{
+id:3,
+name:"Nova Streetwear Hoodie",
+price:49.99,
+badge:"TREND",
+sizes:["S","M","L","XL","XXL"],
+description:"Moderner Streetwear Hoodie für deinen Alltag.",
+images:[
+"https://images.unsplash.com/photo-1611312449412-6cefac5dc3e4?auto=format&fit=crop&w=1200&q=90",
+"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1200&q=90"
+]
+},
+
+{
+id:4,
+name:"Nova Cream Hoodie",
+price:39.99,
+badge:"",
+sizes:["XS","S","M","L","XL"],
+description:"Heller Hoodie mit schlichtem und modernem Design.",
+images:[
+"https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=1200&q=90",
+"https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=1200&q=90"
+]
+},
+
+{
+id:5,
+name:"Nova Green Hoodie",
+price:44.99,
+badge:"NEU",
+sizes:["S","M","L","XL","XXL"],
+description:"Dunkelgrüner Nova Hoodie im Streetwear-Stil.",
+images:[
+"https://images.unsplash.com/photo-1618354691373-d851c5c3c990?auto=format&fit=crop&w=1200&q=90",
+"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1200&q=90"
+]
+},
+
+{
+id:6,
+name:"Nova Zip Hoodie",
+price:54.99,
+badge:"PREMIUM",
+sizes:["S","M","L","XL","XXL"],
+description:"Moderner Zip Hoodie mit cleanem Nova-Design.",
+images:[
+"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1200&q=90",
+"https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=1200&q=90"
+]
+},
+
+{
+id:7,
+name:"Nova Wireless Headphones",
+price:59.99,
+badge:"TOP",
+sizes:[],
+description:"Kabellose Kopfhörer mit modernem Design.",
+images:[
+"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=90",
+"https://images.unsplash.com/photo-1484704849700-f032a568e944?auto=format&fit=crop&w=1200&q=90"
+]
+},
+
+{
+id:8,
+name:"Nova Smartwatch",
+price:79.99,
+badge:"NEU",
+sizes:[],
+description:"Moderne Smartwatch mit schlichtem Design.",
+images:[
+"https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1200&q=90",
+"https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=1200&q=90"
+]
+}
+
+];
+
+
+const params =
+new URLSearchParams(window.location.search);
+
+const productId =
+parseInt(params.get("id"));
+
+const product =
+products.find(p => p.id === productId);
+
+
+let selectedSize =
+product && product.sizes.length
+? product.sizes[Math.floor(product.sizes.length / 2)]
+: null;
+
+let quantity = 1;
+
+
+function loadProduct(){
+
+if(!product){
+
+document.getElementById("product").innerHTML =
+"<h2>Produkt wurde nicht gefunden.</h2>";
+
+return;
+
+}
+
+
+document.getElementById("product").innerHTML = `
+
+<div class="product">
+
+
+<div class="gallery">
+
+<div class="thumbnails">
+
+${product.images.map((image,index)=>`
+
+<img
+src="${image}"
+class="thumbnail ${index === 0 ? "active" : ""}"
+onclick="selectImage('${image}',this)"
+>
+
+`).join("")}
+
+</div>
+
+
+<img
+id="mainImage"
+class="mainImage"
+src="${product.images[0]}"
+>
+
+
+</div>
+
+
+<div class="details">
+
+${product.badge
+? `<span class="badge">${product.badge}</span>`
+: ""}
+
+
+<h1>
+${product.name}
+</h1>
+
+
+<div class="stars">
+★★★★★
+</div>
+
+
+<div class="price">
+${product.price.toFixed(2).replace(".",",")} €
+</div>
+
+
+<p class="description">
+${product.description}
+</p>
+
+
+${
+product.sizes.length
+?
+
+`
+
+<div class="label">
+Größe
+</div>
+
+<div class="sizes">
+
+${product.sizes.map(size=>`
+
+<button
+class="size ${size === selectedSize ? "active" : ""}"
+onclick="selectSize('${size}')">
+
+${size}
+
+</button>
+
+`).join("")}
+
+</div>
+
+`
+
+: ""
+
+}
+
+
+<div class="label">
+Menge
+</div>
+
+
+<div class="quantity">
+
+<button onclick="changeQuantity(-1)">
+−
+</button>
+
+<strong id="quantity">
+1
+</strong>
+
+<button onclick="changeQuantity(1)">
++
+</button>
+
+</div>
+
+
+<button
+class="add"
+onclick="addToCart()">
+
+In den Warenkorb
+
+</button>
+
+
+<div class="infoBox">
+
+✓ Sicherer Bestellvorgang<br>
+✓ Schneller Versand<br>
+✓ Kostenloser Versand ab 50 €
+
+</div>
+
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+function selectImage(image,element){
+
+document.getElementById("mainImage").src =
+image;
+
+document
+.querySelectorAll(".thumbnail")
+.forEach(img =>
+img.classList.remove("active")
+);
+
+element.classList.add("active");
+
+}
+
+
+function selectSize(size){
+
+selectedSize = size;
+
+loadProduct();
+
+}
+
+
+function changeQuantity(amount){
+
+quantity =
+Math.max(1,quantity + amount);
+
+document.getElementById("quantity")
+.textContent = quantity;
+
+}
+
+
+function addToCart(){
+
+if(product.sizes.length && !selectedSize){
+
+alert("Bitte wähle zuerst eine Größe.");
+
+return;
+
+}
+
+
+let cart =
+JSON.parse(
+localStorage.getItem("novaCart") || "[]"
+);
+
+
+for(let i=0;i<quantity;i++){
+
+cart.push({
+
+id:product.id,
+
+name:product.name,
+
+price:product.price,
+
+size:selectedSize,
+
+image:product.images[0]
+
+});
+
+}
+
+
+localStorage.setItem(
+"novaCart",
+JSON.stringify(cart)
+);
+
+
+alert("Produkt wurde zum Warenkorb hinzugefügt!");
+
+}
+
+
+loadProduct();
+
+</script>
+
+</body>
+</html>
