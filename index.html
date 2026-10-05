@@ -3,19 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>NovaShop – Kleidung & Elektronik</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
-html{
-  scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
   font-family:Arial,Helvetica,sans-serif;
@@ -24,7 +17,6 @@ body{
 }
 
 /* HEADER */
-
 header{
   background:#111827;
   color:white;
@@ -97,8 +89,7 @@ header{
   color:#111827 !important;
 }
 
-/* NAVIGATION */
-
+/* KATEGORIE-NAVIGATION */
 .category-nav{
   border-top:1px solid rgba(255,255,255,.08);
   background:#0f172a;
@@ -134,7 +125,6 @@ header{
 }
 
 /* HERO */
-
 .hero{
   min-height:440px;
   background:
@@ -191,7 +181,6 @@ header{
 }
 
 /* USP */
-
 .usp{
   background:white;
   display:grid;
@@ -225,7 +214,6 @@ header{
 }
 
 /* MAIN */
-
 .container{
   max-width:1250px;
   margin:45px auto;
@@ -250,7 +238,6 @@ header{
 }
 
 /* SALE */
-
 .sale-banner{
   background:#111827;
   color:white;
@@ -282,8 +269,7 @@ header{
   white-space:nowrap;
 }
 
-/* PRODUCTS */
-
+/* PRODUKTE */
 .products{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -380,8 +366,7 @@ header{
   background:#000;
 }
 
-/* FILTER */
-
+/* SHOP TOOLS */
 .shop-tools{
   background:white;
   padding:18px;
@@ -407,7 +392,6 @@ header{
 }
 
 /* REVIEWS */
-
 .review-section{
   margin-top:55px;
 }
@@ -436,12 +420,7 @@ header{
   margin-bottom:15px;
 }
 
-.review strong{
-  font-size:14px;
-}
-
 /* FOOTER */
-
 footer{
   margin-top:70px;
   background:#111827;
@@ -489,8 +468,7 @@ footer{
   font-size:13px;
 }
 
-/* EMPTY */
-
+/* LEER */
 .empty{
   grid-column:1/-1;
   text-align:center;
@@ -509,7 +487,6 @@ footer{
 }
 
 /* TOAST */
-
 .toast{
   position:fixed;
   bottom:25px;
@@ -524,7 +501,6 @@ footer{
 }
 
 /* RESPONSIVE */
-
 @media(max-width:1000px){
 
   .products{
@@ -542,7 +518,6 @@ footer{
   .footer-inner{
     grid-template-columns:repeat(2,1fr);
   }
-
 }
 
 @media(max-width:700px){
@@ -598,7 +573,6 @@ footer{
     flex-direction:column;
     align-items:flex-start;
   }
-
 }
 
 @media(max-width:480px){
@@ -659,14 +633,11 @@ footer{
   .footer-inner{
     grid-template-columns:1fr;
   }
-
 }
 </style>
 </head>
 
 <body>
-
-<!-- HEADER -->
 
 <header>
 
@@ -677,7 +648,6 @@ footer{
     </a>
 
     <div class="search">
-
       <span class="search-icon">🔎</span>
 
       <input
@@ -685,7 +655,6 @@ footer{
         type="text"
         placeholder="Produkte suchen..."
       >
-
     </div>
 
     <div class="header-links">
@@ -702,45 +671,29 @@ footer{
 
   </div>
 
-
-  <!-- KATEGORIEN -->
+  <!-- NEUE KATEGORIE-NAVIGATION -->
 
   <nav class="category-nav">
 
     <div class="category-nav-inner">
 
-      <button
-        class="category-btn active"
-        data-category="all"
-      >
+      <button class="category-btn active" data-category="all">
         🏠 Shop
       </button>
 
-      <button
-        class="category-btn"
-        data-category="hoodies"
-      >
+      <button class="category-btn" data-category="hoodies">
         👕 Hoodies
       </button>
 
-      <button
-        class="category-btn"
-        data-category="clothing"
-      >
+      <button class="category-btn" data-category="clothing">
         👚 Kleidung
       </button>
 
-      <button
-        class="category-btn"
-        data-category="electronics"
-      >
+      <button class="category-btn" data-category="electronics">
         🎧 Elektronik
       </button>
 
-      <button
-        class="category-btn"
-        data-category="sale"
-      >
+      <button class="category-btn" data-category="sale">
         🔥 Sale
       </button>
 
@@ -750,8 +703,6 @@ footer{
 
 </header>
 
-
-<!-- HERO -->
 
 <section class="hero">
 
@@ -792,59 +743,30 @@ footer{
 </section>
 
 
-<!-- USP -->
-
 <section class="usp">
 
   <div class="usp-item">
-
     <div class="usp-icon">🚚</div>
-
     <strong>Schneller Versand</strong>
-
-    <span>
-      2–4 Werktage
-    </span>
-
+    <span>2–4 Werktage</span>
   </div>
 
-
   <div class="usp-item">
-
     <div class="usp-icon">🎁</div>
-
     <strong>Kostenloser Versand</strong>
-
-    <span>
-      Ab 50 € Bestellwert
-    </span>
-
+    <span>Ab 50 € Bestellwert</span>
   </div>
 
-
   <div class="usp-item">
-
     <div class="usp-icon">🔒</div>
-
     <strong>Sicher bestellen</strong>
-
-    <span>
-      Einfacher Checkout
-    </span>
-
+    <span>Einfacher Checkout</span>
   </div>
 
-
   <div class="usp-item">
-
     <div class="usp-icon">⭐</div>
-
     <strong>Top Produkte</strong>
-
-    <span>
-      Für deinen Alltag
-    </span>
-
+    <span>Für deinen Alltag</span>
   </div>
 
 </section>
@@ -852,21 +774,14 @@ footer{
 
 <main class="container">
 
-
-  <!-- SALE -->
-
   <section class="sale-banner">
 
     <div>
-
-      <h2>
-        🔥 Aktuelle Angebote
-      </h2>
+      <h2>🔥 Aktuelle Angebote</h2>
 
       <p>
         Sichere dir ausgewählte Produkte zu reduzierten Preisen.
       </p>
-
     </div>
 
     <a
@@ -880,20 +795,16 @@ footer{
   </section>
 
 
-  <!-- BESTSELLER -->
-
   <section>
 
     <div class="section-title">
 
       <div>
-
         <h2>🔥 Bestseller</h2>
 
         <p>
           Unsere beliebtesten Produkte
         </p>
-
       </div>
 
     </div>
@@ -902,8 +813,6 @@ footer{
 
   </section>
 
-
-  <!-- SHOP -->
 
   <section id="shop" style="margin-top:60px;">
 
@@ -970,8 +879,6 @@ footer{
 
   </section>
 
-
-  <!-- BEWERTUNGEN -->
 
   <section class="review-section">
 
@@ -1045,8 +952,6 @@ footer{
 
 </main>
 
-
-<!-- FOOTER -->
 
 <footer>
 
@@ -1132,25 +1037,18 @@ footer{
 
 
   <div class="footer-bottom">
-
     © 2026 NovaShop · Alle Rechte vorbehalten
-
   </div>
 
 </footer>
 
 
-<div
-  class="toast"
-  id="toast"
->
+<div class="toast" id="toast">
   Produkt wurde zum Warenkorb hinzugefügt.
 </div>
 
 
 <script>
-
-/* PRODUKTE */
 
 const products = [
 
@@ -1164,7 +1062,6 @@ const products = [
     rating:4.8,
     reviews:124,
     bestseller:true,
-    newest:false,
     image:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=800&q=80"
   },
 
@@ -1178,7 +1075,6 @@ const products = [
     rating:4.7,
     reviews:98,
     bestseller:true,
-    newest:false,
     image:"https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=800&q=80"
   },
 
@@ -1191,7 +1087,6 @@ const products = [
     rating:4.9,
     reviews:157,
     bestseller:true,
-    newest:false,
     image:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=800&q=80"
   },
 
@@ -1205,7 +1100,6 @@ const products = [
     rating:4.6,
     reviews:73,
     bestseller:false,
-    newest:false,
     image:"https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=800&q=80"
   },
 
@@ -1218,7 +1112,6 @@ const products = [
     rating:4.8,
     reviews:61,
     bestseller:false,
-    newest:true,
     image:"https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=800&q=80"
   },
 
@@ -1231,7 +1124,6 @@ const products = [
     rating:4.9,
     reviews:84,
     bestseller:false,
-    newest:true,
     image:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=800&q=80"
   },
 
@@ -1244,7 +1136,6 @@ const products = [
     rating:4.7,
     reviews:112,
     bestseller:true,
-    newest:false,
     image:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80"
   },
 
@@ -1257,47 +1148,31 @@ const products = [
     rating:4.8,
     reviews:89,
     bestseller:false,
-    newest:true,
     image:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80"
   }
 
 ];
 
 
-/* AKTUELLE KATEGORIE */
-
 let currentCategory = "all";
 
 
-/* GELD */
-
 function money(value){
-
   return value.toFixed(2).replace(".",",") + " €";
-
 }
 
-
-/* STERNE */
 
 function stars(rating){
 
   let result = "";
 
   for(let i=1;i<=5;i++){
-
-    result += i <= Math.round(rating)
-      ? "★"
-      : "☆";
-
+    result += i <= Math.round(rating) ? "★" : "☆";
   }
 
   return result;
-
 }
 
-
-/* WARENKORB-ANZAHL */
 
 function updateCartCount(){
 
@@ -1311,11 +1186,8 @@ function updateCartCount(){
 
   document.getElementById("cartCount").textContent =
     count;
-
 }
 
-
-/* PRODUKT-KARTE */
 
 function productCard(product){
 
@@ -1348,9 +1220,7 @@ function productCard(product){
             ${stars(product.rating)}
           </span>
 
-          <strong>
-            ${product.rating}
-          </strong>
+          <strong>${product.rating}</strong>
 
           <span class="review-count">
             (${product.reviews})
@@ -1392,11 +1262,8 @@ function productCard(product){
     </article>
 
   `;
-
 }
 
-
-/* PRODUKT ÖFFNEN */
 
 function openProduct(id){
 
@@ -1406,8 +1273,6 @@ function openProduct(id){
 }
 
 
-/* PRODUKT AKTION */
-
 function handleProduct(id){
 
   const product =
@@ -1415,28 +1280,19 @@ function handleProduct(id){
 
   if(!product) return;
 
-
   if(product.category === "hoodies"){
-
     openProduct(id);
-
     return;
-
   }
 
-
   addToCart(product);
-
 }
 
-
-/* IN WARENKORB */
 
 function addToCart(product){
 
   const cart =
     JSON.parse(localStorage.getItem("cart")) || [];
-
 
   const existing =
     cart.find(item =>
@@ -1444,44 +1300,29 @@ function addToCart(product){
       !item.size
     );
 
-
   if(existing){
-
     existing.quantity++;
-
   }else{
 
     cart.push({
-
       id:product.id,
-
       name:product.name,
-
       price:product.price,
-
       image:product.image,
-
       quantity:1
-
     });
 
   }
-
 
   localStorage.setItem(
     "cart",
     JSON.stringify(cart)
   );
 
-
   updateCartCount();
-
   showToast();
-
 }
 
-
-/* TOAST */
 
 function showToast(){
 
@@ -1491,15 +1332,10 @@ function showToast(){
   toast.style.display = "block";
 
   setTimeout(()=>{
-
     toast.style.display = "none";
-
   },2200);
-
 }
 
-
-/* SHOP RENDERN */
 
 function renderShop(){
 
@@ -1510,31 +1346,29 @@ function renderShop(){
       .toLowerCase()
       .trim();
 
-
   let filtered =
     products.filter(product => {
 
       const categoryMatch =
         currentCategory === "all" ||
+
         (
           currentCategory === "sale"
           ? product.oldPrice
-          : product.category === currentCategory ||
-            (
-              currentCategory === "clothing" &&
-              product.category === "hoodies"
-            )
+          : currentCategory === "clothing"
+            ? (
+                product.category === "clothing" ||
+                product.category === "hoodies"
+              )
+            : product.category === currentCategory
         );
-
 
       const searchMatch =
         product.name
           .toLowerCase()
           .includes(search);
 
-
       return categoryMatch && searchMatch;
-
     });
 
 
@@ -1543,35 +1377,19 @@ function renderShop(){
 
 
   if(sort === "price-low"){
-
-    filtered.sort(
-      (a,b) => a.price - b.price
-    );
-
+    filtered.sort((a,b)=>a.price-b.price);
   }
 
   if(sort === "price-high"){
-
-    filtered.sort(
-      (a,b) => b.price - a.price
-    );
-
+    filtered.sort((a,b)=>b.price-a.price);
   }
 
   if(sort === "rating"){
-
-    filtered.sort(
-      (a,b) => b.rating - a.rating
-    );
-
+    filtered.sort((a,b)=>b.rating-a.rating);
   }
 
   if(sort === "name"){
-
-    filtered.sort(
-      (a,b) => a.name.localeCompare(b.name)
-    );
-
+    filtered.sort((a,b)=>a.name.localeCompare(b.name));
   }
 
 
@@ -1592,7 +1410,8 @@ function renderShop(){
         <h3>Keine Produkte gefunden</h3>
 
         <p>
-          Versuche einen anderen Suchbegriff oder eine andere Kategorie.
+          Versuche einen anderen Suchbegriff
+          oder eine andere Kategorie.
         </p>
 
       </div>
@@ -1608,20 +1427,10 @@ function renderShop(){
 
 
   updateTitles();
-
 }
 
 
-/* TITEL */
-
 function updateTitles(){
-
-  const title =
-    document.getElementById("shopTitle");
-
-  const subtitle =
-    document.getElementById("shopSubtitle");
-
 
   const names = {
 
@@ -1653,21 +1462,17 @@ function updateTitles(){
   };
 
 
-  title.textContent =
+  document.getElementById("shopTitle").textContent =
     names[currentCategory][0];
 
-  subtitle.textContent =
+  document.getElementById("shopSubtitle").textContent =
     names[currentCategory][1];
-
 }
 
-
-/* KATEGORIE SETZEN */
 
 function setCategory(category){
 
   currentCategory = category;
-
 
   document
     .querySelectorAll(".category-btn")
@@ -1683,17 +1488,13 @@ function setCategory(category){
 
   renderShop();
 
-
   document
     .getElementById("shop")
     .scrollIntoView({
       behavior:"smooth"
     });
-
 }
 
-
-/* NAVIGATION */
 
 document
   .querySelectorAll(".category-btn")
@@ -1710,24 +1511,14 @@ document
   });
 
 
-/* SUCHE */
-
 document
   .getElementById("searchInput")
   .addEventListener("input",()=>{
 
     renderShop();
 
-    document
-      .getElementById("shop")
-      .scrollIntoView({
-        behavior:"smooth"
-      });
-
   });
 
-
-/* SORTIERUNG */
 
 document
   .getElementById("sortSelect")
@@ -1738,8 +1529,6 @@ document
   });
 
 
-/* BESTSELLER */
-
 function renderBestsellers(){
 
   const bestsellerProducts =
@@ -1747,21 +1536,15 @@ function renderBestsellers(){
       .filter(product => product.bestseller)
       .slice(0,4);
 
-
   document.getElementById("bestsellers").innerHTML =
     bestsellerProducts
       .map(productCard)
       .join("");
-
 }
 
 
-/* START */
-
 renderBestsellers();
-
 renderShop();
-
 updateCartCount();
 
 </script>
