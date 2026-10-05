@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NovaShop – Meine Bestellungen</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f6f6f6;
+  color:#111;
+}
+
+header{
+  background:#fff;
+  border-bottom:1px solid #ddd;
+}
+
+.nav{
+  max-width:1100px;
+  margin:auto;
+  padding:18px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-size:26px;
+  font-weight:900;
+}
+
+.back{
+  background:#111;
+  color:#fff;
+  text-decoration:none;
+  padding:10px 16px;
+  border-radius:8px;
+  font-weight:bold;
+}
+
+.container{
+  max-width:1000px;
+  margin:40px auto;
+  padding:0 20px 60px;
+}
+
+h1{
+  font-size:36px;
+  margin-bottom:25px;
+}
+
+.order{
+  background:#fff;
+  border-radius:16px;
+  padding:25px;
+  margin-bottom:20px;
+  box-shadow:0 5px 20px rgba(0,0,0,.06);
+}
+
+.order-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #eee;
+  padding-bottom:18px;
+  margin-bottom:15px;
+}
+
+.order-number{
+  font-size:20px;
+  font-weight:bold;
+}
+
+.date{
+  color:#666;
+  font-size:14px;
+}
+
+.product{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  padding:12px 0;
+  border-bottom:1px solid #eee;
+}
+
+.product:last-child{
+  border-bottom:0;
+}
+
+.product img{
+  width:70px;
+  height:75px;
+  object-fit:cover;
+  border-radius:9px;
+}
+
+.product-info{
+  flex:1;
+}
+
+.product-name{
+  font-weight:bold;
+}
+
+.product-small{
+  color:#666;
+  font-size:13px;
+  margin-top:5px;
+}
+
+.product-price{
+  font-weight:bold;
+}
+
+.order-bottom{
+  margin-top:20px;
+  padding-top:18px;
+  border-top:1px solid #eee;
+}
+
+.row{
+  display:flex;
+  justify-content:space-between;
+  margin:8px 0;
+}
+
+.total{
+  font-size:20px;
+  font-weight:bold;
+  margin-top:15px;
+}
+
+.empty{
+  background:#fff;
+  padding:50px;
+  text-align:center;
+  border-radius:16px;
+  box-shadow:0 5px 20px rgba(0,0,0,.06);
+}
+
+.empty h2{
+  margin-top:0;
+}
+
+.shop{
+  display:inline-block;
+  margin-top:20px;
+  background:#111;
+  color:#fff;
+  text-decoration:none;
+  padding:13px 20px;
+  border-radius:8px;
+  font-weight:bold;
+}
+
+@media(max-width:600px){
+
+  h1{
+    font-size:30px;
+  }
+
+  .order-top{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:8px;
+  }
+
+  .product-price{
+    font-size:14px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="nav">
+
+<div class="logo">
+NovaShop
+</div>
+
+<a href="index.html" class="back">
+← Zum Shop
+</a>
+
+</div>
+
+</header>
+
+
+<div class="container">
+
+<h1>
+Meine Bestellungen
+</h1>
+
+<div id="orders"></div>
+
+</div>
+
+
+<script>
+
+/*
+  BESTELLUNGEN LADEN
+*/
+
+let orders =
+JSON.parse(
+localStorage.getItem("orders") || "[]"
+);
+
+
+/*
+  GELD FORMATIEREN
+*/
+
+function money(value){
+
+return Number(value)
+.toFixed(2)
+.replace(".",",") + " €";
+
+}
+
+
+/*
+  BESTELLUNGEN ANZEIGEN
+*/
+
+function renderOrders(){
+
+const container =
+document.getElementById("orders");
+
+
+if(orders.length === 0){
+
+container.innerHTML = `
+
+<div class="empty">
+
+<h2>
+Noch keine Bestellungen
+</h2>
+
+<p>
+Du hast bisher noch keine Bestellung aufgegeben.
+</p>
+
+<a href="index.html" class="shop">
+Zum Shop
+</a>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+/*
+  NEUESTE BESTELLUNG ZUERST
+*/
+
+orders =
+orders.reverse();
+
+
+container.innerHTML = orders.map(order => {
+
+return `
+
+<div class="order">
+
+<div class="order-top">
+
+<div class="order-number">
+
+Bestellung ${order.orderNumber}
+
+</div>
+
+<div class="date">
+
+${order.date}
+
+</div>
+
+</div>
+
+
+<div>
+
+${
+order.items.map(item => {
+
+const quantity =
+item.quantity || 1;
+
+const price =
+Number(item.price) * quantity;
+
+return `
+
+<div class="product">
+
+<img
+src="${item.image}"
+alt="${item.name}"
+>
+
+<div class="product-info">
+
+<div class="product-name">
+${item.name}
+</div>
+
+<div class="product-small">
+
+${
+item.size
+? "Größe: " + item.size + " · "
+: ""
+}
+
+Menge: ${quantity}
+
+</div>
+
+</div>
+
+<div class="product-price">
+
+${money(price)}
+
+</div>
+
+</div>
+
+`;
+
+}).join("")
+}
+
+</div>
+
+
+<div class="order-bottom">
+
+<div class="row">
+
+<span>
+Zwischensumme
+</span>
+
+<span>
+${money(order.subtotal)}
+</span>
+
+</div>
+
+
+<div class="row">
+
+<span>
+Versand
+</span>
+
+<span>
+
+${
+Number(order.shipping) === 0
+? "Kostenlos"
+: money(order.shipping)
+}
+
+</span>
+
+</div>
+
+
+<div class="row">
+
+<span>
+Zahlungsart
+</span>
+
+<span>
+${order.payment}
+</span>
+
+</div>
+
+
+<div class="row total">
+
+<span>
+Gesamt
+</span>
+
+<span>
+${money(order.total)}
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+
+/*
+  START
+*/
+
+renderOrders();
+
+</script>
+
+</body>
+</html>
