@@ -3,806 +3,496 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NovaShop | Streetwear & Electronics</title>
+<title>NovaShop</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-
-html{scroll-behavior:smooth}
+*{
+  box-sizing:border-box;
+}
 
 body{
-font-family:Arial,Helvetica,sans-serif;
-background:#f7f7f7;
-color:#111;
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f6f6f6;
+  color:#111;
+}
+
+.top{
+  background:#111;
+  color:white;
+  text-align:center;
+  padding:10px;
+  font-size:13px;
 }
 
 header{
-height:72px;
-background:#fff;
-border-bottom:1px solid #e8e8e8;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 6%;
-position:sticky;
-top:0;
-z-index:100;
+  background:white;
+  border-bottom:1px solid #ddd;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.nav{
+  max-width:1200px;
+  margin:auto;
+  padding:18px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
 .logo{
-font-size:27px;
-font-weight:900;
-letter-spacing:-1.5px;
+  font-size:26px;
+  font-weight:900;
 }
 
-.logo span{color:#777}
-
-nav{
-display:flex;
-gap:30px;
+.cartBtn{
+  background:#111;
+  color:white;
+  border:0;
+  padding:11px 16px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
 }
-
-nav a{
-color:#111;
-text-decoration:none;
-font-size:14px;
-font-weight:700;
-cursor:pointer;
-}
-
-nav a:hover{color:#777}
-
-.cart{
-border:0;
-background:#111;
-color:#fff;
-padding:12px 19px;
-border-radius:30px;
-font-weight:bold;
-cursor:pointer;
-transition:.2s;
-}
-
-.cart:hover{
-transform:translateY(-2px);
-background:#333;
-}
-
-/* HERO */
 
 .hero{
-min-height:570px;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-padding:70px 20px;
-background:
-linear-gradient(#0009,#0009),
-url("https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1800&q=85")
-center/cover;
-color:white;
-}
-
-.hero-content{max-width:800px}
-
-.hero small{
-font-size:13px;
-letter-spacing:4px;
-color:#ddd;
+  max-width:1200px;
+  margin:25px auto;
+  padding:60px 35px;
+  background:#111;
+  color:white;
+  border-radius:18px;
 }
 
 .hero h1{
-font-size:clamp(50px,8vw,92px);
-line-height:.94;
-margin:20px 0;
-letter-spacing:-6px;
+  font-size:48px;
+  margin:0 0 12px;
 }
 
 .hero p{
-font-size:18px;
-color:#ddd;
-margin-bottom:30px;
+  color:#ccc;
+  font-size:17px;
 }
 
-.hero-btn{
-display:inline-block;
-background:white;
-color:#111;
-padding:15px 29px;
-border-radius:30px;
-text-decoration:none;
-font-weight:bold;
-transition:.2s;
+.hero button{
+  padding:13px 20px;
+  border:0;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
 }
 
-.hero-btn:hover{
-transform:scale(1.04);
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:0 20px 50px;
 }
-
-/* USP */
-
-.usp{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-background:#111;
-color:#fff;
-text-align:center;
-}
-
-.usp div{
-padding:25px 15px;
-border-right:1px solid #333;
-}
-
-.usp strong{
-display:block;
-margin-bottom:5px;
-}
-
-.usp span{
-font-size:13px;
-color:#aaa;
-}
-
-/* SHOP */
-
-.section{
-max-width:1450px;
-margin:auto;
-padding:75px 5%;
-}
-
-.section-head{
-margin-bottom:30px;
-}
-
-.section-head h2{
-font-size:38px;
-letter-spacing:-1.5px;
-}
-
-.section-head p{
-color:#777;
-margin-top:7px;
-}
-
-/* FILTER */
 
 .filters{
-display:flex;
-gap:10px;
-margin-bottom:35px;
-flex-wrap:wrap;
+  display:flex;
+  gap:10px;
+  margin-bottom:20px;
 }
 
 .filter{
-border:1px solid #ddd;
-background:white;
-color:#111;
-padding:11px 20px;
-border-radius:30px;
-cursor:pointer;
-font-weight:700;
+  background:white;
+  border:1px solid #ccc;
+  padding:10px 16px;
+  border-radius:8px;
+  cursor:pointer;
 }
 
-.filter.active,
-.filter:hover{
-background:#111;
-color:#fff;
+.filter.active{
+  background:#111;
+  color:white;
 }
-
-/* PRODUCTS */
 
 .products{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:28px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
 }
 
 .card{
-background:#fff;
-border-radius:18px;
-overflow:hidden;
-position:relative;
-transition:.25s;
-border:1px solid #eee;
+  background:white;
+  border:1px solid #e1e1e1;
+  border-radius:14px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:.2s;
 }
 
 .card:hover{
-transform:translateY(-7px);
-box-shadow:0 20px 45px #00000018;
+  transform:translateY(-4px);
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
 }
 
-.pic{
-height:430px;
-background:#eee;
-position:relative;
-overflow:hidden;
+.image{
+  height:300px;
+  position:relative;
+  background:#eee;
 }
 
-.pic img{
-width:100%;
-height:100%;
-object-fit:cover;
-display:block;
-transition:.5s;
-}
-
-.card:hover .pic img{
-transform:scale(1.045);
+.image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
 .badge{
-position:absolute;
-top:16px;
-left:16px;
-background:#111;
-color:#fff;
-padding:8px 12px;
-border-radius:20px;
-font-size:10px;
-font-weight:800;
-letter-spacing:.5px;
-z-index:2;
+  position:absolute;
+  top:12px;
+  left:12px;
+  background:#111;
+  color:white;
+  padding:6px 9px;
+  border-radius:6px;
+  font-size:11px;
+  font-weight:bold;
 }
 
 .info{
-padding:22px;
-}
-
-.category{
-font-size:11px;
-color:#888;
-text-transform:uppercase;
-letter-spacing:1.5px;
+  padding:15px;
 }
 
 .info h3{
-font-size:20px;
-margin:8px 0;
+  margin:0 0 8px;
 }
 
 .stars{
-font-size:13px;
-margin:8px 0;
-letter-spacing:1px;
+  font-size:13px;
+  margin-bottom:8px;
 }
 
 .price{
-font-size:23px;
-font-weight:900;
-margin:13px 0;
-}
-
-.details{
-font-size:13px;
-color:#777;
-line-height:1.7;
+  font-size:18px;
+  font-weight:bold;
 }
 
 .add{
-width:100%;
-margin-top:17px;
-padding:14px;
-border:0;
-border-radius:11px;
-background:#111;
-color:#fff;
-font-weight:bold;
-cursor:pointer;
-transition:.2s;
+  width:100%;
+  margin-top:12px;
+  padding:12px;
+  border:0;
+  border-radius:8px;
+  background:#111;
+  color:white;
+  cursor:pointer;
+  font-weight:bold;
 }
-
-.add:hover{
-background:#333;
-}
-
-/* PROMO */
-
-.promo{
-margin:10px 5% 75px;
-min-height:340px;
-border-radius:24px;
-background:
-linear-gradient(90deg,#000d,#0003),
-url("https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1600&q=85")
-center/cover;
-color:#fff;
-display:flex;
-align-items:center;
-padding:60px;
-}
-
-.promo-content{max-width:550px}
-
-.promo h2{
-font-size:48px;
-line-height:1;
-margin-bottom:15px;
-}
-
-.promo p{
-color:#ddd;
-font-size:17px;
-margin-bottom:27px;
-}
-
-/* FOOTER */
 
 footer{
-background:#111;
-color:#fff;
-padding:65px 6% 30px;
+  background:#111;
+  color:#aaa;
+  text-align:center;
+  padding:30px;
 }
 
-.footer-grid{
-max-width:1200px;
-margin:auto;
-display:grid;
-grid-template-columns:2fr 1fr 1fr;
-gap:50px;
+/* WARENKORB */
+
+.drawer{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  display:none;
+  z-index:50;
 }
 
-footer h3{margin-bottom:15px}
-
-footer p,
-footer a{
-color:#999;
-font-size:14px;
-line-height:2;
-text-decoration:none;
+.drawer.open{
+  display:block;
 }
 
-footer a:hover{color:#fff}
-
-.copyright{
-border-top:1px solid #333;
-margin-top:40px;
-padding-top:25px;
-color:#666;
-font-size:13px;
-}
-
-/* CART */
-
-#cartPanel{
-display:none;
-position:fixed;
-right:0;
-top:0;
-width:min(430px,100%);
-height:100%;
-background:#fff;
-z-index:200;
-padding:28px;
-box-shadow:-10px 0 40px #0003;
-overflow:auto;
-}
-
-.cart-top{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:25px;
+.cartPanel{
+  position:absolute;
+  right:0;
+  top:0;
+  height:100%;
+  width:420px;
+  max-width:95%;
+  background:white;
+  padding:25px;
+  overflow:auto;
 }
 
 .close{
-border:0;
-background:#eee;
-width:36px;
-height:36px;
-border-radius:50%;
-cursor:pointer;
+  float:right;
+  border:0;
+  background:none;
+  font-size:25px;
+  cursor:pointer;
 }
 
 .cartItem{
-padding:18px 0;
-border-bottom:1px solid #eee;
+  display:flex;
+  gap:12px;
+  padding:15px 0;
+  border-bottom:1px solid #ddd;
 }
 
-.cartItem button{
-float:right;
-border:0;
-background:#eee;
-padding:7px 10px;
-border-radius:7px;
-cursor:pointer;
+.cartItem img{
+  width:70px;
+  height:80px;
+  object-fit:cover;
+  border-radius:8px;
 }
 
-.total{
-font-size:24px;
-font-weight:900;
-margin:25px 0;
+.remove{
+  margin-top:8px;
+  border:0;
+  padding:6px 9px;
+  border-radius:6px;
+  cursor:pointer;
 }
 
-.checkout{
-width:100%;
-padding:16px;
-border:0;
-border-radius:11px;
-background:#111;
-color:#fff;
-font-weight:bold;
-cursor:pointer;
+@media(max-width:900px){
+  .products{
+    grid-template-columns:repeat(2,1fr);
+  }
 }
 
-/* RESPONSIVE */
+@media(max-width:550px){
+  .products{
+    grid-template-columns:1fr;
+  }
 
-@media(max-width:1050px){
-
-.products{
-grid-template-columns:repeat(2,1fr);
-}
-
-}
-
-@media(max-width:650px){
-
-header{
-padding:0 18px;
-}
-
-nav{
-display:none;
-}
-
-.hero{
-min-height:500px;
-}
-
-.hero h1{
-letter-spacing:-3px;
-}
-
-.usp{
-grid-template-columns:1fr;
-}
-
-.usp div{
-border-right:0;
-border-bottom:1px solid #333;
-}
-
-.section{
-padding:55px 18px;
-}
-
-.products{
-grid-template-columns:1fr;
-gap:20px;
-}
-
-.pic{
-height:390px;
-}
-
-.promo{
-margin:10px 18px 50px;
-padding:40px 25px;
-}
-
-.promo h2{
-font-size:36px;
-}
-
-.footer-grid{
-grid-template-columns:1fr;
-gap:25px;
-}
-
+  .hero h1{
+    font-size:34px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<header>
-
-<div class="logo">
-Nova<span>Shop</span>
+<div class="top">
+Kostenloser Versand ab 50 € · Neue Styles im Shop
 </div>
 
-<nav>
-<a onclick="setFilter(null,'all')">Alle</a>
-<a onclick="setFilter(null,'clothing')">Kleidung</a>
-<a onclick="setFilter(null,'electronics')">Elektronik</a>
-</nav>
+<header>
+<div class="nav">
 
-<button class="cart" onclick="openCart()">
+<div class="logo">
+NovaShop
+</div>
+
+<button class="cartBtn" onclick="openCart()">
 🛒 Warenkorb (<span id="count">0</span>)
 </button>
 
+</div>
 </header>
 
 
 <section class="hero">
 
-<div class="hero-content">
-
-<small>NOVASHOP COLLECTION 2026</small>
-
-<h1>WEAR<br>YOUR NOVA.</h1>
+<h1>
+Dein Style. Deine Auswahl.
+</h1>
 
 <p>
-Moderne Streetwear und ausgewählte Electronics.
-Entdecke deinen neuen Style.
+Moderne Hoodies und ausgewählte Technik – einfach online bestellen.
 </p>
 
-<a href="#shop" class="hero-btn">
-Kollektion entdecken →
-</a>
-
-</div>
+<button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+Shop entdecken
+</button>
 
 </section>
 
 
-<section class="usp">
-
-<div>
-<strong>🚚 Kostenloser Versand</strong>
-<span>Ab 50 € Bestellwert</span>
-</div>
-
-<div>
-<strong>✨ Neue Styles</strong>
-<span>Regelmäßig neue Produkte</span>
-</div>
-
-<div>
-<strong>🔒 Sicher einkaufen</strong>
-<span>Deine Bestellung im Blick</span>
-</div>
-
-</section>
-
-
-<section class="section" id="shop">
-
-<div class="section-head">
-
-<h2>Unsere Produkte</h2>
-<p>Ausgewählte Streetwear & Electronics</p>
-
-</div>
-
+<div class="container">
 
 <div class="filters">
 
-<button class="filter active" onclick="setFilter(this,'all')">
+<button class="filter active" onclick="filterProducts('Alle',this)">
 Alle
 </button>
 
-<button class="filter" onclick="setFilter(this,'clothing')">
-👕 Kleidung
+<button class="filter" onclick="filterProducts('Hoodies',this)">
+Hoodies
 </button>
 
-<button class="filter" onclick="setFilter(this,'electronics')">
-🎧 Elektronik
+<button class="filter" onclick="filterProducts('Elektronik',this)">
+Elektronik
 </button>
 
 </div>
 
 
-<main class="products" id="products"></main>
-
-</section>
-
-
-<section class="promo">
-
-<div class="promo-content">
-
-<h2>Dein Style.<br>Deine Nova.</h2>
-
-<p>
-Entdecke unsere beliebtesten Pieces und finde deinen neuen Lieblingslook.
-</p>
-
-<a href="#shop" class="hero-btn">
-Jetzt shoppen
-</a>
+<div id="products" class="products"></div>
 
 </div>
-
-</section>
 
 
 <footer>
-
-<div class="footer-grid">
-
-<div>
-<h3>NovaShop</h3>
-<p>
-Moderne Streetwear und ausgewählte Electronics
-für deinen Alltag.
-</p>
-</div>
-
-<div>
-<h3>Shop</h3>
-<p><a href="#shop">Alle Produkte</a></p>
-<p><a href="#shop">Kleidung</a></p>
-<p><a href="#shop">Elektronik</a></p>
-</div>
-
-<div>
-<h3>Service</h3>
-<p>Versand & Lieferung</p>
-<p>Kontakt</p>
-<p>FAQ</p>
-</div>
-
-</div>
-
-<div class="copyright">
 © 2026 NovaShop · Alle Rechte vorbehalten
-</div>
-
 </footer>
 
 
-<aside id="cartPanel">
+<!-- WARENKORB -->
 
-<div class="cart-top">
+<div id="drawer" class="drawer" onclick="closeCart()">
 
-<h2>Warenkorb</h2>
+<div class="cartPanel" onclick="event.stopPropagation()">
 
-<button class="close" onclick="closeCart()">✕</button>
+<button class="close" onclick="closeCart()">×</button>
 
-</div>
+<h2>Dein Warenkorb</h2>
 
 <div id="cartItems"></div>
 
-<div class="total">
-Gesamt: <span id="total">0,00 €</span>
+<h3 id="total"></h3>
+
 </div>
 
-<button class="checkout" onclick="alert('Checkout kommt als nächster Schritt!')">
-Zur Kasse
-</button>
-
-</aside>
+</div>
 
 
 <script>
 
-const products=[
+const products = [
 
 {
 id:1,
 name:"Nova Black Hoodie",
-cat:"clothing",
 price:39.99,
+category:"Hoodies",
 badge:"BESTSELLER",
-img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=85",
-sizes:"XS · S · M · L · XL · XXL",
-colors:"Schwarz"
+sizes:["XS","S","M","L","XL","XXL"],
+images:[
+"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=85",
+"https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=900&q=85"
+]
 },
 
 {
 id:2,
 name:"Nova Grey Hoodie",
-cat:"clothing",
 price:44.99,
+category:"Hoodies",
 badge:"NEU",
-img:"https://images.unsplash.com/photo-1565693413579-8a2e90f6f2e5?auto=format&fit=crop&w=1000&q=85",
-sizes:"XS · S · M · L · XL · XXL",
-colors:"Grau"
+sizes:["XS","S","M","L","XL","XXL"],
+images:[
+"https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=900&q=85",
+"https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=900&q=85"
+]
 },
 
 {
 id:3,
 name:"Nova Streetwear Hoodie",
-cat:"clothing",
 price:49.99,
-badge:"BELIEBT",
-img:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=85",
-sizes:"S · M · L · XL · XXL",
-colors:"Schwarz · Grau"
+category:"Hoodies",
+badge:"TREND",
+sizes:["S","M","L","XL","XXL"],
+images:[
+"https://images.unsplash.com/photo-1611312449412-6cefac5dc3e4?auto=format&fit=crop&w=900&q=85",
+"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85"
+]
 },
 
 {
 id:4,
 name:"Nova Cream Hoodie",
-cat:"clothing",
 price:39.99,
-badge:"NEU",
-img:"https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=1000&q=85",
-sizes:"XS · S · M · L · XL",
-colors:"Creme"
+category:"Hoodies",
+badge:"",
+sizes:["XS","S","M","L","XL"],
+images:[
+"https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=900&q=85",
+"https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=900&q=85"
+]
 },
 
 {
 id:5,
 name:"Nova Green Hoodie",
-cat:"clothing",
 price:44.99,
-badge:"LIMITED",
-img:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=85",
-sizes:"S · M · L · XL · XXL",
-colors:"Dunkelgrün"
+category:"Hoodies",
+badge:"NEU",
+sizes:["S","M","L","XL","XXL"],
+images:[
+"https://images.unsplash.com/photo-1618354691373-d851c5c3c990?auto=format&fit=crop&w=900&q=85",
+"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85"
+]
 },
 
 {
 id:6,
 name:"Nova Zip Hoodie",
-cat:"clothing",
 price:54.99,
+category:"Hoodies",
 badge:"PREMIUM",
-img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=85",
-sizes:"S · M · L · XL · XXL",
-colors:"Schwarz · Grau"
+sizes:["S","M","L","XL","XXL"],
+images:[
+"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=85",
+"https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=900&q=85"
+]
 },
 
 {
 id:7,
 name:"Nova Wireless Headphones",
-cat:"electronics",
 price:59.99,
+category:"Elektronik",
 badge:"TOP",
-img:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1000&q=85",
-sizes:"One Size",
-colors:"Schwarz"
+sizes:[],
+images:[
+"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85",
+"https://images.unsplash.com/photo-1484704849700-f032a568e944?auto=format&fit=crop&w=900&q=85"
+]
 },
 
 {
 id:8,
 name:"Nova Smartwatch",
-cat:"electronics",
 price:79.99,
+category:"Elektronik",
 badge:"NEU",
-img:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1000&q=85",
-sizes:"One Size",
-colors:"Schwarz"
+sizes:[],
+images:[
+"https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85",
+"https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=900&q=85"
+]
 }
 
 ];
 
-let cart=[];
 
-function render(list=products){
+let cart = JSON.parse(localStorage.getItem("novaCart") || "[]");
 
-document.getElementById("products").innerHTML=list.map(p=>`
 
-<div class="card">
+function render(list = products){
 
-<div class="pic">
+document.getElementById("products").innerHTML = list.map(p => `
 
-${p.badge ? `<div class="badge">${p.badge}</div>` : ""}
+<div class="card" onclick="openProduct(${p.id})">
 
-<img
-src="${p.img}"
-alt="${p.name}"
-loading="lazy"
->
+<div class="image">
+
+<img src="${p.images[0]}" alt="${p.name}">
+
+${p.badge ? `<span class="badge">${p.badge}</span>` : ""}
 
 </div>
 
 <div class="info">
 
-<div class="category">
-${p.cat==="clothing" ? "Streetwear" : "Electronics"}
-</div>
-
 <h3>${p.name}</h3>
 
 <div class="stars">
-★★★★★ <span style="color:#888">(4.9)</span>
+★★★★★
 </div>
 
 <div class="price">
 ${p.price.toFixed(2).replace(".",",")} €
 </div>
 
-<div class="details">
-<b>Größen:</b> ${p.sizes}<br>
-<b>Farben:</b> ${p.colors}
-</div>
-
-<button class="add" onclick="add(${p.id})">
+<button
+class="add"
+onclick="event.stopPropagation(); addToCart(${p.id})">
 In den Warenkorb
 </button>
 
@@ -814,66 +504,101 @@ In den Warenkorb
 
 }
 
-function filterProducts(cat){
+
+function openProduct(id){
+
+window.location.href = "product.html?id=" + id;
+
+}
+
+
+function filterProducts(category,button){
+
+document.querySelectorAll(".filter")
+.forEach(x => x.classList.remove("active"));
+
+button.classList.add("active");
+
+if(category === "Alle"){
+
+render(products);
+
+}else{
 
 render(
-cat==="all"
-? products
-: products.filter(p=>p.cat===cat)
+products.filter(p => p.category === category)
 );
 
 }
 
-function setFilter(button,cat){
-
-document.querySelectorAll(".filter")
-.forEach(x=>x.classList.remove("active"));
-
-if(button){
-button.classList.add("active");
 }
 
-filterProducts(cat);
 
-}
+function addToCart(id){
 
-function add(id){
+const product = products.find(p => p.id === id);
 
-const p=products.find(x=>x.id===id);
+cart.push({
 
-cart.push(p);
+id:product.id,
+name:product.name,
+price:product.price,
+image:product.images[0]
 
-updateCart();
+});
+
+saveCart();
 
 openCart();
 
 }
 
+
+function saveCart(){
+
+localStorage.setItem(
+"novaCart",
+JSON.stringify(cart)
+);
+
+updateCart();
+
+}
+
+
 function updateCart(){
 
-document.getElementById("count").textContent=cart.length;
+document.getElementById("count").textContent =
+cart.length;
 
-document.getElementById("cartItems").innerHTML=
 
-cart.length
+document.getElementById("cartItems").innerHTML =
 
-?
+cart.length ?
 
-cart.map((p,i)=>`
+cart.map((item,index) => `
 
 <div class="cartItem">
 
-<strong>${p.name}</strong>
+<img src="${item.image}">
+
+<div>
+
+<strong>${item.name}</strong>
 
 <br>
 
-<span>
-${p.price.toFixed(2).replace(".",",")} €
-</span>
+${item.price.toFixed(2).replace(".",",")} €
 
-<button onclick="removeItem(${i})">
+<br>
+
+<button
+class="remove"
+onclick="removeItem(${index})">
 Entfernen
 </button>
+
+</div>
 
 </div>
 
@@ -881,36 +606,51 @@ Entfernen
 
 :
 
-"<p style='color:#777'>Dein Warenkorb ist leer.</p>";
+"<p>Dein Warenkorb ist leer.</p>";
 
-let total=cart.reduce((s,p)=>s+p.price,0);
 
-document.getElementById("total").textContent=
-total.toFixed(2).replace(".",",")+" €";
+const sum = cart.reduce(
+(total,item) => total + item.price,
+0
+);
+
+document.getElementById("total").textContent =
+"Gesamt: " +
+sum.toFixed(2).replace(".",",") +
+" €";
 
 }
 
-function removeItem(i){
 
-cart.splice(i,1);
+function removeItem(index){
+
+cart.splice(index,1);
+
+saveCart();
+
+}
+
+
+function openCart(){
+
+document.getElementById("drawer")
+.classList.add("open");
 
 updateCart();
 
 }
 
-function openCart(){
-
-document.getElementById("cartPanel").style.display="block";
-
-}
 
 function closeCart(){
 
-document.getElementById("cartPanel").style.display="none";
+document.getElementById("drawer")
+.classList.remove("open");
 
 }
 
+
 render();
+
 updateCart();
 
 </script>
