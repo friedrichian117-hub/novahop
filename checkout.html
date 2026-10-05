@@ -19,8 +19,6 @@ body{
   color:#111;
 }
 
-/* HEADER */
-
 header{
   background:white;
   border-bottom:1px solid #ddd;
@@ -40,8 +38,13 @@ header{
   font-weight:900;
 }
 
-.back{
-  background:#111;
+.nav-right{
+  display:flex;
+  gap:10px;
+}
+
+.back,
+.orders-link{
   color:white;
   text-decoration:none;
   padding:10px 15px;
@@ -49,7 +52,13 @@ header{
   font-weight:bold;
 }
 
-/* CONTAINER */
+.back{
+  background:#111;
+}
+
+.orders-link{
+  background:#555;
+}
 
 .container{
   max-width:1100px;
@@ -61,8 +70,6 @@ h1{
   font-size:36px;
   margin-bottom:25px;
 }
-
-/* LAYOUT */
 
 .layout{
   display:grid;
@@ -81,8 +88,6 @@ h1{
 .box h2{
   margin-top:0;
 }
-
-/* FORM */
 
 label{
   display:block;
@@ -104,13 +109,11 @@ input:focus{
   border-color:#111;
 }
 
-.row{
+.row-input{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:12px;
 }
-
-/* PAYMENT */
 
 .payment{
   display:flex;
@@ -131,8 +134,6 @@ input:focus{
   width:auto;
 }
 
-/* ORDER ITEMS */
-
 .summary-item{
   display:flex;
   gap:12px;
@@ -151,6 +152,10 @@ input:focus{
   border-radius:8px;
 }
 
+.summary-info{
+  flex:1;
+}
+
 .summary-name{
   font-weight:bold;
 }
@@ -162,12 +167,9 @@ input:focus{
 }
 
 .summary-price{
-  margin-left:auto;
   font-weight:bold;
   white-space:nowrap;
 }
-
-/* PRICES */
 
 .price-row{
   display:flex;
@@ -181,8 +183,6 @@ input:focus{
   font-size:21px;
   font-weight:bold;
 }
-
-/* BUTTON */
 
 .order-button{
   width:100%;
@@ -201,7 +201,7 @@ input:focus{
   background:#292929;
 }
 
-/* SUCCESS */
+/* ERFOLG */
 
 .success{
   display:none;
@@ -241,8 +241,6 @@ input:focus{
   font-weight:bold;
   margin-top:10px;
 }
-
-/* SUCCESS DETAILS */
 
 .success-section{
   padding:25px 0;
@@ -303,24 +301,31 @@ input:focus{
   padding-top:20px;
 }
 
-.shop{
+.success-buttons{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:25px;
+}
+
+.success-button{
   display:block;
   width:100%;
   text-align:center;
-  background:#111;
   color:white;
   text-decoration:none;
   padding:15px;
   border-radius:9px;
   font-weight:bold;
-  margin-top:25px;
 }
 
-.shop:hover{
-  background:#292929;
+.shop{
+  background:#111;
 }
 
-/* EMPTY */
+.orders{
+  background:#555;
+}
 
 .empty{
   background:white;
@@ -339,8 +344,6 @@ input:focus{
   border-radius:8px;
 }
 
-/* MOBILE */
-
 @media(max-width:800px){
 
   .layout{
@@ -351,7 +354,7 @@ input:focus{
 
 @media(max-width:550px){
 
-  .row{
+  .row-input{
     grid-template-columns:1fr;
   }
 
@@ -359,8 +362,14 @@ input:focus{
     font-size:30px;
   }
 
-  .logo{
-    font-size:22px;
+  .nav-right{
+    gap:5px;
+  }
+
+  .back,
+  .orders-link{
+    padding:8px 10px;
+    font-size:13px;
   }
 
   .success-box{
@@ -371,16 +380,16 @@ input:focus{
     font-size:25px;
   }
 
+  .success-buttons{
+    grid-template-columns:1fr;
+  }
+
 }
 
 </style>
 </head>
 
-
 <body>
-
-
-<!-- HEADER -->
 
 <header>
 
@@ -390,9 +399,17 @@ input:focus{
 NovaShop
 </div>
 
+<div class="nav-right">
+
+<a href="orders.html" class="orders-link">
+📦 Bestellungen
+</a>
+
 <a href="cart.html" class="back">
 ← Warenkorb
 </a>
+
+</div>
 
 </div>
 
@@ -414,12 +431,10 @@ Kasse
 <div class="layout">
 
 
-<!-- LINKER BEREICH -->
+<!-- ADRESSE -->
 
 <div>
 
-
-<!-- ADRESSE -->
 
 <div class="box">
 
@@ -461,7 +476,7 @@ placeholder="max@example.de"
 >
 
 
-<div class="row">
+<div class="row-input">
 
 <div>
 
@@ -495,7 +510,7 @@ placeholder="12"
 </div>
 
 
-<div class="row">
+<div class="row-input">
 
 <div>
 
@@ -584,7 +599,7 @@ value="Klarna"
 </div>
 
 
-<!-- RECHTER BEREICH -->
+<!-- BESTELLÜBERSICHT -->
 
 <div>
 
@@ -593,7 +608,6 @@ value="Klarna"
 <h2>
 Deine Bestellung
 </h2>
-
 
 <div id="items"></div>
 
@@ -654,7 +668,7 @@ Bestellung abschließen
 </div>
 
 
-<!-- ERFOLGSSEITE -->
+<!-- ERFOLG -->
 
 <div id="success" class="success">
 
@@ -687,7 +701,7 @@ NS-000000
 </div>
 
 
-<!-- LIEFERADRESSE -->
+<!-- ADRESSE -->
 
 <div class="success-section">
 
@@ -703,7 +717,7 @@ class="address">
 </div>
 
 
-<!-- BESTELLTE PRODUKTE -->
+<!-- PRODUKTE -->
 
 <div class="success-section">
 
@@ -712,6 +726,7 @@ class="address">
 </h3>
 
 <div id="successProducts"></div>
+
 
 <div class="success-total">
 
@@ -742,13 +757,28 @@ Gesamt
 </div>
 
 
-<a
-href="index.html"
-class="shop">
+<!-- BUTTONS -->
 
-Zurück zum Shop
+<div class="success-buttons">
+
+<a
+href="orders.html"
+class="success-button orders">
+
+📦 Meine Bestellungen
 
 </a>
+
+
+<a
+href="index.html"
+class="success-button shop">
+
+🛍️ Weiter einkaufen
+
+</a>
+
+</div>
 
 
 </div>
@@ -761,7 +791,8 @@ Zurück zum Shop
 
 <script>
 
-/* WARENKORB LADEN */
+
+/* WARENKORB */
 
 let cart =
 JSON.parse(
@@ -769,7 +800,7 @@ localStorage.getItem("cart") || "[]"
 );
 
 
-/* GELD FORMATIEREN */
+/* GELD */
 
 function money(value){
 
@@ -780,7 +811,7 @@ return Number(value)
 }
 
 
-/* BESTELLNUMMER ERSTELLEN */
+/* BESTELLNUMMER */
 
 function createOrderNumber(){
 
@@ -795,7 +826,7 @@ return "NS-" + number;
 }
 
 
-/* BESTELLUNG ANZEIGEN */
+/* CHECKOUT ANZEIGEN */
 
 function renderCheckout(){
 
@@ -851,7 +882,7 @@ src="${item.image}"
 alt="${item.name}"
 >
 
-<div>
+<div class="summary-info">
 
 <div class="summary-name">
 ${item.name}
@@ -935,7 +966,8 @@ money(total);
 
 function placeOrder(){
 
-/* PFLICHTFELDER */
+
+/* FELDER */
 
 const required = [
 
@@ -949,8 +981,6 @@ const required = [
 
 ];
 
-
-/* FELDER PRÜFEN */
 
 for(const id of required){
 
@@ -973,10 +1003,12 @@ return;
 }
 
 
-/* E-MAIL PRÜFEN */
+/* E-MAIL */
 
 const email =
-document.getElementById("email").value.trim();
+document.getElementById("email")
+.value
+.trim();
 
 
 if(
@@ -988,14 +1020,15 @@ alert(
 "Bitte gib eine gültige E-Mail-Adresse ein."
 );
 
-document.getElementById("email").focus();
+document.getElementById("email")
+.focus();
 
 return;
 
 }
 
 
-/* WARENKORB PRÜFEN */
+/* WARENKORB */
 
 if(cart.length === 0){
 
@@ -1008,7 +1041,7 @@ return;
 }
 
 
-/* ZAHLUNGSART */
+/* ZAHLUNG */
 
 const payment =
 document.querySelector(
@@ -1022,7 +1055,7 @@ const orderNumber =
 createOrderNumber();
 
 
-/* GESAMTPREIS */
+/* PREISE */
 
 const subtotal =
 cart.reduce(
@@ -1044,7 +1077,109 @@ const total =
 subtotal + shipping;
 
 
-/* BESTELLNUMMER ANZEIGEN */
+/* KUNDENDATEN */
+
+const firstname =
+document.getElementById("firstname")
+.value
+.trim();
+
+const lastname =
+document.getElementById("lastname")
+.value
+.trim();
+
+const street =
+document.getElementById("street")
+.value
+.trim();
+
+const house =
+document.getElementById("house")
+.value
+.trim();
+
+const zip =
+document.getElementById("zip")
+.value
+.trim();
+
+const city =
+document.getElementById("city")
+.value
+.trim();
+
+
+/* BESTELLUNG ERSTELLEN */
+
+const order = {
+
+orderNumber:orderNumber,
+
+date:new Date()
+.toLocaleString("de-DE"),
+
+customer:{
+
+firstname:firstname,
+
+lastname:lastname,
+
+email:email,
+
+street:street,
+
+house:house,
+
+zip:zip,
+
+city:city
+
+},
+
+payment:payment,
+
+items:cart,
+
+subtotal:subtotal,
+
+shipping:shipping,
+
+total:total
+
+};
+
+
+/*
+  WICHTIG:
+  BESTELLUNG ZU ALLEN BESTELLUNGEN
+  HINZUFÜGEN
+*/
+
+let orders =
+JSON.parse(
+localStorage.getItem("orders") || "[]"
+);
+
+
+orders.push(order);
+
+
+localStorage.setItem(
+"orders",
+JSON.stringify(orders)
+);
+
+
+/* LETZTE BESTELLUNG */
+
+localStorage.setItem(
+"lastOrder",
+JSON.stringify(order)
+);
+
+
+/* BESTELLNUMMER */
 
 document.getElementById("orderNumber")
 .textContent =
@@ -1052,25 +1187,6 @@ orderNumber;
 
 
 /* ADRESSE */
-
-const firstname =
-document.getElementById("firstname").value.trim();
-
-const lastname =
-document.getElementById("lastname").value.trim();
-
-const street =
-document.getElementById("street").value.trim();
-
-const house =
-document.getElementById("house").value.trim();
-
-const zip =
-document.getElementById("zip").value.trim();
-
-const city =
-document.getElementById("city").value.trim();
-
 
 document.getElementById("successAddress")
 .innerHTML = `
@@ -1094,7 +1210,7 @@ ${email}
 `;
 
 
-/* PRODUKTE AUF ERFOLGSSEITE */
+/* PRODUKTE */
 
 document.getElementById("successProducts")
 .innerHTML =
@@ -1137,7 +1253,9 @@ Menge: ${quantity}
 </div>
 
 <div class="success-product-price">
+
 ${money(itemTotal)}
+
 </div>
 
 </div>
@@ -1154,62 +1272,11 @@ document.getElementById("successTotal")
 money(total);
 
 
-/* ZAHLUNGSART */
+/* ZAHLUNG */
 
 document.getElementById("successPayment")
 .textContent =
 payment;
-
-
-/*
-BESTELLUNG SPEICHERN
-
-Damit kann die Bestellnummer
-während dieser Sitzung
-weiterverwendet werden.
-*/
-
-const order = {
-
-orderNumber:orderNumber,
-
-date:new Date().toLocaleString("de-DE"),
-
-customer:{
-
-firstname:firstname,
-
-lastname:lastname,
-
-email:email,
-
-street:street,
-
-house:house,
-
-zip:zip,
-
-city:city
-
-},
-
-payment:payment,
-
-items:cart,
-
-subtotal:subtotal,
-
-shipping:shipping,
-
-total:total
-
-};
-
-
-localStorage.setItem(
-"lastOrder",
-JSON.stringify(order)
-);
 
 
 /* WARENKORB LEEREN */
