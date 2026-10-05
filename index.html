@@ -3,1549 +3,1263 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>NovaShop – Kleidung & Elektronik</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-
-html{scroll-behavior:smooth}
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
 body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f6f7f9;
-  color:#111827;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f5f5f7;
+    color:#111;
 }
 
 /* HEADER */
 header{
-  background:#111827;
-  color:white;
-  position:sticky;
-  top:0;
-  z-index:50;
-  box-shadow:0 3px 15px rgba(0,0,0,.15);
-}
-
-.header-top{
-  max-width:1250px;
-  margin:auto;
-  padding:16px 20px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
+    background:#111;
+    color:white;
+    padding:16px 5%;
+    display:flex;
+    align-items:center;
+    gap:25px;
+    position:sticky;
+    top:0;
+    z-index:1000;
 }
 
 .logo{
-  color:white;
-  text-decoration:none;
-  font-size:27px;
-  font-weight:900;
-  white-space:nowrap;
+    font-size:25px;
+    font-weight:800;
+    white-space:nowrap;
 }
 
-.search{
-  flex:1;
-  max-width:500px;
-  position:relative;
+.desktop-nav{
+    display:flex;
+    gap:20px;
+    flex:1;
 }
 
-.search input{
-  width:100%;
-  padding:12px 16px 12px 42px;
-  border:none;
-  border-radius:10px;
-  outline:none;
-  font-size:15px;
+.desktop-nav a{
+    color:white;
+    text-decoration:none;
+    cursor:pointer;
+    font-weight:600;
 }
 
-.search-icon{
-  position:absolute;
-  left:14px;
-  top:10px;
-  font-size:19px;
+.desktop-nav a:hover{
+    color:#bbb;
 }
 
-.header-links{
-  display:flex;
-  align-items:center;
-  gap:10px;
+.header-right{
+    display:flex;
+    align-items:center;
+    gap:10px;
 }
 
-.header-links a{
-  color:white;
-  text-decoration:none;
-  font-weight:600;
-  padding:10px 12px;
-  border-radius:8px;
+.header-button{
+    border:0;
+    border-radius:22px;
+    padding:10px 15px;
+    cursor:pointer;
+    font-weight:bold;
+    background:white;
+    color:#111;
 }
 
-.header-links a:hover{
-  background:#1f2937;
+.menu-button{
+    display:none;
+    border:0;
+    background:#222;
+    color:white;
+    font-size:24px;
+    width:45px;
+    height:42px;
+    border-radius:10px;
+    cursor:pointer;
 }
 
-.cart-button{
-  background:white !important;
-  color:#111827 !important;
+/* MOBILE MENU */
+.mobile-menu{
+    display:none;
+    position:fixed;
+    top:0;
+    right:0;
+    width:290px;
+    max-width:85%;
+    height:100vh;
+    background:#111;
+    color:white;
+    z-index:2000;
+    padding:25px;
+    box-shadow:-8px 0 30px rgba(0,0,0,.35);
 }
 
-/* KATEGORIE-NAVIGATION */
-.category-nav{
-  border-top:1px solid rgba(255,255,255,.08);
-  background:#0f172a;
+.mobile-menu.open{
+    display:block;
 }
 
-.category-nav-inner{
-  max-width:1250px;
-  margin:auto;
-  padding:0 20px;
-  display:flex;
-  overflow-x:auto;
+.mobile-menu-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:30px;
 }
 
-.category-btn{
-  border:none;
-  background:transparent;
-  color:#d1d5db;
-  padding:15px 20px;
-  font-size:15px;
-  font-weight:700;
-  cursor:pointer;
-  white-space:nowrap;
-  border-bottom:3px solid transparent;
+.mobile-menu h2{
+    font-size:22px;
 }
 
-.category-btn:hover{
-  color:white;
+.mobile-close{
+    border:0;
+    background:#222;
+    color:white;
+    width:40px;
+    height:40px;
+    border-radius:10px;
+    font-size:20px;
+    cursor:pointer;
 }
 
-.category-btn.active{
-  color:white;
-  border-bottom-color:white;
+.mobile-links{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.mobile-links a{
+    color:white;
+    text-decoration:none;
+    padding:15px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:17px;
+}
+
+.mobile-links a:hover{
+    background:#222;
+}
+
+.menu-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    z-index:1500;
+}
+
+.menu-overlay.open{
+    display:block;
 }
 
 /* HERO */
 .hero{
-  min-height:440px;
-  background:
-    linear-gradient(rgba(0,0,0,.52),rgba(0,0,0,.52)),
-    url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1800&q=85")
-    center/cover;
-  display:flex;
-  align-items:center;
-}
-
-.hero-content{
-  max-width:1250px;
-  width:100%;
-  margin:auto;
-  padding:60px 20px;
-  color:white;
+    padding:90px 6%;
+    background:linear-gradient(135deg,#111,#444);
+    color:white;
+    text-align:center;
 }
 
 .hero h1{
-  font-size:55px;
-  max-width:700px;
-  line-height:1.05;
-  margin-bottom:20px;
+    font-size:52px;
+    margin-bottom:15px;
 }
 
 .hero p{
-  font-size:20px;
-  max-width:600px;
-  line-height:1.6;
-  margin-bottom:28px;
-  color:#e5e7eb;
-}
-
-.hero-buttons{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
+    font-size:20px;
+    color:#ddd;
 }
 
 .hero-button{
-  display:inline-block;
-  padding:14px 22px;
-  border-radius:10px;
-  text-decoration:none;
-  font-weight:800;
-  background:white;
-  color:#111827;
-}
-
-.hero-button.dark{
-  background:#111827;
-  color:white;
-  border:1px solid white;
+    display:inline-block;
+    margin-top:25px;
+    background:white;
+    color:#111;
+    padding:13px 22px;
+    border-radius:25px;
+    text-decoration:none;
+    font-weight:bold;
+    cursor:pointer;
 }
 
 /* USP */
 .usp{
-  background:white;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  border-bottom:1px solid #e5e7eb;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    max-width:1200px;
+    margin:35px auto;
+    padding:0 20px;
 }
 
-.usp-item{
-  padding:22px;
-  text-align:center;
-  border-right:1px solid #e5e7eb;
+.usp-box{
+    background:white;
+    border-radius:15px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 4px 18px rgba(0,0,0,.07);
 }
 
-.usp-item:last-child{
-  border-right:none;
-}
-
-.usp-icon{
-  font-size:28px;
-  margin-bottom:7px;
-}
-
-.usp-item strong{
-  display:block;
-  margin-bottom:4px;
-}
-
-.usp-item span{
-  color:#6b7280;
-  font-size:14px;
-}
-
-/* MAIN */
-.container{
-  max-width:1250px;
-  margin:45px auto;
-  padding:0 20px;
-}
-
-.section-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  gap:15px;
-  margin-bottom:22px;
-}
-
-.section-title h2{
-  font-size:30px;
-}
-
-.section-title p{
-  color:#6b7280;
-  margin-top:6px;
+.usp-box strong{
+    display:block;
+    margin-bottom:8px;
+    font-size:18px;
 }
 
 /* SALE */
 .sale-banner{
-  background:#111827;
-  color:white;
-  border-radius:18px;
-  padding:28px;
-  margin-bottom:45px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:20px;
+    max-width:1200px;
+    margin:20px auto 35px;
+    padding:25px;
+    border-radius:16px;
+    background:#111;
+    color:white;
+    text-align:center;
 }
 
 .sale-banner h2{
-  font-size:28px;
-  margin-bottom:7px;
+    margin-bottom:8px;
 }
 
-.sale-banner p{
-  color:#d1d5db;
+/* CONTROLS */
+.shop-section{
+    max-width:1300px;
+    margin:auto;
+    padding:20px;
 }
 
-.sale-button{
-  background:white;
-  color:#111827;
-  text-decoration:none;
-  padding:12px 18px;
-  border-radius:9px;
-  font-weight:800;
-  white-space:nowrap;
+.shop-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:20px;
+    flex-wrap:wrap;
 }
 
-/* PRODUKTE */
-.products{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:20px;
+.shop-top h2{
+    font-size:28px;
 }
 
-.product-card{
-  background:white;
-  border-radius:16px;
-  overflow:hidden;
-  box-shadow:0 7px 25px rgba(0,0,0,.06);
-  transition:.2s;
-  position:relative;
+.search-sort{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
 }
 
-.product-card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 12px 30px rgba(0,0,0,.11);
-}
-
-.product-image{
-  width:100%;
-  height:270px;
-  object-fit:cover;
-  display:block;
-  cursor:pointer;
-}
-
-.product-info{
-  padding:17px;
-}
-
-.badge{
-  position:absolute;
-  top:12px;
-  left:12px;
-  background:#111827;
-  color:white;
-  padding:6px 9px;
-  border-radius:7px;
-  font-size:12px;
-  font-weight:800;
-}
-
-.product-name{
-  font-size:17px;
-  margin-bottom:8px;
-}
-
-.rating{
-  font-size:14px;
-  margin-bottom:10px;
-}
-
-.stars{
-  color:#f59e0b;
-  letter-spacing:1px;
-}
-
-.review-count{
-  color:#6b7280;
-}
-
-.price-row{
-  display:flex;
-  align-items:center;
-  gap:9px;
-  margin-bottom:14px;
-}
-
-.price{
-  font-size:20px;
-  font-weight:900;
-}
-
-.old-price{
-  color:#9ca3af;
-  text-decoration:line-through;
-  font-size:14px;
-}
-
-.product-button{
-  width:100%;
-  border:none;
-  background:#111827;
-  color:white;
-  padding:12px;
-  border-radius:9px;
-  font-weight:800;
-  cursor:pointer;
-}
-
-.product-button:hover{
-  background:#000;
-}
-
-/* SHOP TOOLS */
-.shop-tools{
-  background:white;
-  padding:18px;
-  border-radius:14px;
-  margin-bottom:25px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-  box-shadow:0 5px 20px rgba(0,0,0,.05);
-}
-
-.result-count{
-  color:#6b7280;
-  font-weight:600;
+.search{
+    padding:12px 15px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    min-width:230px;
+    font-size:15px;
 }
 
 .sort{
-  padding:10px 13px;
-  border:1px solid #d1d5db;
-  border-radius:8px;
-  background:white;
+    padding:12px 15px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    background:white;
+}
+
+.categories{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:25px;
+}
+
+.filter{
+    border:0;
+    border-radius:20px;
+    padding:11px 17px;
+    cursor:pointer;
+    background:#e5e5e5;
+    color:#111;
+    font-weight:bold;
+}
+
+.filter.active{
+    background:#111;
+    color:white;
+}
+
+/* PRODUCTS */
+.products{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:22px;
+}
+
+.card{
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 4px 18px rgba(0,0,0,.08);
+    transition:.2s;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 8px 25px rgba(0,0,0,.12);
+}
+
+.pic{
+    height:270px;
+    background:#eee;
+    position:relative;
+    overflow:hidden;
+}
+
+.pic img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.badge{
+    position:absolute;
+    top:12px;
+    left:12px;
+    background:#111;
+    color:white;
+    padding:6px 10px;
+    border-radius:8px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.info{
+    padding:18px;
+}
+
+.category{
+    color:#777;
+    font-size:13px;
+    margin-bottom:7px;
+}
+
+.info h3{
+    margin-bottom:8px;
+    font-size:18px;
+}
+
+.rating{
+    margin:7px 0;
+    font-size:14px;
+}
+
+.price{
+    font-size:21px;
+    font-weight:bold;
+    margin:12px 0;
+}
+
+.old-price{
+    color:#888;
+    text-decoration:line-through;
+    font-size:14px;
+    margin-left:7px;
+}
+
+.product-button{
+    width:100%;
+    border:0;
+    border-radius:10px;
+    padding:13px;
+    background:#111;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.product-button:hover{
+    background:#333;
 }
 
 /* REVIEWS */
-.review-section{
-  margin-top:55px;
+.reviews{
+    max-width:1200px;
+    margin:60px auto;
+    padding:0 20px;
 }
 
-.reviews{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
+.reviews h2{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.review-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
 }
 
 .review{
-  background:white;
-  padding:22px;
-  border-radius:15px;
-  box-shadow:0 5px 20px rgba(0,0,0,.05);
+    background:white;
+    padding:22px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.06);
 }
 
 .review-stars{
-  color:#f59e0b;
-  margin-bottom:10px;
-}
-
-.review p{
-  color:#4b5563;
-  line-height:1.6;
-  margin-bottom:15px;
+    margin-bottom:10px;
 }
 
 /* FOOTER */
 footer{
-  margin-top:70px;
-  background:#111827;
-  color:#d1d5db;
+    background:#111;
+    color:#aaa;
+    padding:40px 20px;
+    text-align:center;
+    margin-top:50px;
 }
 
-.footer-inner{
-  max-width:1250px;
-  margin:auto;
-  padding:45px 20px;
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr 1fr;
-  gap:35px;
+footer strong{
+    color:white;
 }
 
-.footer-brand h2{
-  color:white;
-  margin-bottom:12px;
-}
-
-.footer-brand p{
-  line-height:1.7;
-}
-
-.footer-column h3{
-  color:white;
-  margin-bottom:15px;
-}
-
-.footer-column a{
-  display:block;
-  color:#d1d5db;
-  text-decoration:none;
-  margin:9px 0;
-}
-
-.footer-column a:hover{
-  color:white;
-}
-
-.footer-bottom{
-  border-top:1px solid #374151;
-  text-align:center;
-  padding:18px;
-  font-size:13px;
-}
-
-/* LEER */
-.empty{
-  grid-column:1/-1;
-  text-align:center;
-  padding:60px 20px;
-  background:white;
-  border-radius:15px;
-}
-
-.empty h3{
-  font-size:24px;
-  margin-bottom:8px;
-}
-
-.empty p{
-  color:#6b7280;
-}
-
-/* TOAST */
-.toast{
-  position:fixed;
-  bottom:25px;
-  right:25px;
-  background:#111827;
-  color:white;
-  padding:15px 20px;
-  border-radius:10px;
-  box-shadow:0 10px 30px rgba(0,0,0,.2);
-  display:none;
-  z-index:100;
-}
-
-/* RESPONSIVE */
+/* MOBILE */
 @media(max-width:1000px){
-
-  .products{
-    grid-template-columns:repeat(3,1fr);
-  }
-
-  .usp{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .usp-item:nth-child(2){
-    border-right:none;
-  }
-
-  .footer-inner{
-    grid-template-columns:repeat(2,1fr);
-  }
+    .products{
+        grid-template-columns:repeat(3,1fr);
+    }
 }
 
-@media(max-width:700px){
+@media(max-width:750px){
 
-  .header-top{
-    flex-wrap:wrap;
-  }
+    header{
+        padding:14px 18px;
+    }
 
-  .search{
-    order:3;
-    flex-basis:100%;
-    max-width:none;
-  }
+    .desktop-nav{
+        display:none;
+    }
 
-  .header-links a:not(.cart-button){
-    display:none;
-  }
+    .menu-button{
+        display:block;
+    }
 
-  .hero{
-    min-height:390px;
-  }
+    .header-right{
+        margin-left:auto;
+    }
 
-  .hero h1{
-    font-size:40px;
-  }
+    .orders-button{
+        display:none;
+    }
 
-  .hero p{
-    font-size:17px;
-  }
+    .hero{
+        padding:65px 20px;
+    }
 
-  .products{
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
-  }
+    .hero h1{
+        font-size:40px;
+    }
 
-  .product-image{
-    height:210px;
-  }
+    .hero p{
+        font-size:17px;
+    }
 
-  .product-info{
-    padding:13px;
-  }
+    .usp{
+        grid-template-columns:1fr;
+    }
 
-  .product-name{
-    font-size:15px;
-  }
+    .products{
+        grid-template-columns:repeat(2,1fr);
+    }
 
-  .reviews{
-    grid-template-columns:1fr;
-  }
+    .review-grid{
+        grid-template-columns:1fr;
+    }
 
-  .sale-banner{
-    flex-direction:column;
-    align-items:flex-start;
-  }
+    .shop-top{
+        align-items:stretch;
+    }
+
+    .search-sort{
+        width:100%;
+    }
+
+    .search{
+        width:100%;
+        min-width:0;
+    }
+
+    .sort{
+        width:100%;
+    }
 }
 
-@media(max-width:480px){
+@media(max-width:500px){
 
-  .logo{
-    font-size:23px;
-  }
+    .logo{
+        font-size:21px;
+    }
 
-  .category-btn{
-    padding:13px 15px;
-    font-size:14px;
-  }
+    .header-button{
+        padding:9px 11px;
+        font-size:13px;
+    }
 
-  .hero h1{
-    font-size:34px;
-  }
+    .hero h1{
+        font-size:34px;
+    }
 
-  .hero{
-    min-height:350px;
-  }
+    .products{
+        grid-template-columns:1fr;
+    }
 
-  .usp{
-    grid-template-columns:1fr 1fr;
-  }
+    .pic{
+        height:300px;
+    }
 
-  .usp-item{
-    padding:17px 8px;
-  }
+    .categories{
+        overflow-x:auto;
+        flex-wrap:nowrap;
+        padding-bottom:5px;
+    }
 
-  .usp-icon{
-    font-size:23px;
-  }
-
-  .usp-item span{
-    font-size:12px;
-  }
-
-  .section-title h2{
-    font-size:25px;
-  }
-
-  .products{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .product-image{
-    height:175px;
-  }
-
-  .price{
-    font-size:17px;
-  }
-
-  .old-price{
-    font-size:12px;
-  }
-
-  .footer-inner{
-    grid-template-columns:1fr;
-  }
+    .filter{
+        white-space:nowrap;
+    }
 }
 </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
 <header>
 
-  <div class="header-top">
+    <div class="logo">NovaShop</div>
 
-    <a href="index.html" class="logo">
-      NovaShop
-    </a>
+    <nav class="desktop-nav">
+        <a onclick="filterProducts('all')">🏠 Shop</a>
+        <a onclick="filterProducts('hoodies')">👕 Hoodies</a>
+        <a onclick="filterProducts('clothing')">👚 Kleidung</a>
+        <a onclick="filterProducts('electronics')">🎧 Elektronik</a>
+        <a onclick="filterProducts('sale')">🔥 Sale</a>
+    </nav>
 
-    <div class="search">
-      <span class="search-icon">🔎</span>
+    <div class="header-right">
 
-      <input
-        id="searchInput"
-        type="text"
-        placeholder="Produkte suchen..."
-      >
-    </div>
+        <button class="header-button orders-button"
+                onclick="location.href='orders.html'">
+            📦 Bestellungen
+        </button>
 
-    <div class="header-links">
+        <button class="header-button"
+                onclick="location.href='cart.html'">
+            🛒 <span id="count">0</span>
+        </button>
 
-      <a href="orders.html">
-        📦 Bestellungen
-      </a>
-
-      <a href="cart.html" class="cart-button">
-        🛒 Warenkorb (<span id="cartCount">0</span>)
-      </a>
-
-    </div>
-
-  </div>
-
-  <!-- NEUE KATEGORIE-NAVIGATION -->
-
-  <nav class="category-nav">
-
-    <div class="category-nav-inner">
-
-      <button class="category-btn active" data-category="all">
-        🏠 Shop
-      </button>
-
-      <button class="category-btn" data-category="hoodies">
-        👕 Hoodies
-      </button>
-
-      <button class="category-btn" data-category="clothing">
-        👚 Kleidung
-      </button>
-
-      <button class="category-btn" data-category="electronics">
-        🎧 Elektronik
-      </button>
-
-      <button class="category-btn" data-category="sale">
-        🔥 Sale
-      </button>
+        <!-- MOBILE BUTTON -->
+        <button class="menu-button" onclick="openMobileMenu()">
+            ☰
+        </button>
 
     </div>
-
-  </nav>
 
 </header>
 
 
+<!-- MOBILE MENU -->
+<div class="menu-overlay" id="menuOverlay" onclick="closeMobileMenu()"></div>
+
+<aside class="mobile-menu" id="mobileMenu">
+
+    <div class="mobile-menu-top">
+        <h2>NovaShop</h2>
+
+        <button class="mobile-close" onclick="closeMobileMenu()">
+            ✕
+        </button>
+    </div>
+
+    <div class="mobile-links">
+
+        <a onclick="mobileCategory('all')">
+            🏠 Shop
+        </a>
+
+        <a onclick="mobileCategory('hoodies')">
+            👕 Hoodies
+        </a>
+
+        <a onclick="mobileCategory('clothing')">
+            👚 Kleidung
+        </a>
+
+        <a onclick="mobileCategory('electronics')">
+            🎧 Elektronik
+        </a>
+
+        <a onclick="mobileCategory('sale')">
+            🔥 Sale
+        </a>
+
+        <a onclick="location.href='orders.html'">
+            📦 Meine Bestellungen
+        </a>
+
+        <a onclick="location.href='cart.html'">
+            🛒 Warenkorb
+        </a>
+
+    </div>
+
+</aside>
+
+
+<!-- HERO -->
 <section class="hero">
 
-  <div class="hero-content">
-
-    <h1>
-      Dein Style.<br>
-      Deine Auswahl.
-    </h1>
+    <h1>NovaShop</h1>
 
     <p>
-      Entdecke moderne Kleidung und ausgewählte
-      Elektronik bei NovaShop.
+        Moderne Hoodies, Streetwear & Elektronik.
     </p>
 
-    <div class="hero-buttons">
+    <p style="margin-top:12px;font-size:15px;">
+        🚚 Kostenloser Versand ab 50 € · 2–4 Werktage
+    </p>
 
-      <a
-        href="#shop"
-        class="hero-button"
-        onclick="setCategory('all')"
-      >
+    <a class="hero-button" onclick="scrollToProducts()">
         Jetzt shoppen
-      </a>
-
-      <a
-        href="#shop"
-        class="hero-button dark"
-        onclick="setCategory('sale')"
-      >
-        🔥 Sale entdecken
-      </a>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<section class="usp">
-
-  <div class="usp-item">
-    <div class="usp-icon">🚚</div>
-    <strong>Schneller Versand</strong>
-    <span>2–4 Werktage</span>
-  </div>
-
-  <div class="usp-item">
-    <div class="usp-icon">🎁</div>
-    <strong>Kostenloser Versand</strong>
-    <span>Ab 50 € Bestellwert</span>
-  </div>
-
-  <div class="usp-item">
-    <div class="usp-icon">🔒</div>
-    <strong>Sicher bestellen</strong>
-    <span>Einfacher Checkout</span>
-  </div>
-
-  <div class="usp-item">
-    <div class="usp-icon">⭐</div>
-    <strong>Top Produkte</strong>
-    <span>Für deinen Alltag</span>
-  </div>
-
-</section>
-
-
-<main class="container">
-
-  <section class="sale-banner">
-
-    <div>
-      <h2>🔥 Aktuelle Angebote</h2>
-
-      <p>
-        Sichere dir ausgewählte Produkte zu reduzierten Preisen.
-      </p>
-    </div>
-
-    <a
-      href="#shop"
-      class="sale-button"
-      onclick="setCategory('sale')"
-    >
-      Sale ansehen
     </a>
 
-  </section>
+</section>
 
 
-  <section>
+<!-- USP -->
+<section class="usp">
 
-    <div class="section-title">
+    <div class="usp-box">
+        <strong>🚚 Schneller Versand</strong>
+        Lieferung innerhalb von 2–4 Werktagen.
+    </div>
 
-      <div>
-        <h2>🔥 Bestseller</h2>
+    <div class="usp-box">
+        <strong>🎁 Kostenlos ab 50 €</strong>
+        Ab 50 € Bestellwert zahlst du keinen Versand.
+    </div>
 
-        <p>
-          Unsere beliebtesten Produkte
-        </p>
-      </div>
+    <div class="usp-box">
+        <strong>🔒 Sicher bestellen</strong>
+        Einfacher und übersichtlicher Checkout.
+    </div>
+
+</section>
+
+
+<!-- SALE -->
+<section class="sale-banner">
+
+    <h2>🔥 Aktuelle Angebote</h2>
+
+    <p>
+        Entdecke unsere beliebtesten Produkte und Sale-Angebote.
+    </p>
+
+</section>
+
+
+<!-- SHOP -->
+<section class="shop-section" id="shop">
+
+    <div class="shop-top">
+
+        <h2>Unsere Produkte</h2>
+
+        <div class="search-sort">
+
+            <input
+                class="search"
+                id="searchInput"
+                type="text"
+                placeholder="🔎 Produkte suchen..."
+                oninput="updateProducts()"
+            >
+
+            <select
+                class="sort"
+                id="sortSelect"
+                onchange="updateProducts()"
+            >
+                <option value="default">Sortieren</option>
+                <option value="priceLow">Preis: niedrig → hoch</option>
+                <option value="priceHigh">Preis: hoch → niedrig</option>
+                <option value="rating">Beste Bewertung</option>
+                <option value="name">Name A–Z</option>
+            </select>
+
+        </div>
 
     </div>
 
-    <div class="products" id="bestsellers"></div>
 
-  </section>
+    <!-- KATEGORIEN -->
+    <div class="categories">
 
+        <button
+            class="filter active"
+            onclick="filterProducts('all')"
+        >
+            Alle Produkte
+        </button>
 
-  <section id="shop" style="margin-top:60px;">
+        <button
+            class="filter"
+            onclick="filterProducts('hoodies')"
+        >
+            👕 Hoodies
+        </button>
 
-    <div class="section-title">
+        <button
+            class="filter"
+            onclick="filterProducts('clothing')"
+        >
+            👚 Kleidung
+        </button>
 
-      <div>
+        <button
+            class="filter"
+            onclick="filterProducts('electronics')"
+        >
+            🎧 Elektronik
+        </button>
 
-        <h2 id="shopTitle">
-          Alle Produkte
-        </h2>
-
-        <p id="shopSubtitle">
-          Entdecke unser komplettes Sortiment
-        </p>
-
-      </div>
+        <button
+            class="filter"
+            onclick="filterProducts('sale')"
+        >
+            🔥 Sale
+        </button>
 
     </div>
 
 
-    <div class="shop-tools">
-
-      <span
-        class="result-count"
+    <p
         id="resultCount"
-      >
-        8 Produkte
-      </span>
+        style="margin-bottom:18px;color:#666;"
+    ></p>
 
-      <select
-        class="sort"
-        id="sortSelect"
-      >
 
-        <option value="default">
-          Sortierung
-        </option>
+    <main
+        class="products"
+        id="products"
+    ></main>
 
-        <option value="price-low">
-          Preis: niedrig → hoch
-        </option>
+</section>
 
-        <option value="price-high">
-          Preis: hoch → niedrig
-        </option>
 
-        <option value="rating">
-          Bewertung
-        </option>
+<!-- REVIEWS -->
+<section class="reviews">
 
-        <option value="name">
-          Name A–Z
-        </option>
+    <h2>Was Kunden sagen</h2>
 
-      </select>
+    <div class="review-grid">
+
+        <div class="review">
+            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+            <p>
+                „Super Auswahl und die Hoodies sehen richtig gut aus.“
+            </p>
+            <br>
+            <strong>Demo-Bewertung</strong>
+        </div>
+
+        <div class="review">
+            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+            <p>
+                „Sehr übersichtlicher Shop und einfache Bestellung.“
+            </p>
+            <br>
+            <strong>Demo-Bewertung</strong>
+        </div>
+
+        <div class="review">
+            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+            <p>
+                „Besonders die Streetwear-Auswahl gefällt mir.“
+            </p>
+            <br>
+            <strong>Demo-Bewertung</strong>
+        </div>
 
     </div>
 
-
-    <div
-      class="products"
-      id="shopProducts"
-    ></div>
-
-  </section>
+</section>
 
 
-  <section class="review-section">
-
-    <div class="section-title">
-
-      <div>
-
-        <h2>⭐ Das sagen unsere Kunden</h2>
-
-        <p>
-          Erfahrungen aus unserer Demo-Shopansicht
-        </p>
-
-      </div>
-
-    </div>
-
-
-    <div class="reviews">
-
-      <div class="review">
-
-        <div class="review-stars">
-          ★★★★★
-        </div>
-
-        <p>
-          „Der Hoodie sieht richtig gut aus und
-          fühlt sich hochwertig an.“
-        </p>
-
-        <strong>Max</strong>
-
-      </div>
-
-
-      <div class="review">
-
-        <div class="review-stars">
-          ★★★★★
-        </div>
-
-        <p>
-          „Die Bestellung war einfach und die
-          Produktseite ist sehr übersichtlich.“
-        </p>
-
-        <strong>Leon</strong>
-
-      </div>
-
-
-      <div class="review">
-
-        <div class="review-stars">
-          ★★★★☆
-        </div>
-
-        <p>
-          „Gute Auswahl und ein sehr moderner
-          Shop. Gefällt mir.“
-        </p>
-
-        <strong>Jonas</strong>
-
-      </div>
-
-    </div>
-
-  </section>
-
-</main>
-
-
+<!-- FOOTER -->
 <footer>
 
-  <div class="footer-inner">
+    <strong>NovaShop</strong>
 
-    <div class="footer-brand">
+    <br><br>
 
-      <h2>NovaShop</h2>
+    Deine Marke, dein Shop.
 
-      <p>
-        Moderne Kleidung und ausgewählte
-        Elektronik für deinen Alltag.
-      </p>
+    <br><br>
 
-    </div>
-
-
-    <div class="footer-column">
-
-      <h3>Shop</h3>
-
-      <a href="#shop" onclick="setCategory('all')">
-        Alle Produkte
-      </a>
-
-      <a href="#shop" onclick="setCategory('hoodies')">
-        Hoodies
-      </a>
-
-      <a href="#shop" onclick="setCategory('clothing')">
-        Kleidung
-      </a>
-
-      <a href="#shop" onclick="setCategory('electronics')">
-        Elektronik
-      </a>
-
-      <a href="#shop" onclick="setCategory('sale')">
-        Sale
-      </a>
-
-    </div>
-
-
-    <div class="footer-column">
-
-      <h3>Service</h3>
-
-      <a href="cart.html">
-        Warenkorb
-      </a>
-
-      <a href="orders.html">
-        Meine Bestellungen
-      </a>
-
-      <a href="checkout.html">
-        Checkout
-      </a>
-
-    </div>
-
-
-    <div class="footer-column">
-
-      <h3>Versand</h3>
-
-      <a href="#">
-        🚚 4,99 € Versand
-      </a>
-
-      <a href="#">
-        🎁 Kostenlos ab 50 €
-      </a>
-
-      <a href="#">
-        📦 2–4 Werktage
-      </a>
-
-    </div>
-
-  </div>
-
-
-  <div class="footer-bottom">
-    © 2026 NovaShop · Alle Rechte vorbehalten
-  </div>
+    © 2026 NovaShop
 
 </footer>
 
 
-<div class="toast" id="toast">
-  Produkt wurde zum Warenkorb hinzugefügt.
-</div>
-
-
 <script>
+
+/* PRODUKTE */
 
 const products = [
 
-  {
-    id:1,
-    name:"Nova Black Hoodie",
-    price:39.99,
-    oldPrice:49.99,
-    category:"hoodies",
-    badge:"Bestseller",
-    rating:4.8,
-    reviews:124,
-    bestseller:true,
-    image:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=800&q=80"
-  },
+    {
+        id:1,
+        name:"Nova Black Hoodie",
+        category:"hoodies",
+        type:"clothing",
+        price:39.99,
+        oldPrice:null,
+        image:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=800&q=80",
+        rating:4.8,
+        reviews:124,
+        badge:"Bestseller"
+    },
 
-  {
-    id:2,
-    name:"Nova Grey Hoodie",
-    price:44.99,
-    oldPrice:54.99,
-    category:"hoodies",
-    badge:"Beliebt",
-    rating:4.7,
-    reviews:98,
-    bestseller:true,
-    image:"https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=800&q=80"
-  },
+    {
+        id:2,
+        name:"Nova Grey Hoodie",
+        category:"hoodies",
+        type:"clothing",
+        price:44.99,
+        oldPrice:null,
+        image:"https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=800&q=80",
+        rating:4.7,
+        reviews:98,
+        badge:"Beliebt"
+    },
 
-  {
-    id:3,
-    name:"Nova Streetwear Hoodie",
-    price:49.99,
-    category:"hoodies",
-    badge:"Bestseller",
-    rating:4.9,
-    reviews:157,
-    bestseller:true,
-    image:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=800&q=80"
-  },
+    {
+        id:3,
+        name:"Nova Streetwear Hoodie",
+        category:"hoodies",
+        type:"clothing",
+        price:49.99,
+        oldPrice:59.99,
+        image:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=800&q=80",
+        rating:4.9,
+        reviews:156,
+        badge:"SALE"
+    },
 
-  {
-    id:4,
-    name:"Nova Cream Hoodie",
-    price:39.99,
-    oldPrice:49.99,
-    category:"hoodies",
-    badge:"Sale",
-    rating:4.6,
-    reviews:73,
-    bestseller:false,
-    image:"https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=800&q=80"
-  },
+    {
+        id:4,
+        name:"Nova Cream Hoodie",
+        category:"hoodies",
+        type:"clothing",
+        price:39.99,
+        oldPrice:null,
+        image:"https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=800&q=80",
+        rating:4.6,
+        reviews:73,
+        badge:"Neu"
+    },
 
-  {
-    id:5,
-    name:"Nova Green Hoodie",
-    price:44.99,
-    category:"hoodies",
-    badge:"Neu",
-    rating:4.8,
-    reviews:61,
-    bestseller:false,
-    image:"https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=800&q=80"
-  },
+    {
+        id:5,
+        name:"Nova Green Hoodie",
+        category:"hoodies",
+        type:"clothing",
+        price:44.99,
+        oldPrice:null,
+        image:"https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=800&q=80",
+        rating:4.8,
+        reviews:89,
+        badge:"Bestseller"
+    },
 
-  {
-    id:6,
-    name:"Nova Zip Hoodie",
-    price:54.99,
-    category:"clothing",
-    badge:"Premium",
-    rating:4.9,
-    reviews:84,
-    bestseller:false,
-    image:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=800&q=80"
-  },
+    {
+        id:6,
+        name:"Nova Zip Hoodie",
+        category:"hoodies",
+        type:"clothing",
+        price:54.99,
+        oldPrice:64.99,
+        image:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=800&q=80",
+        rating:4.7,
+        reviews:61,
+        badge:"SALE"
+    },
 
-  {
-    id:7,
-    name:"Nova Wireless Headphones",
-    price:59.99,
-    category:"electronics",
-    badge:"Elektronik",
-    rating:4.7,
-    reviews:112,
-    bestseller:true,
-    image:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80"
-  },
+    {
+        id:7,
+        name:"Nova Wireless Headphones",
+        category:"electronics",
+        type:"electronics",
+        price:59.99,
+        oldPrice:null,
+        image:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80",
+        rating:4.6,
+        reviews:112,
+        badge:"Bestseller"
+    },
 
-  {
-    id:8,
-    name:"Nova Smartwatch",
-    price:79.99,
-    category:"electronics",
-    badge:"Neu",
-    rating:4.8,
-    reviews:89,
-    bestseller:false,
-    image:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80"
-  }
+    {
+        id:8,
+        name:"Nova Smartwatch",
+        category:"electronics",
+        type:"electronics",
+        price:79.99,
+        oldPrice:99.99,
+        image:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80",
+        rating:4.7,
+        reviews:84,
+        badge:"SALE"
+    }
 
 ];
 
 
-let currentCategory = "all";
+/* AKTIVE KATEGORIE */
+
+let activeCategory = "all";
 
 
-function money(value){
-  return value.toFixed(2).replace(".",",") + " €";
-}
+/* PRODUKTE ANZEIGEN */
+
+function renderProducts(list){
+
+    const container = document.getElementById("products");
+
+    document.getElementById("resultCount").textContent =
+        list.length + " Produkte gefunden";
+
+    if(list.length === 0){
+
+        container.innerHTML = `
+            <div style="
+                grid-column:1/-1;
+                text-align:center;
+                padding:50px;
+            ">
+                <h2>Keine Produkte gefunden</h2>
+                <p style="margin-top:10px;color:#777;">
+                    Versuche eine andere Suche.
+                </p>
+            </div>
+        `;
+
+        return;
+    }
 
 
-function stars(rating){
+    container.innerHTML = list.map(p => `
 
-  let result = "";
+        <div class="card">
 
-  for(let i=1;i<=5;i++){
-    result += i <= Math.round(rating) ? "★" : "☆";
-  }
+            <div class="pic">
 
-  return result;
-}
+                <img
+                    src="${p.image}"
+                    alt="${p.name}"
+                >
 
+                <span class="badge">
+                    ${p.badge}
+                </span>
 
-function updateCartCount(){
+            </div>
 
-  const cart =
-    JSON.parse(localStorage.getItem("cart")) || [];
+            <div class="info">
 
-  const count = cart.reduce(
-    (sum,item) => sum + item.quantity,
-    0
-  );
+                <div class="category">
+                    ${p.type === "electronics" ? "🎧 Elektronik" : "👕 Kleidung"}
+                </div>
 
-  document.getElementById("cartCount").textContent =
-    count;
-}
+                <h3>${p.name}</h3>
 
+                <div class="rating">
+                    ⭐ ${p.rating}
+                    <span style="color:#888;">
+                        (${p.reviews})
+                    </span>
+                </div>
 
-function productCard(product){
+                <div class="price">
 
-  return `
+                    ${p.price.toFixed(2).replace(".",",")} €
 
-    <article class="product-card">
+                    ${
+                        p.oldPrice
+                        ?
+                        `<span class="old-price">
+                            ${p.oldPrice.toFixed(2).replace(".",",")} €
+                        </span>`
+                        :
+                        ""
+                    }
 
-      ${
-        product.badge
-        ? `<span class="badge">${product.badge}</span>`
-        : ""
-      }
+                </div>
 
-      <img
-        class="product-image"
-        src="${product.image}"
-        alt="${product.name}"
-        onclick="openProduct(${product.id})"
-      >
+                <button
+                    class="product-button"
+                    onclick="openProduct(${p.id})"
+                >
+                    ${p.type === "electronics"
+                        ? "🛒 In den Warenkorb"
+                        : "👕 Produkt ansehen"
+                    }
+                </button>
 
-      <div class="product-info">
-
-        <h3 class="product-name">
-          ${product.name}
-        </h3>
-
-        <div class="rating">
-
-          <span class="stars">
-            ${stars(product.rating)}
-          </span>
-
-          <strong>${product.rating}</strong>
-
-          <span class="review-count">
-            (${product.reviews})
-          </span>
+            </div>
 
         </div>
 
-        <div class="price-row">
+    `).join("");
 
-          <span class="price">
-            ${money(product.price)}
-          </span>
-
-          ${
-            product.oldPrice
-            ? `
-              <span class="old-price">
-                ${money(product.oldPrice)}
-              </span>
-            `
-            : ""
-          }
-
-        </div>
-
-        <button
-          class="product-button"
-          onclick="handleProduct(${product.id})"
-        >
-          ${
-            product.category === "hoodies"
-            ? "Details ansehen"
-            : "🛒 In den Warenkorb"
-          }
-        </button>
-
-      </div>
-
-    </article>
-
-  `;
 }
 
+
+/* PRODUKT ÖFFNEN */
 
 function openProduct(id){
 
-  window.location.href =
-    "product.html?id=" + id;
+    location.href = "product.html?id=" + id;
 
 }
 
 
-function handleProduct(id){
+/* KATEGORIE */
 
-  const product =
-    products.find(p => p.id === id);
+function filterProducts(category){
 
-  if(!product) return;
+    activeCategory = category;
 
-  if(product.category === "hoodies"){
-    openProduct(id);
-    return;
-  }
-
-  addToCart(product);
-}
-
-
-function addToCart(product){
-
-  const cart =
-    JSON.parse(localStorage.getItem("cart")) || [];
-
-  const existing =
-    cart.find(item =>
-      item.id === product.id &&
-      !item.size
-    );
-
-  if(existing){
-    existing.quantity++;
-  }else{
-
-    cart.push({
-      id:product.id,
-      name:product.name,
-      price:product.price,
-      image:product.image,
-      quantity:1
+    document.querySelectorAll(".filter").forEach(button => {
+        button.classList.remove("active");
     });
 
-  }
+    const buttons = document.querySelectorAll(".filter");
 
-  localStorage.setItem(
-    "cart",
-    JSON.stringify(cart)
-  );
+    buttons.forEach(button => {
 
-  updateCartCount();
-  showToast();
+        if(
+            (category === "all" && button.textContent.includes("Alle")) ||
+            (category === "hoodies" && button.textContent.includes("Hoodies")) ||
+            (category === "clothing" && button.textContent.includes("Kleidung")) ||
+            (category === "electronics" && button.textContent.includes("Elektronik")) ||
+            (category === "sale" && button.textContent.includes("Sale"))
+        ){
+
+            button.classList.add("active");
+
+        }
+
+    });
+
+    updateProducts();
+
+    scrollToProducts();
+
 }
 
 
-function showToast(){
+/* PRODUKTE AKTUALISIEREN */
 
-  const toast =
-    document.getElementById("toast");
+function updateProducts(){
 
-  toast.style.display = "block";
+    let list = [...products];
 
-  setTimeout(()=>{
-    toast.style.display = "none";
-  },2200);
-}
+    const search =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
 
 
-function renderShop(){
+    /* KATEGORIE */
 
-  const search =
-    document
-      .getElementById("searchInput")
-      .value
-      .toLowerCase()
-      .trim();
+    if(activeCategory === "hoodies"){
 
-  let filtered =
-    products.filter(product => {
-
-      const categoryMatch =
-        currentCategory === "all" ||
-
-        (
-          currentCategory === "sale"
-          ? product.oldPrice
-          : currentCategory === "clothing"
-            ? (
-                product.category === "clothing" ||
-                product.category === "hoodies"
-              )
-            : product.category === currentCategory
+        list = list.filter(p =>
+            p.category === "hoodies"
         );
 
-      const searchMatch =
-        product.name
-          .toLowerCase()
-          .includes(search);
+    }
 
-      return categoryMatch && searchMatch;
-    });
+    else if(activeCategory === "clothing"){
 
+        list = list.filter(p =>
+            p.type === "clothing"
+        );
 
-  const sort =
-    document.getElementById("sortSelect").value;
+    }
 
+    else if(activeCategory === "electronics"){
 
-  if(sort === "price-low"){
-    filtered.sort((a,b)=>a.price-b.price);
-  }
+        list = list.filter(p =>
+            p.type === "electronics"
+        );
 
-  if(sort === "price-high"){
-    filtered.sort((a,b)=>b.price-a.price);
-  }
+    }
 
-  if(sort === "rating"){
-    filtered.sort((a,b)=>b.rating-a.rating);
-  }
+    else if(activeCategory === "sale"){
 
-  if(sort === "name"){
-    filtered.sort((a,b)=>a.name.localeCompare(b.name));
-  }
+        list = list.filter(p =>
+            p.oldPrice
+        );
+
+    }
 
 
-  const container =
-    document.getElementById("shopProducts");
+    /* SUCHE */
+
+    if(search){
+
+        list = list.filter(p =>
+            p.name
+            .toLowerCase()
+            .includes(search)
+        );
+
+    }
 
 
-  document.getElementById("resultCount").textContent =
-    `${filtered.length} Produkt${filtered.length !== 1 ? "e" : ""}`;
+    /* SORTIERUNG */
+
+    const sort =
+        document.getElementById("sortSelect").value;
 
 
-  if(filtered.length === 0){
+    if(sort === "priceLow"){
 
-    container.innerHTML = `
+        list.sort((a,b) =>
+            a.price - b.price
+        );
 
-      <div class="empty">
+    }
 
-        <h3>Keine Produkte gefunden</h3>
+    else if(sort === "priceHigh"){
 
-        <p>
-          Versuche einen anderen Suchbegriff
-          oder eine andere Kategorie.
-        </p>
+        list.sort((a,b) =>
+            b.price - a.price
+        );
 
-      </div>
+    }
 
-    `;
+    else if(sort === "rating"){
 
-  }else{
+        list.sort((a,b) =>
+            b.rating - a.rating
+        );
 
-    container.innerHTML =
-      filtered.map(productCard).join("");
+    }
 
-  }
+    else if(sort === "name"){
+
+        list.sort((a,b) =>
+            a.name.localeCompare(b.name)
+        );
+
+    }
 
 
-  updateTitles();
+    renderProducts(list);
+
 }
 
 
-function updateTitles(){
+/* MOBILE MENÜ */
 
-  const names = {
+function openMobileMenu(){
 
-    all:[
-      "Alle Produkte",
-      "Entdecke unser komplettes Sortiment"
-    ],
+    document
+        .getElementById("mobileMenu")
+        .classList.add("open");
 
-    hoodies:[
-      "Hoodies",
-      "Unsere beliebtesten Hoodies"
-    ],
+    document
+        .getElementById("menuOverlay")
+        .classList.add("open");
 
-    clothing:[
-      "Kleidung",
-      "Moderne Kleidung für deinen Style"
-    ],
-
-    electronics:[
-      "Elektronik",
-      "Ausgewählte Technik für deinen Alltag"
-    ],
-
-    sale:[
-      "🔥 Sale",
-      "Aktuelle Angebote und reduzierte Produkte"
-    ]
-
-  };
-
-
-  document.getElementById("shopTitle").textContent =
-    names[currentCategory][0];
-
-  document.getElementById("shopSubtitle").textContent =
-    names[currentCategory][1];
 }
 
 
-function setCategory(category){
+function closeMobileMenu(){
 
-  currentCategory = category;
+    document
+        .getElementById("mobileMenu")
+        .classList.remove("open");
 
-  document
-    .querySelectorAll(".category-btn")
-    .forEach(button => {
+    document
+        .getElementById("menuOverlay")
+        .classList.remove("open");
 
-      button.classList.toggle(
-        "active",
-        button.dataset.category === category
-      );
-
-    });
-
-
-  renderShop();
-
-  document
-    .getElementById("shop")
-    .scrollIntoView({
-      behavior:"smooth"
-    });
 }
 
 
-document
-  .querySelectorAll(".category-btn")
-  .forEach(button => {
+function mobileCategory(category){
 
-    button.addEventListener("click",()=>{
+    closeMobileMenu();
 
-      setCategory(
-        button.dataset.category
-      );
+    filterProducts(category);
 
-    });
-
-  });
-
-
-document
-  .getElementById("searchInput")
-  .addEventListener("input",()=>{
-
-    renderShop();
-
-  });
-
-
-document
-  .getElementById("sortSelect")
-  .addEventListener("change",()=>{
-
-    renderShop();
-
-  });
-
-
-function renderBestsellers(){
-
-  const bestsellerProducts =
-    products
-      .filter(product => product.bestseller)
-      .slice(0,4);
-
-  document.getElementById("bestsellers").innerHTML =
-    bestsellerProducts
-      .map(productCard)
-      .join("");
 }
 
 
-renderBestsellers();
-renderShop();
+/* ZU PRODUKTEN SCROLLEN */
+
+function scrollToProducts(){
+
+    document
+        .getElementById("shop")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+/* WARENKORB-ANZAHL */
+
+function updateCartCount(){
+
+    const cart =
+        JSON.parse(
+            localStorage.getItem("cart") || "[]"
+        );
+
+    let count = 0;
+
+    cart.forEach(item => {
+
+        count += Number(item.quantity || 1);
+
+    });
+
+    document.getElementById("count").textContent = count;
+
+}
+
+
+/* START */
+
+renderProducts(products);
+
 updateCartCount();
+
+
+/* WENN WARENKORB GEÄNDERT WIRD */
+
+window.addEventListener(
+    "storage",
+    updateCartCount
+);
 
 </script>
 
