@@ -7,7 +7,6 @@
 <title>NovaShop – Kasse</title>
 
 <style>
-
 *{
   box-sizing:border-box;
 }
@@ -20,7 +19,7 @@ body{
 }
 
 header{
-  background:white;
+  background:#fff;
   border-bottom:1px solid #ddd;
 }
 
@@ -38,25 +37,21 @@ header{
   font-weight:900;
 }
 
-.nav-right{
+.nav-buttons{
   display:flex;
   gap:10px;
 }
 
-.back,
-.orders-link{
+.nav-buttons a{
   color:white;
   text-decoration:none;
   padding:10px 15px;
   border-radius:8px;
   font-weight:bold;
-}
-
-.back{
   background:#111;
 }
 
-.orders-link{
+.nav-buttons a.orders{
   background:#555;
 }
 
@@ -109,7 +104,7 @@ input:focus{
   border-color:#111;
 }
 
-.row-input{
+.input-row{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:12px;
@@ -117,17 +112,13 @@ input:focus{
 
 .payment{
   display:flex;
-  gap:10px;
   align-items:center;
+  gap:10px;
   border:1px solid #ddd;
   padding:14px;
   border-radius:9px;
   margin-top:10px;
   cursor:pointer;
-}
-
-.payment:hover{
-  border-color:#111;
 }
 
 .payment input{
@@ -139,10 +130,6 @@ input:focus{
   gap:12px;
   padding:12px 0;
   border-bottom:1px solid #eee;
-}
-
-.summary-item:last-child{
-  border-bottom:0;
 }
 
 .summary-item img{
@@ -198,7 +185,7 @@ input:focus{
 }
 
 .order-button:hover{
-  background:#292929;
+  background:#333;
 }
 
 /* ERFOLG */
@@ -226,7 +213,6 @@ input:focus{
 
 .success-header h2{
   font-size:30px;
-  margin:15px 0 8px;
 }
 
 .success-header p{
@@ -239,7 +225,6 @@ input:focus{
   padding:10px 16px;
   border-radius:8px;
   font-weight:bold;
-  margin-top:10px;
 }
 
 .success-section{
@@ -247,25 +232,17 @@ input:focus{
   border-bottom:1px solid #eee;
 }
 
-.success-section h3{
-  margin-top:0;
-}
-
 .address{
-  color:#555;
   line-height:1.7;
+  color:#555;
 }
 
 .success-product{
   display:flex;
-  gap:15px;
   align-items:center;
+  gap:15px;
   padding:12px 0;
   border-bottom:1px solid #eee;
-}
-
-.success-product:last-child{
-  border-bottom:0;
 }
 
 .success-product img{
@@ -286,7 +263,7 @@ input:focus{
 .success-product-small{
   color:#666;
   font-size:13px;
-  margin-top:4px;
+  margin-top:5px;
 }
 
 .success-product-price{
@@ -302,28 +279,23 @@ input:focus{
 }
 
 .success-buttons{
-  display:grid;
-  grid-template-columns:1fr 1fr;
+  display:flex;
   gap:12px;
   margin-top:25px;
 }
 
-.success-button{
-  display:block;
-  width:100%;
+.success-buttons a{
+  flex:1;
   text-align:center;
   color:white;
   text-decoration:none;
   padding:15px;
   border-radius:9px;
   font-weight:bold;
-}
-
-.shop{
   background:#111;
 }
 
-.orders{
+.success-buttons a.orders{
   background:#555;
 }
 
@@ -345,16 +317,14 @@ input:focus{
 }
 
 @media(max-width:800px){
-
   .layout{
     grid-template-columns:1fr;
   }
-
 }
 
 @media(max-width:550px){
 
-  .row-input{
+  .input-row{
     grid-template-columns:1fr;
   }
 
@@ -362,12 +332,7 @@ input:focus{
     font-size:30px;
   }
 
-  .nav-right{
-    gap:5px;
-  }
-
-  .back,
-  .orders-link{
+  .nav-buttons a{
     padding:8px 10px;
     font-size:13px;
   }
@@ -376,132 +341,101 @@ input:focus{
     padding:25px 18px;
   }
 
-  .success-header h2{
-    font-size:25px;
-  }
-
   .success-buttons{
-    grid-template-columns:1fr;
+    flex-direction:column;
   }
-
 }
-
 </style>
 </head>
 
 <body>
 
 <header>
-
 <div class="nav">
 
 <div class="logo">
 NovaShop
 </div>
 
-<div class="nav-right">
+<div class="nav-buttons">
 
-<a href="orders.html" class="orders-link">
+<a href="orders.html" class="orders">
 📦 Bestellungen
 </a>
 
-<a href="cart.html" class="back">
+<a href="cart.html">
 ← Warenkorb
 </a>
 
 </div>
 
 </div>
-
 </header>
 
 
 <div class="container">
 
-
 <!-- CHECKOUT -->
 
 <div id="checkout">
 
-<h1>
-Kasse
-</h1>
-
+<h1>Kasse</h1>
 
 <div class="layout">
 
+<div>
 
 <!-- ADRESSE -->
 
-<div>
-
-
 <div class="box">
 
-<h2>
-Lieferadresse
-</h2>
+<h2>Lieferadresse</h2>
 
-
-<label>
-Vorname
-</label>
+<label>Vorname</label>
 
 <input
-type="text"
 id="firstname"
+type="text"
 placeholder="Max"
 >
 
-
-<label>
-Nachname
-</label>
+<label>Nachname</label>
 
 <input
-type="text"
 id="lastname"
+type="text"
 placeholder="Mustermann"
 >
 
-
-<label>
-E-Mail
-</label>
+<label>E-Mail</label>
 
 <input
-type="email"
 id="email"
+type="email"
 placeholder="max@example.de"
 >
 
-
-<div class="row-input">
+<div class="input-row">
 
 <div>
 
-<label>
-Straße
-</label>
+<label>Straße</label>
 
 <input
-type="text"
 id="street"
+type="text"
 placeholder="Musterstraße"
 >
 
 </div>
 
-
 <div>
 
-<label>
-Hausnummer
-</label>
+<label>Hausnummer</label>
 
 <input
-type="text"
 id="house"
+type="text"
 placeholder="12"
 >
 
@@ -509,33 +443,27 @@ placeholder="12"
 
 </div>
 
-
-<div class="row-input">
+<div class="input-row">
 
 <div>
 
-<label>
-PLZ
-</label>
+<label>PLZ</label>
 
 <input
-type="text"
 id="zip"
+type="text"
 placeholder="12345"
 >
 
 </div>
 
-
 <div>
 
-<label>
-Ort
-</label>
+<label>Ort</label>
 
 <input
-type="text"
 id="city"
+type="text"
 placeholder="Berlin"
 >
 
@@ -550,10 +478,7 @@ placeholder="Berlin"
 
 <div class="box">
 
-<h2>
-Zahlungsart
-</h2>
-
+<h2>Zahlungsart</h2>
 
 <label class="payment">
 
@@ -568,7 +493,6 @@ checked
 
 </label>
 
-
 <label class="payment">
 
 <input
@@ -580,7 +504,6 @@ value="PayPal"
 🅿️ PayPal
 
 </label>
-
 
 <label class="payment">
 
@@ -599,24 +522,19 @@ value="Klarna"
 </div>
 
 
-<!-- BESTELLÜBERSICHT -->
+<!-- BESTELLUNG -->
 
 <div>
 
 <div class="box">
 
-<h2>
-Deine Bestellung
-</h2>
+<h2>Deine Bestellung</h2>
 
 <div id="items"></div>
 
-
 <div class="price-row">
 
-<span>
-Zwischensumme
-</span>
+<span>Zwischensumme</span>
 
 <strong id="subtotal">
 0,00 €
@@ -624,12 +542,9 @@ Zwischensumme
 
 </div>
 
-
 <div class="price-row">
 
-<span>
-Versand
-</span>
+<span>Versand</span>
 
 <strong id="shipping">
 0,00 €
@@ -637,12 +552,9 @@ Versand
 
 </div>
 
-
 <div class="price-row total">
 
-<span>
-Gesamt
-</span>
+<span>Gesamt</span>
 
 <strong id="total">
 0,00 €
@@ -650,10 +562,10 @@ Gesamt
 
 </div>
 
-
 <button
-class="order-button"
-onclick="placeOrder()">
+type="button"
+id="orderButton"
+class="order-button">
 
 Bestellung abschließen
 
@@ -668,12 +580,11 @@ Bestellung abschließen
 </div>
 
 
-<!-- ERFOLG -->
+<!-- ERFOLGSSEITE -->
 
 <div id="success" class="success">
 
 <div class="success-box">
-
 
 <div class="success-header">
 
@@ -692,22 +603,16 @@ Vielen Dank für deine Bestellung bei NovaShop.
 <div class="order-number">
 
 Bestellnummer:
-<span id="orderNumber">
-NS-000000
-</span>
+<strong id="orderNumber"></strong>
 
 </div>
 
 </div>
 
-
-<!-- ADRESSE -->
 
 <div class="success-section">
 
-<h3>
-📦 Lieferadresse
-</h3>
+<h3>📦 Lieferadresse</h3>
 
 <div
 id="successAddress"
@@ -717,22 +622,15 @@ class="address">
 </div>
 
 
-<!-- PRODUKTE -->
-
 <div class="success-section">
 
-<h3>
-🛍️ Deine Produkte
-</h3>
+<h3>🛍️ Deine Produkte</h3>
 
 <div id="successProducts"></div>
 
-
 <div class="success-total">
 
-<span>
-Gesamt
-</span>
+<span>Gesamt</span>
 
 <span id="successTotal">
 0,00 €
@@ -743,64 +641,63 @@ Gesamt
 </div>
 
 
-<!-- ZAHLUNG -->
-
 <div class="success-section">
 
-<h3>
-💳 Zahlungsart
-</h3>
+<h3>💳 Zahlungsart</h3>
 
-<div id="successPayment">
-</div>
+<div id="successPayment"></div>
 
 </div>
 
-
-<!-- BUTTONS -->
 
 <div class="success-buttons">
 
-<a
-href="orders.html"
-class="success-button orders">
-
+<a href="orders.html" class="orders">
 📦 Meine Bestellungen
-
 </a>
 
-
-<a
-href="index.html"
-class="success-button shop">
-
+<a href="index.html">
 🛍️ Weiter einkaufen
-
 </a>
 
 </div>
 
-
 </div>
 
 </div>
-
 
 </div>
 
 
 <script>
 
+/* ===================================
+   WARENKORB
+=================================== */
 
-/* WARENKORB */
+let cart = [];
 
-let cart =
+try{
+
+cart =
 JSON.parse(
 localStorage.getItem("cart") || "[]"
 );
 
+if(!Array.isArray(cart)){
+cart = [];
+}
 
-/* GELD */
+}catch(error){
+
+cart = [];
+
+}
+
+
+/* ===================================
+   GELD
+=================================== */
 
 function money(value){
 
@@ -811,7 +708,9 @@ return Number(value)
 }
 
 
-/* BESTELLNUMMER */
+/* ===================================
+   BESTELLNUMMER
+=================================== */
 
 function createOrderNumber(){
 
@@ -826,7 +725,9 @@ return "NS-" + number;
 }
 
 
-/* CHECKOUT ANZEIGEN */
+/* ===================================
+   CHECKOUT ANZEIGEN
+=================================== */
 
 function renderCheckout(){
 
@@ -834,7 +735,7 @@ const items =
 document.getElementById("items");
 
 
-if(cart.length === 0){
+if(!cart.length){
 
 document.getElementById("checkout")
 .innerHTML = `
@@ -846,7 +747,7 @@ Dein Warenkorb ist leer.
 </h2>
 
 <p>
-Füge zuerst Produkte zu deinem Warenkorb hinzu.
+Füge zuerst ein Produkt hinzu.
 </p>
 
 <a href="index.html">
@@ -862,30 +763,31 @@ return;
 }
 
 
-/* PRODUKTE */
-
 items.innerHTML =
-cart.map(item => {
+cart.map(function(item){
 
 const quantity =
-item.quantity || 1;
+Number(item.quantity) || 1;
 
-const total =
-Number(item.price) * quantity;
+const price =
+Number(item.price) || 0;
+
+const itemTotal =
+price * quantity;
 
 return `
 
 <div class="summary-item">
 
 <img
-src="${item.image}"
-alt="${item.name}"
+src="${item.image || ""}"
+alt="${item.name || "Produkt"}"
 >
 
 <div class="summary-info">
 
 <div class="summary-name">
-${item.name}
+${item.name || "Produkt"}
 </div>
 
 <div class="summary-small">
@@ -905,7 +807,7 @@ Menge: ${quantity}
 </div>
 
 <div class="summary-price">
-${money(total)}
+${money(itemTotal)}
 </div>
 
 </div>
@@ -915,19 +817,26 @@ ${money(total)}
 }).join("");
 
 
-/* ZWISCHENSUMME */
+calculateTotal();
+
+}
+
+
+/* ===================================
+   PREISE BERECHNEN
+=================================== */
+
+function calculateTotal(){
 
 const subtotal =
-cart.reduce(
-(sum,item) =>
-sum +
-Number(item.price) *
-(item.quantity || 1),
-0
-);
+cart.reduce(function(sum,item){
 
+return sum +
+(Number(item.price) || 0) *
+(Number(item.quantity) || 1);
 
-/* VERSAND */
+},0);
+
 
 const shipping =
 subtotal >= 50
@@ -935,13 +844,9 @@ subtotal >= 50
 : 4.99;
 
 
-/* GESAMT */
-
 const total =
 subtotal + shipping;
 
-
-/* AUSGEBEN */
 
 document.getElementById("subtotal")
 .textContent =
@@ -962,75 +867,15 @@ money(total);
 }
 
 
-/* BESTELLUNG ABSCHLIESSEN */
+/* ===================================
+   BESTELLUNG ABSCHLIESSEN
+=================================== */
 
 function placeOrder(){
 
+/* WARENKORB PRÜFEN */
 
-/* FELDER */
-
-const required = [
-
-"firstname",
-"lastname",
-"email",
-"street",
-"house",
-"zip",
-"city"
-
-];
-
-
-for(const id of required){
-
-const field =
-document.getElementById(id);
-
-
-if(!field.value.trim()){
-
-alert(
-"Bitte fülle alle Pflichtfelder aus."
-);
-
-field.focus();
-
-return;
-
-}
-
-}
-
-
-/* E-MAIL */
-
-const email =
-document.getElementById("email")
-.value
-.trim();
-
-
-if(
-!email.includes("@") ||
-!email.includes(".")
-){
-
-alert(
-"Bitte gib eine gültige E-Mail-Adresse ein."
-);
-
-document.getElementById("email")
-.focus();
-
-return;
-
-}
-
-
-/* WARENKORB */
-
-if(cart.length === 0){
+if(!cart.length){
 
 alert(
 "Dein Warenkorb ist leer."
@@ -1041,30 +886,98 @@ return;
 }
 
 
+/* FELDER */
+
+const firstname =
+document.getElementById("firstname")
+.value.trim();
+
+const lastname =
+document.getElementById("lastname")
+.value.trim();
+
+const email =
+document.getElementById("email")
+.value.trim();
+
+const street =
+document.getElementById("street")
+.value.trim();
+
+const house =
+document.getElementById("house")
+.value.trim();
+
+const zip =
+document.getElementById("zip")
+.value.trim();
+
+const city =
+document.getElementById("city")
+.value.trim();
+
+
+/* PRÜFEN */
+
+if(
+!firstname ||
+!lastname ||
+!email ||
+!street ||
+!house ||
+!zip ||
+!city
+){
+
+alert(
+"Bitte fülle alle Felder aus."
+);
+
+return;
+
+}
+
+
+/* E-MAIL */
+
+if(
+!email.includes("@") ||
+!email.includes(".")
+){
+
+alert(
+"Bitte gib eine gültige E-Mail-Adresse ein."
+);
+
+return;
+
+}
+
+
 /* ZAHLUNG */
 
-const payment =
+const selectedPayment =
 document.querySelector(
 'input[name="payment"]:checked'
-).value;
+);
 
 
-/* BESTELLNUMMER */
-
-const orderNumber =
-createOrderNumber();
+const payment =
+selectedPayment
+? selectedPayment.value
+: "Kreditkarte";
 
 
 /* PREISE */
 
 const subtotal =
-cart.reduce(
-(sum,item) =>
-sum +
-Number(item.price) *
-(item.quantity || 1),
-0
-);
+cart.reduce(function(sum,item){
+
+return sum +
+(Number(item.price) || 0) *
+(Number(item.quantity) || 1);
+
+},0);
 
 
 const shipping =
@@ -1077,40 +990,13 @@ const total =
 subtotal + shipping;
 
 
-/* KUNDENDATEN */
+/* BESTELLNUMMER */
 
-const firstname =
-document.getElementById("firstname")
-.value
-.trim();
-
-const lastname =
-document.getElementById("lastname")
-.value
-.trim();
-
-const street =
-document.getElementById("street")
-.value
-.trim();
-
-const house =
-document.getElementById("house")
-.value
-.trim();
-
-const zip =
-document.getElementById("zip")
-.value
-.trim();
-
-const city =
-document.getElementById("city")
-.value
-.trim();
+const orderNumber =
+createOrderNumber();
 
 
-/* BESTELLUNG ERSTELLEN */
+/* BESTELLUNG */
 
 const order = {
 
@@ -1150,16 +1036,28 @@ total:total
 };
 
 
-/*
-  WICHTIG:
-  BESTELLUNG ZU ALLEN BESTELLUNGEN
-  HINZUFÜGEN
-*/
+/* ===================================
+   BESTELLUNGEN SPEICHERN
+=================================== */
 
-let orders =
+let orders = [];
+
+try{
+
+orders =
 JSON.parse(
 localStorage.getItem("orders") || "[]"
 );
+
+if(!Array.isArray(orders)){
+orders = [];
+}
+
+}catch(error){
+
+orders = [];
+
+}
 
 
 orders.push(order);
@@ -1179,7 +1077,9 @@ JSON.stringify(order)
 );
 
 
-/* BESTELLNUMMER */
+/* ===================================
+   ERFOLGSSEITE
+=================================== */
 
 document.getElementById("orderNumber")
 .textContent =
@@ -1215,27 +1115,32 @@ ${email}
 document.getElementById("successProducts")
 .innerHTML =
 
-cart.map(item => {
+cart.map(function(item){
 
 const quantity =
-item.quantity || 1;
+Number(item.quantity) || 1;
+
+const price =
+Number(item.price) || 0;
 
 const itemTotal =
-Number(item.price) * quantity;
+price * quantity;
 
 return `
 
 <div class="success-product">
 
 <img
-src="${item.image}"
-alt="${item.name}"
+src="${item.image || ""}"
+alt="${item.name || "Produkt"}"
 >
 
 <div class="success-product-info">
 
 <div class="success-product-name">
-${item.name}
+
+${item.name || "Produkt"}
+
 </div>
 
 <div class="success-product-small">
@@ -1279,39 +1184,49 @@ document.getElementById("successPayment")
 payment;
 
 
-/* WARENKORB LEEREN */
+/* ===================================
+   WARENKORB LEEREN
+=================================== */
 
 localStorage.removeItem("cart");
 
 
-/* CHECKOUT AUSBLENDEN */
+/* ===================================
+   ANZEIGEN
+=================================== */
 
 document.getElementById("checkout")
 .style.display =
 "none";
 
 
-/* ERFOLG ANZEIGEN */
-
 document.getElementById("success")
 .style.display =
 "block";
 
 
-/* NACH OBEN */
-
 window.scrollTo({
-
 top:0,
-
 behavior:"smooth"
-
-);
+});
 
 }
 
 
-/* START */
+/* ===================================
+   BUTTON VERBINDEN
+=================================== */
+
+document.getElementById("orderButton")
+.addEventListener(
+"click",
+placeOrder
+);
+
+
+/* ===================================
+   START
+=================================== */
 
 renderCheckout();
 
