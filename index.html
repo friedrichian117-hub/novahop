@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NovaShop – Kleidung & Elektronik</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f5f5f7;color:#111}
+header{background:#111;color:white;padding:18px 6%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+.logo{font-size:25px;font-weight:800}
+nav a{color:white;text-decoration:none;margin:0 12px;cursor:pointer}
+.cart{background:white;color:#111;border:0;border-radius:20px;padding:10px 16px;font-weight:bold;cursor:pointer}
+.hero{padding:70px 6%;background:linear-gradient(135deg,#171717,#444);color:white;text-align:center}
+.hero h1{font-size:48px;margin-bottom:12px}.hero p{font-size:19px;color:#ddd}
+.controls{padding:28px 6%;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+button,.filter{border:0;border-radius:10px;padding:12px 18px;cursor:pointer;background:#111;color:white}
+.filter.active{background:#555}
+.products{padding:10px 6% 60px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;max-width:1300px;margin:auto}
+.card{background:white;border-radius:16px;overflow:hidden;box-shadow:0 4px 18px #00000012}
+.pic{height:220px;background:#e7e7ea;display:flex;align-items:center;justify-content:center;font-size:65px}
+.info{padding:18px}.info h3{margin-bottom:8px}.price{font-size:20px;font-weight:bold;margin:10px 0 15px}
+.add{width:100%}
+footer{text-align:center;padding:30px;background:#111;color:#aaa}
+#cartPanel{display:none;position:fixed;right:0;top:0;width:min(400px,100%);height:100%;background:white;z-index:20;padding:25px;box-shadow:-5px 0 20px #0003;overflow:auto}
+.close{float:right;background:#eee;color:#111}.cartItem{padding:14px 0;border-bottom:1px solid #ddd}
+.total{font-size:22px;font-weight:bold;margin:20px 0}
+@media(max-width:600px){.hero h1{font-size:36px}nav{display:none}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">NovaShop</div>
+<nav><a onclick="filterProducts('all')">Alle</a><a onclick="filterProducts('clothing')">Kleidung</a><a onclick="filterProducts('electronics')">Elektronik</a></nav>
+<button class="cart" onclick="openCart()">🛒 Warenkorb (<span id="count">0</span>)</button>
+</header>
+
+<section class="hero">
+<h1>NovaShop</h1>
+<p>Moderne Hoodies, Streetwear & Elektronik.</p>
+<p style="margin-top:16px;font-size:15px">Kostenloser Versand ab 50 € · Neue Styles im Shop</p>
+</section>
+
+<div class="controls">
+<button class="filter active" onclick="filterProducts('all')">Alle Produkte</button>
+<button class="filter" onclick="filterProducts('clothing')">👕 Kleidung</button>
+<button class="filter" onclick="filterProducts('electronics')">🎧 Elektronik</button>
+</div>
+
+<main class="products" id="products"></main>
+
+<footer>© 2026 NovaShop · Deine Marke, dein Shop</footer>
+
+<aside id="cartPanel">
+<button class="close" onclick="closeCart()">✕</button>
+<h2>Dein Warenkorb</h2>
+<div id="cartItems"></div>
+<div class="total">Gesamt: <span id="total">0,00 €</span></div>
+<button style="width:100%" onclick="alert('Checkout kommt als nächster Schritt!')">Zur Kasse</button>
+</aside>
+
+<script>
+const products=[
+{id:1,name:"Nova Black Hoodie",cat:"clothing",price:39.99,icon:"🖤",sizes:"XS · S · M · L · XL · XXL",colors:"Schwarz"},
+{id:2,name:"Nova Grey Hoodie",cat:"clothing",price:44.99,icon:"🩶",sizes:"XS · S · M · L · XL · XXL",colors:"Grau"},
+{id:3,name:"Nova Streetwear Hoodie",cat:"clothing",price:49.99,icon:"🧥",sizes:"S · M · L · XL · XXL",colors:"Schwarz · Grau"},
+{id:4,name:"Nova Cream Hoodie",cat:"clothing",price:39.99,icon:"🤍",sizes:"XS · S · M · L · XL",colors:"Creme"},
+{id:5,name:"Nova Green Hoodie",cat:"clothing",price:44.99,icon:"💚",sizes:"S · M · L · XL · XXL",colors:"Dunkelgrün"},
+{id:6,name:"Nova Zip Hoodie",cat:"clothing",price:54.99,icon:"🧥",sizes:"S · M · L · XL · XXL",colors:"Schwarz · Grau"},
+{id:7,name:"Nova Wireless Headphones",cat:"electronics",price:59.99,icon:"🎧",sizes:"One Size",colors:"Schwarz"},
+{id:8,name:"Nova Smartwatch",cat:"electronics",price:79.99,icon:"⌚",sizes:"One Size",colors:"Schwarz"}
+];
+let cart=[];
+function render(list=products){
+document.getElementById("products").innerHTML=list.map(p=>`
+<div class="card">
+<div class="pic">${p.icon}</div>
+<div class="info"><h3>${p.name}</h3><p>${p.cat==="clothing"?"Kleidung":"Elektronik"}</p>
+<div class="price">${p.price.toFixed(2).replace(".",",")} €</div>
+<p style="font-size:13px;color:#666;margin-bottom:5px"><b>Größen:</b> ${p.sizes}</p>
+<p style="font-size:13px;color:#666;margin-bottom:14px"><b>Farben:</b> ${p.colors}</p>
+<button class="add" onclick="add(${p.id})">In den Warenkorb</button></div></div>`).join("");
+}
+function filterProducts(cat){render(cat==="all"?products:products.filter(p=>p.cat===cat))}
+function add(id){const p=products.find(x=>x.id===id);cart.push(p);updateCart()}
+function updateCart(){
+document.getElementById("count").textContent=cart.length;
+document.getElementById("cartItems").innerHTML=cart.length?cart.map((p,i)=>`<div class="cartItem">${p.name}<br><b>${p.price.toFixed(2).replace(".",",")} €</b> <button onclick="removeItem(${i})" style="float:right;padding:6px">Entfernen</button></div>`).join(""):"<p style='margin-top:20px'>Dein Warenkorb ist leer.</p>";
+let total=cart.reduce((s,p)=>s+p.price,0);
+document.getElementById("total").textContent=total.toFixed(2).replace(".",",")+" €";
+}
+function removeItem(i){cart.splice(i,1);updateCart()}
+function openCart(){document.getElementById("cartPanel").style.display="block"}
+function closeCart(){document.getElementById("cartPanel").style.display="none"}
+render();updateCart();
+</script>
+</body>
+</html>
